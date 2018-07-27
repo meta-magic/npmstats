@@ -1,84 +1,13 @@
 
-<amexio-card [header]="true"
-[header-align]="'left'"
-[footer]="false"
-[footer-align]="'right'"
-[body-height]="95"
->
-  <amexio-header>
-    NPM Stats
-  </amexio-header>
-  <amexio-body>
-    <amexio-row>
-      <amexio-column [size]="3">
-       <amexio-text-input [min-length]="1" [max-length]="100" [allow-blank]="false" field-label="Package Name" name="packagename"
-             place-holder="Enter Package Name" field-name="amexio-ng-extensions" icon-feedback="false" [(ngModel)]=packageModel.packageName>
-       </amexio-text-input>
-      </amexio-column>
 
+<br/>
 
-      <amexio-column [size]="3">
-         <amexio-date-time-picker [dropdown-datepicker]="true" [field-label]="'From date'" [time-picker]="false" [date-picker]="true"
-              [(ngModel)]="packageModel.fromDate">
-        </amexio-date-time-picker>
-      </amexio-column>
-
-
-
-      <amexio-column [size]="3">
-         <amexio-date-time-picker [dropdown-datepicker]="true" [field-label]="'To date'" [time-picker]="false" [date-picker]="true"
-            [(ngModel)]=" packageModel.toDate">
-         </amexio-date-time-picker>
-      </amexio-column>
-
-       <amexio-column size="1"></amexio-column>
-      
-       <span >
-       <amexio-column size="2">
-           <amexio-button [disabled]="false" [label]="'Search'" [form-bind]="'validateForm '"[type]="'green'" [tooltip]="'Search'" (onClick)=" getData()" >
-          </amexio-button>
-      </amexio-column>
-      </span>
-</amexio-row>
-
-<amexio-row>
-   <ng-container *ngIf="showChart">
-        <amexio-label size="medium" >Total downloads:{{sum}}</amexio-label>
-   </ng-container>
-</amexio-row>
-
-<amexio-row>
-     <amexio-column size="10">
-        <ng-container *ngIf="isLoading1">
-        <amexio-card [height]="400">
-          <amexio-body>
-              <div [ngClass]="{'signal':isLoading}">
-                  <ng-container *ngIf="showChart" >
-                      <amexio-chart-line [data]="lineChartData" [height]="'400px'" [width]="'100%'">
-                        <amexio-chart-legend [position]="'top'" [font-name]="'downloads'"></amexio-chart-legend>
-                            <amexio-chart-horizontal-axis [title]="'Date'">
-                            </amexio-chart-horizontal-axis>
-                            <amexio-chart-vertical-axis [title]="'Downloads'">
-                            </amexio-chart-vertical-axis>
-                      </amexio-chart-line> 
-                  </ng-container>
-                </div>          
-          </amexio-body>
-        </amexio-card>
-      </ng-container>
-       </amexio-column> 
-</amexio-row>
-<amexio-notification
-         [data]="errorMessage"
-         [vertical-position]="'top'"
-         [horizontal-position]="'center'"
-         [close-on-escape] ="true"
-         [background-color]="'orange '"
-         [foreground-color]="'black'"
-         [auto-dismiss-msg-interval]="6000"
-         [close-on-escape]="true"
-         [auto-dismiss-msg]="true">
-  </amexio-notification>
-</amexio-body>
-
-</amexio-card>
+<div *ngIf="showChart"  [ngClass]="{'signal':isLoading}">
+        <amexio-chart-line [data]="lineChartData" [height]="'400px'" [width]="'100%'">
+          <amexio-chart-legend [position]="'top'" [font-name]="'downloads'"></amexio-chart-legend>
+              <amexio-chart-horizontal-axis [title]="'Date'">
+              </amexio-chart-horizontal-axis>
+              <amexio-chart-vertical-axis [title]="'Downloads'">
+              </amexio-chart-vertical-axis>
+        </amexio-chart-line> 
+  </div>          
