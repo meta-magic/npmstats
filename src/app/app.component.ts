@@ -29,18 +29,20 @@ export class AppComponent implements OnInit {
   sum:number=0;
   isLoading1: boolean;
   activeTab:boolean;
+  perdaydownload:any;
+  totalDays:any;
   packageModel: PackageModel;
 
   constructor(private http:HttpClient){
   this.packageModel = new PackageModel();
   this.packageModel.packageName="amexio-ng-extensions";
-  
+  this.packageModel.fromDate="Jun 1, 2017";
+  this.packageModel.toDate = new Date().toString();
+  console.log("this.packageModel.toDate",this.packageModel.toDate);
   }
 
   ngOnInit()
-  {
-    this.packageModel.fromDate="Jun 1, 2017";
-    this.packageModel.toDate="Jul 31, 2018";
+  {    
     this.getData();
   }
   
@@ -51,6 +53,7 @@ export class AppComponent implements OnInit {
      this.sum=0;
      this.showChart=false;
      this.isLoading=true;
+     this.isLoading1=true;
      this.errorMessage=[];
      this.validatePackageName();
      this.lineChartData=[];
@@ -58,15 +61,17 @@ export class AppComponent implements OnInit {
      this.convertFromDate(this.packageModel.fromDate);
      this.convertToDate(this.packageModel.toDate);
      inputUrl = this.convertfromdate + ':' + this.converttodate + '/' + this.packageModel.packageName
+     this.perdaydownload=this.packageModel.packageName +' ' + ':'+' ' + this.convertfromdate + ' '+ 'to'+ ' '+ this.converttodate
      let response: any;
      this.http.get('https://api.npmjs.org/downloads/range/' + inputUrl, {}).subscribe(
        resp => {
          response = resp;
          this.showChart= true;
+       //  console.log("reponse",response.day)
        
        },
        error => {
-   
+                  
                        console.log("GOT ERROR",JSON.stringify(error.error.error));
                        this.showChart=false;
                        if(JSON.stringify(error.error.error) == '"end date > start date"')
@@ -84,15 +89,17 @@ export class AppComponent implements OnInit {
        () => {
        
        
-        this.downloadDataArray = response.downloads;
+          this.downloadDataArray = response.downloads;
+         // console.log("downloads",this.downloadDataArray)
+         
          this.lineChartData.push([
            { "datatype": "string", "label": 'Date' },
-           { "datatype": "number", "label": 'Downloads' }
+           { "datatype": "number", "label": this.perdaydownload }
          ]);
              this.downloadDataArray.forEach((downLoadObj:any)=>{
              let dayWiseDownloadCount:any;
              dayWiseDownloadCount=new DayWiseDownloadCount(downLoadObj.day,downLoadObj.downloads);
- 
+            
             
              let totaldownload:any;
              
@@ -105,7 +112,8 @@ export class AppComponent implements OnInit {
          });
               this.showChart=true;
               this.isLoading=false;
-              //const totalCount=this.sum;
+              this.isLoading1=false;
+            
        }
      );
     
@@ -118,7 +126,10 @@ export class AppComponent implements OnInit {
     }
     
   }
-    
+  onLinkClick(link:string)
+  {
+    window.open(link,'_blank');
+  }
 
 
   convertFromDate(str: any) {
@@ -126,6 +137,7 @@ export class AppComponent implements OnInit {
       mnth = ("0" + (date.getMonth() + 1)).slice(-2),
       day = ("0" + date.getDate()).slice(-2);
       this.convertfromdate = [date.getFullYear(), mnth, day].join("-");
+      console.log("mnth",mnth)
 
   }
 
@@ -140,9 +152,18 @@ export class AppComponent implements OnInit {
 
 export class PackageModel{
   fromDate : string = '';
-  toDate : string = '';
-  packageName : string = '';
+  toDate : any = '';
+  packageName : any = '';
 }
+
+export class TotalDays{
+    day:string;
+  constructor(day:string)
+  {
+    this.day=day;
+  }
+}
+
 export class DayWiseDownloadCount {
   downloads:string;
   day:number;

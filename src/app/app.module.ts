@@ -6,7 +6,7 @@ import { PackageSearchComponent } from './package-search/package-search.componen
 import {RouterModule} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import {CommonModule, DatePipe} from "@angular/common";
-import {AmexioWidgetModule,AmexioChartsModule} from "amexio-ng-extensions";
+import {AmexioDashBoardModule,AmexioWidgetModule,AmexioChartsModule} from "amexio-ng-extensions";
 import { BrowserModule }    from '@angular/platform-browser';
 import { HttpClientModule,HttpClient } from '@angular/common/http';
 import {HttpModule} from "@angular/http";
@@ -27,7 +27,8 @@ import { RedmeComponent } from './redme/redme.component';
     AmexioWidgetModule,
     AmexioChartsModule,
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    AmexioDashBoardModule
   ],
   providers: [HttpClient,DatePipe],
   bootstrap: [AppComponent]
