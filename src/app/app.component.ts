@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
   convertfromdate: any;
   converttodate: any;
   lineChartData: any;
+  lineChartData1:any;
   fromdate: any;
   todate: any;
   packagename: any;
@@ -73,7 +74,7 @@ export class AppComponent implements OnInit {
        error => {
                   
                        console.log("GOT ERROR",JSON.stringify(error.error.error));
-                       this.showChart=false;
+                        this.showChart=false;
                        if(JSON.stringify(error.error.error) == '"end date > start date"')
                        {
                           this.errorMessage.push("To-Date should be greater than From-Date")
@@ -90,12 +91,21 @@ export class AppComponent implements OnInit {
        
        
           this.downloadDataArray = response.downloads;
-         // console.log("downloads",this.downloadDataArray)
+         console.log("downloads",this.downloadDataArray);
          
-         this.lineChartData.push([
+        this.lineChartData.push([
            { "datatype": "string", "label": 'Date' },
            { "datatype": "number", "label": this.perdaydownload }
          ]);
+        
+        //  this.lineChartData1.push([
+        //   { "datatype": "string", "label": 'Month' },
+        //   { "datatype": "number", "label":this.downloads }
+        // ]);
+       
+         
+
+
              this.downloadDataArray.forEach((downLoadObj:any)=>{
              let dayWiseDownloadCount:any;
              dayWiseDownloadCount=new DayWiseDownloadCount(downLoadObj.day,downLoadObj.downloads);
@@ -108,11 +118,11 @@ export class AppComponent implements OnInit {
  
              this.sum =this.sum+totaldownload;
              this.lineChartData.push(dayWiseDownloadCount.add());
-             
+            // this.lineChartData1.push(dayWiseDownloadCount.add());
+            // console.log('monthdata', this.lineChartData1)
          });
               this.showChart=true;
               this.isLoading=false;
-              this.isLoading1=false;
             
        }
      );
@@ -122,7 +132,7 @@ export class AppComponent implements OnInit {
  
    validatePackageName() {
     if( this.packageModel.packageName == null || this.packageModel.packageName === '') {
-      this.packageModel.packageName="amexio-ng-extensions"
+       this.packageModel.packageName="amexio-ng-extensions"
     }
     
   }
@@ -137,7 +147,7 @@ export class AppComponent implements OnInit {
       mnth = ("0" + (date.getMonth() + 1)).slice(-2),
       day = ("0" + date.getDate()).slice(-2);
       this.convertfromdate = [date.getFullYear(), mnth, day].join("-");
-      console.log("mnth",mnth)
+     
 
   }
 

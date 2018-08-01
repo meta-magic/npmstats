@@ -5,8 +5,8 @@
              DownLoads/Day
 </amexio-label>
 <br>
-<div *ngIf="showChart"  [ngClass]="{'signal':isLoading}">
-      <div  *ngIf="showChart"  [ngClass]="{'signal':isLoading1}" >
+      
+      <div  *ngIf="showChart" [ngClass]="{'signal':!showChart}" >
         <amexio-chart-line [data]="lineChartData" [height]="'400px'" [width]="'100%'">
           <amexio-chart-legend [position]="'top'" [font-name]="'downloads'"></amexio-chart-legend>
               <amexio-chart-horizontal-axis [title]="'Date'">
@@ -15,6 +15,5 @@
               </amexio-chart-vertical-axis>
         </amexio-chart-line> 
       </div>   
- </div>
 
-
+      
