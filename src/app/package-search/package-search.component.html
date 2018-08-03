@@ -1,19 +1,45 @@
 
-
-<br/>
-<amexio-label>
-             DownLoads/Day
-</amexio-label>
 <br>
-      
-      <div  *ngIf="showChart" [ngClass]="{'signal':!showChart}" >
-        <amexio-chart-line [data]="lineChartData" [height]="'400px'" [width]="'100%'">
-          <amexio-chart-legend [position]="'top'" [font-name]="'downloads'"></amexio-chart-legend>
-              <amexio-chart-horizontal-axis [title]="'Date'">
-              </amexio-chart-horizontal-axis>
-              <amexio-chart-vertical-axis [title]="'Downloads'">
-              </amexio-chart-vertical-axis>
-        </amexio-chart-line> 
-      </div>   
+<br>
+        <amexio-card
+          [header]="true"
+          [header-align]="'left'"
+          [body-height]="''">
+            <amexio-header>
+                Downloads per day
+            </amexio-header>
+            <amexio-body>
+                <div  *ngIf="showChart" [ngClass]="{'signal':!showChart}" >
+                    <amexio-chart-line [data]="lineChartData" [height]="'400px'" [width]="'100%'">
+                      <amexio-chart-legend [position]="'top'" [font-name]="'downloads'"></amexio-chart-legend>
+                          <amexio-chart-horizontal-axis [title]="'Date'">
+                          </amexio-chart-horizontal-axis>
+                          <amexio-chart-vertical-axis [title]="'Downloads'">
+                          </amexio-chart-vertical-axis>
+                    </amexio-chart-line> 
+                  </div>   
+            </amexio-body>
+       </amexio-card>
 
-      
+<br>
+<br>
+
+    <amexio-card
+        [header]="true"
+        [header-align]="'left'"
+        [body-height]="''">
+          <amexio-header>
+              Downloads per month
+          </amexio-header>
+          <amexio-body>
+              <div *ngIf="showMonthChart" [ngClass]="{'signal':!showChart}"  >
+                  <amexio-chart-line [data]="monthWiseDataarray" [height]="'400px'" [width]="'100%'">
+                           <amexio-chart-legend [position]="'top'" [font-name]="'downloads'"></amexio-chart-legend>
+                               <amexio-chart-horizontal-axis [title]="'Month'">
+                               </amexio-chart-horizontal-axis>
+                               <amexio-chart-vertical-axis [title]="'Downloads'">
+                               </amexio-chart-vertical-axis>
+                         </amexio-chart-line> 
+                       </div>   
+          </amexio-body>
+   </amexio-card>

@@ -2,161 +2,161 @@
 </amexio-nav>
 <br><br><br><br>
 
-<amexio-row>
-   <amexio-column [size] ="12" >
-           
-                <amexio-box border-color="blue" border="left"  padding="true">
-           
-               <amexio-label size="14">npm is a trademark of npm, Inc. The application is built using Amexio Open Source UI library. Amexio is an open source product from MetaMagic Global Inc, based on Google's Angular platform.</amexio-label>
-            
-        </amexio-box>
-           <amexio-label  size="small-bold"></amexio-label> <br/>
-           <amexio-row>
-                   <amexio-column [size]="3">
-                       <amexio-text-input [min-length]="1" [max-length]="100" [allow-blank]="false" field-label="Package Name" name="packagename"
-                           place-holder="Enter Package Name" [(ngModel)]=packageModel.packageName field-name="amexio-ng-extensions" icon-feedback="false">
-                       </amexio-text-input>
-                   </amexio-column>
-                   <amexio-column [size]="3">
-                       <amexio-date-time-picker [dropdown-datepicker]="true" [(ngModel)]="packageModel.fromDate" [field-label]="'From date'" [time-picker]="false"
-                           [date-picker]="true">
-                       </amexio-date-time-picker>
-                   </amexio-column>
-                   <amexio-column [size]="3">
-                       <amexio-date-time-picker [dropdown-datepicker]="true" [field-label]="'To date'" [time-picker]="false" [date-picker]="true"
-                           [(ngModel)]=" packageModel.toDate">
-                       </amexio-date-time-picker>
-                   </amexio-column>
-                   <amexio-column size="1" style="display: flex;flex-direction: column; justify-content: flex-end; padding: 5px;">
-                       <amexio-button [disabled]="false" [label]="'Search'" [form-bind]="'validateForm '" [type]="'green'" [tooltip]="'Search'"
-                           (onClick)="getData()">
-                       </amexio-button>
-                   </amexio-column>
+<div class="space" class="margin">
 
-                   <amexio-column style="display: flex;flex-direction: column; justify-content: center; padding: 5px;">
-                       <amexio-label  size="small-bold">
-                           Total: {{sum}}
-                       </amexio-label>    
-                   </amexio-column>
-            </amexio-row>
-               
-               
-           <amexio-tab-view [closable]="false" [divide-header-equally]="true">
-                   <amexio-tab [amexio-color]="'blue'" title="Dashboard" [active]="activeTab" [closable]="false">
-                       <package-search [isLoading]="isLoading" [showChart]="showChart" [lineChartData]="lineChartData">
-                       </package-search>
-                   </amexio-tab>
-               
-                   <amexio-tab [amexio-color]="'green'" disabled="true" title="Package Info" [active]="false" [closable]="false">
-                       <app-redme></app-redme>
-                   </amexio-tab>
-               
-                   <amexio-tab [amexio-color]="'red'" title="Dependencies "disabled="true" [active]="false" [closable]="false">
-                   </amexio-tab>
-               
-                   <amexio-tab [amexio-color]="'purple'" title="Dependent" disabled="true" [active]="false" [closable]="false">
-                   </amexio-tab>
-           </amexio-tab-view>
-           
-           <amexio-notification
-                    [data]="errorMessage"
-                    [vertical-position]="'top'"
-                    [horizontal-position]="'center'"
-                    [close-on-escape] ="true"
-                    [background-color]="'orange '"
-                    [foreground-color]="'black'"
-                    [auto-dismiss-msg-interval]="6000"
-                    [close-on-escape]="true"
-                    [auto-dismiss-msg]="true">
-           </amexio-notification>
-   </amexio-column>
-
-</amexio-row>
-<amexio-row>
-   <amexio-column [size] =3 >
-       <amexio-card [body-height]="'40'" [header]="true" [footer]="true" [footer-align]="'center'">
-           <amexio-header>Amexio API</amexio-header>
-           <amexio-body  style="display: flex; justify-content: center; flex-direction: column;">
-               <amexio-image style="display: flex; justify-content: center; "
-                               [path]="'https://image.ibb.co/kdy6Ev/logo.png'"
-                               [height]="'100px'" >
-               </amexio-image>
-               <amexio-label style="display: flex; justify-content: center; ">
-                       Amexio - Angular UI Components,
-                       <br>Charts,Dashboards,
-                      <br> Layouts Apache 2 License
-               </amexio-label>
-           </amexio-body>
-           <amexio-action>
-               <amexio-button (onClick)="onLinkClick('https://github.com/meta-magic/amexio.github.io')"
-                               [label]="'Download'" [type]="'theme-color'" >
-               </amexio-button>
-           </amexio-action>
-       </amexio-card>
-   </amexio-column>
-
-<amexio-column [size]="3">
-   <amexio-card  [body-height]="'40'"[header]="true" [footer]="true" [footer-align]="'center'">
-       <amexio-header>Amexio Plugin</amexio-header>
-       <amexio-body  style="display: flex; justify-content: center; flex-direction: column;">
-           <amexio-image style="display: flex; justify-content: center; "
-                           [path]="'assets/images/logos/amexio_plugin.jpeg'"
-                           [height]="'100px'" >
-           </amexio-image>
-           <amexio-label style="display: flex; justify-content: center; ">
-                   <br/>Visual Studio Plugin 
-                   <br/>Increase Producitivty By 50%
-               
-           </amexio-label>
-       </amexio-body>
-       <amexio-action>
-           <amexio-button (onClick)="onLinkClick('https://marketplace.visualstudio.com/items?itemName=MetaMagic.amexio')"
-                           [label]="'Git Plugin'" [type]="'theme-color'" >
-           </amexio-button>
-       </amexio-action>
-   </amexio-card>
-</amexio-column>
-<amexio-column [size]="3">
-       <amexio-card  [body-height]="'40'" [header]="true" [footer]="true" [footer-align]="'center'">
-           <amexio-header>Amexio Canvas</amexio-header>
-           <amexio-body style="display: flex; justify-content: center; flex-direction: column;">
-               <amexio-image style="display: flex; justify-content: center; "
-                             [path]="'assets/images/logos/amexio_canvas.jpeg'"
-                             [height]="'100px'"  >
-               </amexio-image>
-               <amexio-label style="display: flex; justify-content: center; ">
-                       <br/>Angular UI Automation Platform 
-                       <br/> Increase Producitivty By more 3x 
-                       
-                   
-                       
-               </amexio-label>
-       </amexio-body>
-           <amexio-action>
-               <amexio-button (onClick)="onLinkClick('https://canvas.amexio.org/#/login')"
-                               [label]="'Login To Canvas'" [type]="'theme-color'" >
-               </amexio-button>
-           </amexio-action>
-       </amexio-card>
-</amexio-column>
-<amexio-column [size]="3">
-       <amexio-card  [body-height]="'40'" [header]="true" [footer]="true" [footer-align]="'center'">
-           <amexio-header>Source Code-npm Stats</amexio-header>
-           <amexio-body style="display: flex; justify-content: center; flex-direction: column;">
-               <amexio-image style="display: flex; justify-content: center; "
-                            [height]="'102px'" [path]="'assets/images/logos/github.png'"  >
-               </amexio-image>
-               <amexio-label  style="display: flex; justify-content: center; ">
-                   <br/>Open Source
-                   <br/>Apache 2 License <br/>
-               </amexio-label>
-           </amexio-body>
-           <amexio-action>
-                   <amexio-button (onClick)="onLinkClick('https://github.com/meta-magic/npmstats')"
-                                   [label]="'GitHub'" [type]="'theme-color'" >
-                   </amexio-button>
-           </amexio-action>
-       </amexio-card>
-</amexio-column>
-
-</amexio-row>
+        <amexio-row >
+                <amexio-column [size] ="12" >
+                        
+                             <amexio-box border-color="blue" border="left"  padding="true">
+                        
+                            <amexio-label size="14">npm is a trademark of npm, Inc. The application is built using Amexio Open Source UI library. Amexio is an open source product from MetaMagic Global Inc, based on Google's Angular platform.</amexio-label>
+                         
+                     </amexio-box>
+                        <amexio-label  size="small-bold"></amexio-label> <br/>
+                        <amexio-row>
+                                <amexio-column [size]="3">
+                                    <amexio-text-input [min-length]="1" [max-length]="100" [allow-blank]="false" field-label="Package Name" name="packagename"
+                                        place-holder="Enter Package Name" [(ngModel)]=packageModel.packageName field-name="amexio-ng-extensions" icon-feedback="false">
+                                    </amexio-text-input>
+                                </amexio-column>
+                                <amexio-column [size]="3">
+                                    <amexio-date-time-picker [dropdown-datepicker]="true" [(ngModel)]="packageModel.fromDate" [field-label]="'From date'" [time-picker]="false"
+                                        [date-picker]="true">
+                                    </amexio-date-time-picker>
+                                </amexio-column>
+                                <amexio-column [size]="3">
+                                    <amexio-date-time-picker [dropdown-datepicker]="true" [field-label]="'To date'" [time-picker]="false" [date-picker]="true"
+                                        [(ngModel)]=" packageModel.toDate">
+                                    </amexio-date-time-picker>
+                                </amexio-column>
+                                <amexio-column size="1" style="display: flex;flex-direction: column; justify-content: flex-end; padding: 5px;">
+                                    <amexio-button [disabled]="false" [label]="'Search'" [form-bind]="'validateForm '" [type]="'green'" [tooltip]="'Search'"
+                                        (onClick)="getData()">
+                                    </amexio-button>
+                                </amexio-column>
+             
+                                <amexio-column style="display: flex;flex-direction: column; justify-content: center; padding: 5px;">
+                                    <amexio-label  size="small-bold">
+                                        Total: {{sum}}
+                                    </amexio-label>    
+                                </amexio-column>
+                         </amexio-row>
+                            
+                            
+                        <amexio-tab-view [closable]="false" [divide-header-equally]="true">
+                                <amexio-tab [amexio-color]="'blue'" title="Dashboard" [active]="activeTab" [closable]="false">
+                                    <package-search [isLoading]="isLoading"  [showMonthChart]="showMonthChart"[showChart]="showChart" [lineChartData]="lineChartData" [monthWiseDataarray]="monthWiseDataarray">
+                                    </package-search>
+                                </amexio-tab>
+                            
+                                <amexio-tab [amexio-color]="'green'" disabled="true" title="Package Info" [active]="false" [closable]="false">
+                                    <app-redme></app-redme>
+                                </amexio-tab>
+                            
+                                <amexio-tab [amexio-color]="'red'" title="Dependencies "disabled="true" [active]="false" [closable]="false">
+                                </amexio-tab>
+                            
+                                <amexio-tab [amexio-color]="'purple'" title="Dependent" disabled="true" [active]="false" [closable]="false">
+                                </amexio-tab>
+                        </amexio-tab-view>
+                        
+                        <amexio-notification
+                                 [data]="errorMessage"
+                                 [vertical-position]="'top'"
+                                 [horizontal-position]="'center'"
+                                 [close-on-escape] ="true"
+                                 [background-color]="'orange '"
+                                 [foreground-color]="'black'"
+                                 [auto-dismiss-msg-interval]="6000"
+                                 [close-on-escape]="true"
+                                 [auto-dismiss-msg]="true">
+                        </amexio-notification>
+                </amexio-column>
+             
+             </amexio-row>
+             <amexio-row>
+                <amexio-column [size] =3 >
+                    <amexio-card [body-height]="'40'" [header]="true" [footer]="true" [footer-align]="'center'">
+                        <amexio-header>Amexio API</amexio-header>
+                        <amexio-body  style="display: flex; justify-content: center; flex-direction: column;">
+                            <amexio-image style="display: flex; justify-content: center; "
+                                            [path]="'https://image.ibb.co/kdy6Ev/logo.png'"
+                                            [height]="'100px'" >
+                            </amexio-image>
+                            <amexio-label style="display: flex; justify-content: center; ">
+                                    Amexio - Angular UI Components,
+                                    <br>Charts,Dashboards,
+                                   <br> Layouts Apache 2 License
+                            </amexio-label>
+                        </amexio-body>
+                        <amexio-action>
+                            <amexio-button (onClick)="onLinkClick('https://github.com/meta-magic/amexio.github.io')"
+                                            [label]="'Download'" [type]="'theme-color'" >
+                            </amexio-button>
+                        </amexio-action>
+                    </amexio-card>
+                </amexio-column>
+             
+             <amexio-column [size]="3">
+                <amexio-card  [body-height]="'40'"[header]="true" [footer]="true" [footer-align]="'center'">
+                    <amexio-header>Amexio Plugin</amexio-header>
+                    <amexio-body  style="display: flex; justify-content: center; flex-direction: column;">
+                        <amexio-image style="display: flex; justify-content: center; "
+                                        [path]="'assets/images/logos/amexio_plugin.jpeg'"
+                                        [height]="'100px'" >
+                        </amexio-image>
+                        <amexio-label style="display: flex; justify-content: ccenter; ">
+                                <br/>Visual Studio Plugin 
+                                <br/>Increase Producitivty By 50%
+                            
+                        </amexio-label>
+                    </amexio-body>
+                    <amexio-action>
+                        <amexio-button (onClick)="onLinkClick('https://marketplace.visualstudio.com/items?itemName=MetaMagic.amexio')"
+                                        [label]="'Get Plugin'" [type]="'theme-color'" >
+                        </amexio-button>
+                    </amexio-action>
+                </amexio-card>
+             </amexio-column>
+             <amexio-column [size]="3">
+                    <amexio-card  [body-height]="'40'" [header]="true" [footer]="true" [footer-align]="'center'">
+                        <amexio-header>Amexio Canvas</amexio-header>
+                        <amexio-body style="display: flex; justify-content: center; flex-direction: column;">
+                            <amexio-image style="display: flex; justify-content: center; "
+                                          [path]="'assets/images/logos/amexio_canvas.jpeg'"
+                                          [height]="'100px'"  >
+                            </amexio-image>
+                            <amexio-label style="display: flex; justify-content: center; ">
+                                    <br/>Angular UI Automation Platform 
+                                    <br/> Increase Producitivty By more 3x 
+                          </amexio-label>
+                    </amexio-body>
+                        <amexio-action>
+                            <amexio-button (onClick)="onLinkClick('https://canvas.amexio.org/#/login')"
+                                            [label]="'Login To Canvas'" [type]="'theme-color'" >
+                            </amexio-button>
+                        </amexio-action>
+                    </amexio-card>
+             </amexio-column>
+             <amexio-column [size]="3">
+                    <amexio-card  [body-height]="'40'" [header]="true" [footer]="true" [footer-align]="'center'">
+                        <amexio-header>Source Code-npm Stats</amexio-header>
+                        <amexio-body style="display: flex; justify-content: center; flex-direction: column;">
+                            <amexio-image style="display: flex; justify-content: center; "
+                                         [height]="'102px'" [path]="'assets/images/logos/github.png'"  >
+                            </amexio-image>
+                            <amexio-label  style="display: flex; justify-content: center; text-align:end ">
+                                <br/>Open Source
+                                <br/>Apache 2 License <br/>
+                            </amexio-label>
+                        </amexio-body>
+                        <amexio-action>
+                           <amexio-button (onClick)="onLinkClick('https://github.com/meta-magic/npmstats')"
+                                                [label]="'GitHub'" [type]="'theme-color'" >
+                                </amexio-button>
+                        </amexio-action>
+                    </amexio-card>
+             </amexio-column>
+             
+             </amexio-row>
+</div>
