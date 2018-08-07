@@ -1,7 +1,9 @@
 
 <br>
 <br>
-        <amexio-card
+ <amexio-row>   
+<amexio-column [size] ="8">
+    <amexio-card
           [header]="true"
           [header-align]="'left'"
           [body-height]="''">
@@ -9,7 +11,7 @@
                 Downloads per day
             </amexio-header>
             <amexio-body>
-                <div  *ngIf="showChart" [ngClass]="{'signal':!showChart}" >
+                <div *ngIf="showChart" [ngClass]="{'signal':!showChart}">
                     <amexio-chart-line [data]="lineChartData" [height]="'400px'" [width]="'100%'">
                       <amexio-chart-legend [position]="'top'" [font-name]="'downloads'"></amexio-chart-legend>
                           <amexio-chart-horizontal-axis [title]="'Date'">
@@ -20,11 +22,34 @@
                   </div>   
             </amexio-body>
        </amexio-card>
+    </amexio-column >
 
-<br>
-<br>
+   <amexio-column [size]="4">
+        <amexio-card
+        [header]="true"
+        [header-align]="'left'"
+        [body-height]="''">
+          <amexio-header>
+              Downloads per year
+          </amexio-header>
+          <amexio-body>
+                <div *ngIf="showChart" [ngClass]="{'signal':!showChart}">
+                       <amexio-chart-column [data]="yearWiseDataarray" [height]="'400px'" [width]="'100%'">
+                            <amexio-chart-title></amexio-chart-title>
+                            <amexio-chart-legend [position]="'bottom'"></amexio-chart-legend>
+                     </amexio-chart-column>
+                </div>
+          </amexio-body>
+   </amexio-card>
 
-    <amexio-card
+    </amexio-column>
+</amexio-row> 
+<br>
+<br>  
+
+<amexio-row>
+    <amexio-column [size] ="4">
+      <amexio-card
         [header]="true"
         [header-align]="'left'"
         [body-height]="''">
@@ -32,7 +57,7 @@
               Downloads per month
           </amexio-header>
           <amexio-body>
-              <div *ngIf="showMonthChart" [ngClass]="{'signal':!showChart}"  >
+                <div  *ngIf="showChart" [ngClass]="{'signal':!showChart}">
                   <amexio-chart-line [data]="monthWiseDataarray" [height]="'400px'" [width]="'100%'">
                            <amexio-chart-legend [position]="'top'" [font-name]="'downloads'"></amexio-chart-legend>
                                <amexio-chart-horizontal-axis [title]="'Month'">
@@ -40,6 +65,31 @@
                                <amexio-chart-vertical-axis [title]="'Downloads'">
                                </amexio-chart-vertical-axis>
                          </amexio-chart-line> 
-                       </div>   
+                </div>
           </amexio-body>
    </amexio-card>
+</amexio-column>
+
+<amexio-column [size] ="4">
+   <amexio-card
+   [header]="true"
+   [header-align]="'left'"
+   [body-height]="''">
+     <amexio-header>
+         Downloads per year 
+     </amexio-header>
+     <amexio-body>
+           <div  *ngIf="showChart" [ngClass]="{'signal':!showChart}">
+             <amexio-chart-line [data]="yearWiseDataarray" [height]="'400px'" [width]="'100%'">
+                      <amexio-chart-legend [position]="'top'" [font-name]="'downloads'"></amexio-chart-legend>
+                          <amexio-chart-horizontal-axis [title]="'Year'">
+                          </amexio-chart-horizontal-axis>
+                          <amexio-chart-vertical-axis [title]="'Downloads'">
+                          </amexio-chart-vertical-axis>
+                    </amexio-chart-line> 
+           </div>
+      </amexio-body>
+   </amexio-card>
+ </amexio-column>
+</amexio-row>
+  

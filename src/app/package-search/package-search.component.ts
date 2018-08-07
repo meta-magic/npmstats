@@ -14,8 +14,9 @@ export class PackageSearchComponent implements OnInit {
   @Input() isLoading:boolean;
   @Input() isLoading1:boolean;
   @Input() monthWiseDataarray:any;
+  @Input() yearWiseDataarray:any;
   @Input() showMonthChart:boolean;
-
+  @Input() showYearChart:boolean;
   constructor() {
   }
 

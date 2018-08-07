@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
   convertfromdate: any;
   converttodate: any;
   monthWiseDataarray:any;
+  yearWiseDataarray:any;
   lineChartData: any;
   lineChartData1: any;
   fromdate: any;
@@ -27,6 +28,7 @@ export class AppComponent implements OnInit {
   errorMessage: any = [];
   showChart: boolean;
   showMonthChart:boolean;
+  showYearChart:boolean;
   isLoading: boolean = false;
   showflag: boolean;
   package: string;
@@ -38,6 +40,7 @@ export class AppComponent implements OnInit {
   totalDays: any;
   data: any;
   packageModel: PackageModel;
+  yearwiseModel:YearWiseDownload;
   monthwisedata: any;
   monthsum:any;
 
@@ -63,12 +66,15 @@ export class AppComponent implements OnInit {
     this.sum = 0;
     this.showChart = false;
     this.showMonthChart=false;
+    this.showYearChart=false;
     this.isLoading = true;
     this.isLoading1 = true;
     this.errorMessage = [];
     this.validatePackageName();
     this.lineChartData = [];
     this.monthWiseDataarray=[];
+    this.yearWiseDataarray=[];
+    
     this.monthwisedata=[];
     let inputUrl: any;
     this.convertFromDate(this.packageModel.fromDate);
@@ -85,7 +91,7 @@ export class AppComponent implements OnInit {
       },
       error => {
 
-        console.log("GOT ERROR", JSON.stringify(error.error.error));
+       
         this.showChart = false;
         if (JSON.stringify(error.error.error) == '"end date > start date"') {
           this.errorMessage.push("To-Date should be greater than From-Date")
@@ -113,12 +119,17 @@ export class AppComponent implements OnInit {
           { "datatype": "number", "label":this.perdaydownload }
         ]);
 
+        this.yearWiseDataarray.push([
+          {"datatype":"string","label":'Years'},
+          {"datatype":"number", "label":this.perdaydownload}
+        ]);
+
 
 
 
         this.downloadDataArray.forEach((downLoadObj: any) => {
-          let dayWiseDownloadCount: any;
-          dayWiseDownloadCount = new DayWiseDownloadCount(downLoadObj.day, downLoadObj.downloads);
+        let dayWiseDownloadCount: any;
+        dayWiseDownloadCount = new DayWiseDownloadCount(downLoadObj.day, downLoadObj.downloads);
 
           let totaldownload: any;
           totaldownload = dayWiseDownloadCount.downloads;
@@ -132,37 +143,38 @@ export class AppComponent implements OnInit {
            monthwisedata.groupData(objects.day, objects.downloads);
                
         });
+
        
-        let month=[];
         for (const key in monthwisedata.monthwise) {
           if (monthwisedata.monthwise.hasOwnProperty(key)) {
              const element = monthwisedata.monthwise[key];
                let obj=[];
-               
-               month.push(key);
                obj.push(key);
-
                obj.push(element);
                this.monthWiseDataarray.push(obj);
              
-               
+                }
             
-              
 
+        }  
+            let yearwisedata:YearWiseDownload;
+            yearwisedata = new YearWiseDownload();
+            this.downloadDataArray.forEach((objects:any)=>{
+            yearwisedata.groupData(objects.day,objects.downloads);
+            });
+
+            for(const key in yearwisedata.yearWise){
+              if(yearwisedata.yearWise.hasOwnProperty(key)){
+                const element=yearwisedata.yearWise[key];
+                let year=[];
+                year.push(key);
+                year.push(element);
+                this.yearWiseDataarray.push(year);
+              }
+            }
+           
         }
-            
-
-        }    
-        
-            let firstmonth=month[0];
-            let lastmonth=month[month.length-1];
-            this.monthrange = this.packageModel.packageName + ' ' + ':' + firstmonth + ' ' + 'to' + ' ' +lastmonth
-            this.showChart = true;
-            this.showMonthChart=true;
-            this.isLoading = false;
-
-      }
-    );
+      );
 
     this.activeTab = true;
   }
@@ -236,18 +248,17 @@ export class MonthWiseDownload {
 
   monthwise: number[];
   constructor() {
-    this.monthwise = [];
+  this.monthwise = [];
    
   }
 
   getMonthYear(day: string) {
     const date = new Date(day);
-    const mnth = ("0" + (date.getMonth() + 1)).slice(-2);
-    return [date.getFullYear(), mnth].join("-");
+   const mnth = ("0" + (date.getMonth() + 1)).slice(-2);
+    return [date.getFullYear(),mnth].join("-");
   }
 
   groupData(key: string, count: number): any {
-
     const monthkey = this.getMonthYear(key);
 
     if (this.monthwise[monthkey + ""] != undefined) {
@@ -261,3 +272,29 @@ export class MonthWiseDownload {
   }
 }
 
+export class YearWiseDownload
+  {
+    yearWise: number[];
+    constructor() {
+      this.yearWise = [];
+     
+    }
+  
+    getYear(day: string) {
+      const date = new Date(day);
+      return [date.getFullYear()].join("-");
+    }
+  
+    groupData(key: string, count: number): any {
+      const monthkey = this.getYear(key);
+  
+      if (this.yearWise[monthkey + ""] != undefined) {
+        let currentcount = this.yearWise[monthkey + ""];
+        currentcount = currentcount + count;
+        this.yearWise[monthkey + ""] = currentcount;
+      } else {
+        this.yearWise[monthkey + ""] = count;
+      }
+      return this.yearWise;
+    }
+  }
