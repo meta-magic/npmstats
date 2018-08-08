@@ -17,6 +17,11 @@ export class PackageSearchComponent implements OnInit {
   @Input() yearWiseDataarray:any;
   @Input() showMonthChart:boolean;
   @Input() showYearChart:boolean;
+  @Input() sum:number;
+  @Input() currentyearsum:number;
+  @Input() currentmonthsum:number;
+  @Input() currentyearchart:any;
+  @Input() range:any;
   constructor() {
   }
 

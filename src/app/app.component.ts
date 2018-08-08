@@ -14,16 +14,19 @@ export class AppComponent implements OnInit {
   converttodate: any;
   monthWiseDataarray:any;
   yearWiseDataarray:any;
+  currentyearchart:any;
   lineChartData: any;
   lineChartData1: any;
   fromdate: any;
   todate: any;
   packagename: any;
-  downloadDataArray: any;
+  downloadDataArray: any[] = [];
   obj={};
   other = [];
   array: any = [];
   downloads = [];
+  yeardatapoint:any
+  monthdatapoint:any;
   disabledDate: any[];
   errorMessage: any = [];
   showChart: boolean;
@@ -33,9 +36,12 @@ export class AppComponent implements OnInit {
   showflag: boolean;
   package: string;
   sum: number = 0;
+  currentyearsum:number=0;
+  currentmonthsum:number=0;
   isLoading1: boolean;
   activeTab: boolean;
   perdaydownload: any;
+  range:any;
   monthrange:any;
   totalDays: any;
   data: any;
@@ -57,13 +63,17 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.getData();
    
+   
   }
  
   d = new Date();
 
   //THIS METHOD IS USED FOR GET THE DATA FROM SERVICE AND CREATE CHART JSON 
   getData() {
+    
     this.sum = 0;
+    this.currentyearsum=0;
+    this.currentmonthsum=0;
     this.showChart = false;
     this.showMonthChart=false;
     this.showYearChart=false;
@@ -74,14 +84,14 @@ export class AppComponent implements OnInit {
     this.lineChartData = [];
     this.monthWiseDataarray=[];
     this.yearWiseDataarray=[];
-    
+    this.currentyearchart=[];
     this.monthwisedata=[];
     let inputUrl: any;
     this.convertFromDate(this.packageModel.fromDate);
     this.convertToDate(this.packageModel.toDate);
-
     inputUrl = this.convertfromdate + ':' + this.converttodate + '/' + this.packageModel.packageName
     this.perdaydownload = this.packageModel.packageName + ' ' + ':' + ' ' + this.convertfromdate + ' ' + 'to' + ' ' + this.converttodate
+    this.range=this.convertfromdate + ' ' + 'to' + ' ' + this.converttodate
     let response: any;
     this.http.get('https://api.npmjs.org/downloads/range/' + inputUrl, {}).subscribe(
       resp => {
@@ -108,6 +118,8 @@ export class AppComponent implements OnInit {
 
 
         this.downloadDataArray = response.downloads;
+        this.getDataPoint();
+
 
         this.lineChartData.push([
           { "datatype": "string", "label": 'Date' },
@@ -123,10 +135,7 @@ export class AppComponent implements OnInit {
           {"datatype":"string","label":'Years'},
           {"datatype":"number", "label":this.perdaydownload}
         ]);
-
-
-
-
+        
         this.downloadDataArray.forEach((downLoadObj: any) => {
         let dayWiseDownloadCount: any;
         dayWiseDownloadCount = new DayWiseDownloadCount(downLoadObj.day, downLoadObj.downloads);
@@ -144,7 +153,7 @@ export class AppComponent implements OnInit {
                
         });
 
-       
+             
         for (const key in monthwisedata.monthwise) {
           if (monthwisedata.monthwise.hasOwnProperty(key)) {
              const element = monthwisedata.monthwise[key];
@@ -157,6 +166,7 @@ export class AppComponent implements OnInit {
             
 
         }  
+       
             let yearwisedata:YearWiseDownload;
             yearwisedata = new YearWiseDownload();
             this.downloadDataArray.forEach((objects:any)=>{
@@ -170,10 +180,10 @@ export class AppComponent implements OnInit {
                 year.push(key);
                 year.push(element);
                 this.yearWiseDataarray.push(year);
+                
               }
-            }
-           
-        }
+           }
+       }
       );
 
     this.activeTab = true;
@@ -209,6 +219,66 @@ export class AppComponent implements OnInit {
     this.converttodate = [date.getFullYear(), mnth, day].join("-");
 
   }
+  //To Display Datapoint for day,month,year,week
+  getDataPoint()
+  {
+   
+    let currentYear:any;
+    let currentMonth:any;
+    let date = new Date();
+    let yearmonth:any;
+    let newmonth:any;
+    currentYear= date.getFullYear();
+    let monthString=date.getMonth().toString();
+  
+    if(monthString.length==1 && monthString!='9') {
+     
+      currentMonth=date.getMonth()+1;
+      newmonth='0'+currentMonth;
+    }else{
+      newmonth=date.getMonth()+1;
+    }
+    
+    
+    yearmonth=[currentYear, newmonth].join("-")
+
+    //for current year count
+   
+    if(this.downloadDataArray && this.downloadDataArray.length > 0) {
+      this.downloadDataArray.forEach((opt:any)=>{
+        if(opt.day.includes(currentYear))
+       {
+           this.yeardatapoint=opt.downloads;
+           this.currentyearsum=this.currentyearsum+this.yeardatapoint;
+       }
+        
+      });
+                 
+
+     //for current month count
+      this.downloadDataArray.forEach((opt:any)=>{
+        
+        if(opt.day.includes(yearmonth))
+       {
+           this.monthdatapoint=opt.downloads;
+           this.currentmonthsum=this.currentmonthsum+this.monthdatapoint;
+       }
+        
+      });
+
+        // to display currentyearchart
+      let currentY:string;
+      currentY=currentYear.toString();
+      this.currentyearchart.push([
+        {"datatype":"string","label":'Years'},
+        {"datatype":"number", "label":this.perdaydownload}
+      ]);
+      this.currentyearchart.push([
+        currentY,
+        this.currentyearsum
+      ]);
+     }  
+   }
 }
 
 export class PackageModel {

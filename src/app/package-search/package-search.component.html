@@ -1,7 +1,51 @@
 
 <br>
 <br>
- <amexio-row>   
+<amexio-row>
+         <amexio-column [size]="4">
+                   <amexio-datapoints [center]="true"[south]="true" >
+                              <amexio-center [content-align]="'center'">
+                                <amexio-label size="large-bold">{{sum}}</amexio-label>
+                                <br/>
+                              </amexio-center>
+                              <amexio-south [content-align]="'center'">
+                               <amexio-label size="medium">Total</amexio-label>       
+                               </amexio-south>
+                   </amexio-datapoints>
+            </amexio-column> 
+            
+            
+
+            <amexio-column [size]="4"> 
+
+                        <amexio-datapoints [center]="true"[south]="true" >
+                                    <amexio-center [content-align]="'center'">
+                                      <amexio-label size="large-bold">{{currentyearsum}}</amexio-label>
+                                      <br/>
+                                    </amexio-center>
+                                    <amexio-south [content-align]="'center'">
+                                     <amexio-label size="medium">Current Year</amexio-label>       
+                                     </amexio-south>
+                      </amexio-datapoints>
+            </amexio-column> 
+
+              <amexio-column [size]="4"> 
+                    
+                        <amexio-datapoints [center]="true"[south]="true" >
+                                    <amexio-center [content-align]="'center'">
+                                      <amexio-label size="large-bold">{{currentmonthsum}}</amexio-label>
+                                      <br/>
+                                    </amexio-center>
+                                    <amexio-south [content-align]="'center'">
+                                     <amexio-label size="medium">Current Month</amexio-label>       
+                                     </amexio-south>
+                     </amexio-datapoints>
+        </amexio-column>  
+
+       
+</amexio-row>
+
+<amexio-row>   
 <amexio-column [size] ="8">
     <amexio-card
           [header]="true"
@@ -30,11 +74,11 @@
         [header-align]="'left'"
         [body-height]="''">
           <amexio-header>
-              Downloads per year
+              Current Year
           </amexio-header>
           <amexio-body>
                 <div *ngIf="showChart" [ngClass]="{'signal':!showChart}">
-                       <amexio-chart-column [data]="yearWiseDataarray" [height]="'400px'" [width]="'100%'">
+                       <amexio-chart-column [data]="currentyearchart" [height]="'400px'" [width]="'100%'">
                             <amexio-chart-title></amexio-chart-title>
                             <amexio-chart-legend [position]="'bottom'"></amexio-chart-legend>
                      </amexio-chart-column>
@@ -48,13 +92,13 @@
 <br>  
 
 <amexio-row>
-    <amexio-column [size] ="4">
+    <amexio-column [size] ="6">
       <amexio-card
         [header]="true"
         [header-align]="'left'"
         [body-height]="''">
           <amexio-header>
-              Downloads per month
+              Downloads Per Month
           </amexio-header>
           <amexio-body>
                 <div  *ngIf="showChart" [ngClass]="{'signal':!showChart}">
@@ -70,13 +114,13 @@
    </amexio-card>
 </amexio-column>
 
-<amexio-column [size] ="4">
+<amexio-column [size] ="6">
    <amexio-card
    [header]="true"
    [header-align]="'left'"
    [body-height]="''">
      <amexio-header>
-         Downloads per year 
+         Downloads Per Year 
      </amexio-header>
      <amexio-body>
            <div  *ngIf="showChart" [ngClass]="{'signal':!showChart}">
@@ -87,7 +131,7 @@
                           <amexio-chart-vertical-axis [title]="'Downloads'">
                           </amexio-chart-vertical-axis>
                     </amexio-chart-line> 
-           </div>
+             </div>
       </amexio-body>
    </amexio-card>
  </amexio-column>

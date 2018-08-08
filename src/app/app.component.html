@@ -34,18 +34,12 @@
                                         (onClick)="getData()">
                                     </amexio-button>
                                 </amexio-column>
-             
-                                <amexio-column style="display: flex;flex-direction: column; justify-content: center; padding: 5px;">
-                                    <amexio-label  size="small-bold">
-                                        Total: {{sum}}
-                                    </amexio-label>    
-                                </amexio-column>
                          </amexio-row>
                             
                             
                         <amexio-tab-view [closable]="false" [divide-header-equally]="true">
                                 <amexio-tab [amexio-color]="'blue'" title="Dashboard" [active]="activeTab" [closable]="false">
-                                    <package-search [isLoading]="isLoading" [yearWiseDataarray]="yearWiseDataarray" [showMonthChart]="showMonthChart" [showChart]="showChart" [lineChartData]="lineChartData" [monthWiseDataarray]="monthWiseDataarray">
+                                    <package-search [isLoading]="isLoading" [range]="range" [currentmonthsum]="currentmonthsum" [currentyearsum]="currentyearsum" [sum]="sum"  [currentyearchart]="currentyearchart" [yearWiseDataarray]="yearWiseDataarray" [showMonthChart]="showMonthChart" [showChart]="showChart" [lineChartData]="lineChartData" [monthWiseDataarray]="monthWiseDataarray">
                                     </package-search>
                                 </amexio-tab>
                             
