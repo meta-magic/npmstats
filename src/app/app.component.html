@@ -39,7 +39,7 @@
                             
                         <amexio-tab-view [closable]="false" [divide-header-equally]="true">
                                 <amexio-tab [amexio-color]="'blue'" title="Dashboard" [active]="activeTab" [closable]="false">
-                                    <package-search [isLoading]="isLoading" [range]="range" [currentmonthsum]="currentmonthsum" [currentyearsum]="currentyearsum" [sum]="sum"  [currentyearchart]="currentyearchart" [yearWiseDataarray]="yearWiseDataarray" [showMonthChart]="showMonthChart" [showChart]="showChart" [lineChartData]="lineChartData" [monthWiseDataarray]="monthWiseDataarray">
+                                    <package-search [isLoading]="isLoading"  [WeekChart]="WeekChart"[range]="range" [currentmonthsum]="currentmonthsum" [currentyearsum]="currentyearsum" [sum]="sum"  [currentyearchart]="currentyearchart" [yearWiseDataarray]="yearWiseDataarray" [showMonthChart]="showMonthChart" [showChart]="showChart" [lineChartData]="lineChartData" [monthWiseDataarray]="monthWiseDataarray">
                                     </package-search>
                                 </amexio-tab>
                             
@@ -68,6 +68,7 @@
                 </amexio-column>
              
              </amexio-row>
+
              <amexio-row>
                 <amexio-column [size] =3 >
                     <amexio-card [body-height]="'40'" [header]="true" [footer]="true" [footer-align]="'center'">
@@ -151,6 +152,14 @@
                         </amexio-action>
                     </amexio-card>
              </amexio-column>
-             
-             </amexio-row>
+      </amexio-row>
+             <br>
+             <br>
+       
+             <amexio-label size="16" style="display: flex; justify-content: center; text-align:top">
+                           © 2018 MetaMagic Global Inc, NJ, USA. All Rights Reserved. Source Code : <a href="https://amexio.org/license/license.html"target="_blank">Apache 2 License</a> by <a href="https://creativecommons.org/licenses/by/3.0/"target="_blank"> CC By 3.0</a>
+             </amexio-label>
+
+          <br>
+          <br>
 </div>

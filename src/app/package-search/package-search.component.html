@@ -3,7 +3,7 @@
 <br>
 <amexio-row>
          <amexio-column [size]="4">
-                   <amexio-datapoints [center]="true"[south]="true" >
+                   <amexio-datapoints [background-color]="'#FFCCBC'" [center]="true"[south]="true" >
                               <amexio-center [content-align]="'center'">
                                 <amexio-label size="large-bold">{{sum}}</amexio-label>
                                 <br/>
@@ -18,7 +18,7 @@
 
             <amexio-column [size]="4"> 
 
-                        <amexio-datapoints [center]="true"[south]="true" >
+                        <amexio-datapoints [background-color]="'#FFCC80'" [center]="true"[south]="true" >
                                     <amexio-center [content-align]="'center'">
                                       <amexio-label size="large-bold">{{currentyearsum}}</amexio-label>
                                       <br/>
@@ -31,7 +31,7 @@
 
               <amexio-column [size]="4"> 
                     
-                        <amexio-datapoints [center]="true"[south]="true" >
+                        <amexio-datapoints [background-color]="'#F8BBD0'" [center]="true"[south]="true" >
                                     <amexio-center [content-align]="'center'">
                                       <amexio-label size="large-bold">{{currentmonthsum}}</amexio-label>
                                       <br/>
@@ -92,7 +92,7 @@
 <br>  
 
 <amexio-row>
-    <amexio-column [size] ="6">
+    <amexio-column [size] ="4">
       <amexio-card
         [header]="true"
         [header-align]="'left'"
@@ -114,7 +114,7 @@
    </amexio-card>
 </amexio-column>
 
-<amexio-column [size] ="6">
+<amexio-column [size] ="4">
    <amexio-card
    [header]="true"
    [header-align]="'left'"
@@ -123,7 +123,7 @@
          Downloads Per Year 
      </amexio-header>
      <amexio-body>
-           <div  *ngIf="showChart" [ngClass]="{'signal':!showChart}">
+           <div *ngIf="showChart" [ngClass]="{'signal':!showChart}">
              <amexio-chart-line [data]="yearWiseDataarray" [height]="'400px'" [width]="'100%'">
                       <amexio-chart-legend [position]="'top'" [font-name]="'downloads'"></amexio-chart-legend>
                           <amexio-chart-horizontal-axis [title]="'Year'">
@@ -135,5 +135,28 @@
       </amexio-body>
    </amexio-card>
  </amexio-column>
+
+
+ <amexio-column [size] ="4">
+  <amexio-card
+  [header]="true"
+  [header-align]="'left'"
+  [body-height]="''">
+    <amexio-header>
+        Downloads Per Week
+    </amexio-header>
+    <amexio-body>
+          <div  *ngIf="showChart" [ngClass]="{'signal':!showChart}">
+            <amexio-chart-line [data]="WeekChart" [height]="'400px'" [width]="'100%'">
+                     <amexio-chart-legend [position]="'top'" [font-name]="'downloads'"></amexio-chart-legend>
+                         <amexio-chart-horizontal-axis [title]="'Weeks'">
+                         </amexio-chart-horizontal-axis>
+                         <amexio-chart-vertical-axis [title]="'Downloads'">
+                         </amexio-chart-vertical-axis>
+                   </amexio-chart-line> 
+            </div>
+     </amexio-body>
+  </amexio-card>
+</amexio-column>
 </amexio-row>
   

@@ -22,6 +22,7 @@ export class PackageSearchComponent implements OnInit {
   @Input() currentmonthsum:number;
   @Input() currentyearchart:any;
   @Input() range:any;
+  @Input() WeekChart:any;
   constructor() {
   }
 

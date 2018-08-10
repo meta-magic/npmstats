@@ -17,6 +17,7 @@ export class AppComponent implements OnInit {
   currentyearchart:any;
   lineChartData: any;
   lineChartData1: any;
+  WeekChart:any;
   fromdate: any;
   todate: any;
   packagename: any;
@@ -41,6 +42,7 @@ export class AppComponent implements OnInit {
   isLoading1: boolean;
   activeTab: boolean;
   perdaydownload: any;
+  groupedByWeek=[];
   range:any;
   monthrange:any;
   totalDays: any;
@@ -49,6 +51,7 @@ export class AppComponent implements OnInit {
   yearwiseModel:YearWiseDownload;
   monthwisedata: any;
   monthsum:any;
+  
 
   constructor(private http: HttpClient) {
     this.packageModel = new PackageModel();
@@ -62,7 +65,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.getData();
-   
+
    
   }
  
@@ -85,6 +88,7 @@ export class AppComponent implements OnInit {
     this.monthWiseDataarray=[];
     this.yearWiseDataarray=[];
     this.currentyearchart=[];
+    this.WeekChart=[];
     this.monthwisedata=[];
     let inputUrl: any;
     this.convertFromDate(this.packageModel.fromDate);
@@ -119,6 +123,7 @@ export class AppComponent implements OnInit {
 
         this.downloadDataArray = response.downloads;
         this.getDataPoint();
+        this.getWeekData();
 
 
         this.lineChartData.push([
@@ -135,7 +140,7 @@ export class AppComponent implements OnInit {
           {"datatype":"string","label":'Years'},
           {"datatype":"number", "label":this.perdaydownload}
         ]);
-        
+       
         this.downloadDataArray.forEach((downLoadObj: any) => {
         let dayWiseDownloadCount: any;
         dayWiseDownloadCount = new DayWiseDownloadCount(downLoadObj.day, downLoadObj.downloads);
@@ -153,7 +158,7 @@ export class AppComponent implements OnInit {
                
         });
 
-             
+           
         for (const key in monthwisedata.monthwise) {
           if (monthwisedata.monthwise.hasOwnProperty(key)) {
              const element = monthwisedata.monthwise[key];
@@ -161,12 +166,13 @@ export class AppComponent implements OnInit {
                obj.push(key);
                obj.push(element);
                this.monthWiseDataarray.push(obj);
-             
+              
                 }
             
 
         }  
-       
+           
+            
             let yearwisedata:YearWiseDownload;
             yearwisedata = new YearWiseDownload();
             this.downloadDataArray.forEach((objects:any)=>{
@@ -219,6 +225,58 @@ export class AppComponent implements OnInit {
     this.converttodate = [date.getFullYear(), mnth, day].join("-");
 
   }
+  
+  getWeekData()
+  
+  {
+  
+    this.groupedByWeek = this.downloadDataArray.reduce((m, o) => {
+    let monday = this.getMonday(new Date(o.day));
+    let mondayYMD = monday.toISOString().slice(0,10);
+    let found = m.find(e => e.day === mondayYMD);
+    if (found) {
+        found.downloads=found.downloads+ o.downloads;
+    } else {
+        o.day = mondayYMD;
+        m.push(o);
+    }
+    return m;
+}, []);
+       let Weekwisecount: any;
+       let weekData=[];
+       this.WeekChart.push([
+              {"datatype":"string","label":'Weeks'},
+              {"datatype":"number", "label":this.perdaydownload}
+            ]);
+            this.groupedByWeek.forEach((week:any)=>{
+           Weekwisecount = new DayWiseDownloadCount(week.day, week.downloads);
+           
+           let currentWeekNumber=this.getWeek(new Date(week.day));
+           this.WeekChart.push([currentWeekNumber,week.downloads]);
+           
+           
+        } )
+              
+  }
+   
+ 
+getMonday(d) {
+    let day = d.getDay();
+    let diff = d.getDate() - day + (day === 0 ? -6 : 1);  
+    return new Date(d.setDate(diff));
+}
+getWeek(date)
+{
+  let onejan:any;
+  let today:any;
+  let dayOfYear:any;
+  onejan = new Date(date.getFullYear(),0,1);
+  today = new Date(date.getFullYear(),date.getMonth(),date.getDate());
+  dayOfYear = ((today - onejan + 86400000)/86400000);
+  let returnweek= Math.ceil(dayOfYear/7);
+   return 'W'+returnweek+'-'+date.getFullYear();
+}
+
   //To Display Datapoint for day,month,year,week
   getDataPoint()
   {
@@ -253,6 +311,7 @@ export class AppComponent implements OnInit {
        }
         
       });
+      // console.log("array",this.downloadDataArray);
                  
 
      //for current month count
@@ -368,3 +427,4 @@ export class YearWiseDownload
       return this.yearWise;
     }
   }
+
