@@ -17,9 +17,9 @@ export class PackageSearchComponent implements OnInit {
   @Input() yearWiseDataarray:any;
   @Input() showMonthChart:boolean;
   @Input() showYearChart:boolean;
-  @Input() sum:number;
-  @Input() currentyearsum:number;
-  @Input() currentmonthsum:number;
+  @Input() total:number;
+  @Input() yearsum:number;
+  @Input() monthsum1:number;
   @Input() currentyearchart:any;
   @Input() range:any;
   @Input() WeekChart:any;
