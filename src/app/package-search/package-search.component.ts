@@ -20,6 +20,7 @@ export class PackageSearchComponent implements OnInit {
   @Input() total:number;
   @Input() yearsum:number;
   @Input() monthsum1:number;
+  @Input() weeksum:number;
   @Input() currentyearchart:any;
   @Input() range:any;
   @Input() WeekChart:any;

@@ -63,8 +63,8 @@ export class AppComponent implements OnInit {
   constructor(private http: HttpClient) {
     this.packageModel = new PackageModel();
     this.packageModel.packageName = "amexio-ng-extensions";
-    this.packageModel.fromDate = "Jun 1, 2017";
-    this.packageModel.toDate = new Date().toString();
+    this.packageModel.fromDate = new Date('1-Jun-2017');
+    this.packageModel.toDate = new Date();
 
 
 
@@ -83,6 +83,7 @@ export class AppComponent implements OnInit {
     this.sum = 0;
     this.yearsum = 0;
     this.monthsum1 = 0;
+    this.weeksum=0;
     this.currentyearsum = 0;
     this.currentmonthsum = 0;
     this.showChart = false;
@@ -91,7 +92,6 @@ export class AppComponent implements OnInit {
     this.isLoading = true;
     this.isLoading1 = true;
     this.errorMessage = [];
-    this.validatePackageName();
     this.lineChartData = [];
     this.monthWiseDataarray = [];
     this.yearWiseDataarray = [];
@@ -104,6 +104,7 @@ export class AppComponent implements OnInit {
     this.quarter2download = 0;
     this.quarter3download = 0;
     this.quarter4download = 0;
+    this.validatePackageName();
     this.convertFromDate(this.packageModel.fromDate);
     this.convertToDate(this.packageModel.toDate);
     inputUrl = this.convertfromdate + ':' + this.converttodate + '/' + this.packageModel.packageName
@@ -172,10 +173,10 @@ export class AppComponent implements OnInit {
 
 
 
-        let monthwisedata: MonthWiseDownload;
-        monthwisedata = new MonthWiseDownload();
-        response.downloads.forEach((objects: any) => {
-          monthwisedata.groupData(objects.day, objects.downloads);
+          let monthwisedata: MonthWiseDownload;
+           monthwisedata = new MonthWiseDownload();
+           response.downloads.forEach((objects: any) => {
+             monthwisedata.groupData(objects.day, objects.downloads);
 
         });
 
@@ -192,8 +193,8 @@ export class AppComponent implements OnInit {
         }
 
 
-        let yearwisedata: YearWiseDownload;
-        yearwisedata = new YearWiseDownload();
+         let yearwisedata: YearWiseDownload;
+         yearwisedata = new YearWiseDownload();
         response.downloads.forEach((objects: any) => {
           yearwisedata.groupData(objects.day, objects.downloads);
         });
@@ -210,7 +211,7 @@ export class AppComponent implements OnInit {
 
 
         }
-
+        this.getDataPoint1(); 
         this.getDataPoint2();
         this.getDataPoint3();
         this.getWeekData(downloadDataArray1);
@@ -221,10 +222,7 @@ export class AppComponent implements OnInit {
     this.activeTab = true;
   }
 
-
-
-
-
+//Setting by default Packagename
   validatePackageName() {
     if (this.packageModel.packageName == null || this.packageModel.packageName === '') {
       this.packageModel.packageName = "amexio-ng-extensions"
@@ -235,25 +233,21 @@ export class AppComponent implements OnInit {
     window.open(link, '_blank');
   }
 
-
-
   convertFromDate(str: any) {
-    var date = new Date(str),
-      mnth = ("0" + (date.getMonth() + 1)).slice(-2),
-      day = ("0" + date.getDate()).slice(-2);
+    let date = new Date(str),
+    mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+    day = ("0" + date.getDate()).slice(-2);
     this.convertfromdate = [date.getFullYear(), mnth, day].join("-");
-
-
   }
 
   convertToDate(str: any) {
-    var date = new Date(str),
+    let date = new Date(str),
       mnth = ("0" + (date.getMonth() + 1)).slice(-2),
       day = ("0" + date.getDate()).slice(-2);
     this.converttodate = [date.getFullYear(), mnth, day].join("-");
 
   }
-
+// Method contains logic to display QuarterChart
   getQuarterChart(downloadDataArray1) {
 
     let date = new Date();
@@ -262,7 +256,7 @@ export class AppComponent implements OnInit {
     let currentquarter: any;
 
     downloadDataArray1.forEach((quarter: any) => {
-      currentquarter = this.getQuarter(quarter.day);
+         currentquarter = this.getQuarter(quarter.day);
       if (quarter.day.includes(currentyear) && currentquarter == 1) {
         this.quarter1download = this.quarter1download + quarter.downloads;
       }
@@ -277,16 +271,17 @@ export class AppComponent implements OnInit {
       }
     });
   }
-
+ //Getting quarter of that date
   getQuarter(date: any) {
     let q = [1, 2, 3, 4];
     let d = new Date(date);
     let currentmonth = d.getMonth();
     return q[Math.floor(currentmonth / 3)];
   }
-  getWeekData(downloadDataArray1) {
+  //Method contains logic to display weekchart
+  getWeekData(data:any) {
 
-    this.groupedByWeek = downloadDataArray1.reduce((m, o) => {
+      this.groupedByWeek = data.reduce((m, o) => {
       let monday = this.getMonday(new Date(o.day));
       let mondayYMD = monday.toISOString().slice(0, 10);
       let found = m.find(e => e.day === mondayYMD);
@@ -304,18 +299,14 @@ export class AppComponent implements OnInit {
       { "datatype": "string", "label": 'Weeks' },
       { "datatype": "number", "label": 'Downloads Per Week' }
     ]);
-    this.groupedByWeek.forEach((week: any) => {
+      this.groupedByWeek.forEach((week: any) => {
       Weekwisecount = new DayWiseDownloadCount(week.day, week.downloads);
 
       let currentWeekNumber = this.getWeek(new Date(week.day));
       this.WeekChart.push([currentWeekNumber, week.downloads]);
-
-
     })
 
   }
-
-
   getMonday(d) {
     let day = d.getDay();
     let diff = d.getDate() - day + (day === 0 ? -6 : 1);
@@ -331,7 +322,7 @@ export class AppComponent implements OnInit {
     let returnweek = Math.ceil(dayOfYear / 7);
     return 'W' + returnweek + '-' + date.getFullYear();
   }
-  //To Display Datapoint for day,month,year,week
+  //To Display Datapoint for total,current month,current year,current week
   getDataPoint3() {
 
     let date1 = new Date();
@@ -372,7 +363,6 @@ export class AppComponent implements OnInit {
       resp => {
         yearresponse = resp;
         this.showChart = true;
-
       },
       () => {
 
@@ -385,19 +375,47 @@ export class AppComponent implements OnInit {
       });
 
   }
-
-
+  getDataPoint1()
+  {
+      let date1=new Date();
+      let mnth = ("0" + (date1.getMonth() + 1)).slice(-2);
+      let day = ("0" + date1.getDate()).slice(-2);
+      let year = date1.getFullYear();   
+      let fromdate1= year + '-' + '01' + '-' + '01';
+      let todate1 = year + '-' + mnth + '-' + day;
+      let url=fromdate1 + ':' + todate1 + '/' + this.packageModel.packageName;
+      let weekresponse:any
+      let weekdatapoint:any
+      let week:any;
+      this.http.get('https://api.npmjs.org/downloads/range/' + url, {}).subscribe(
+        resp => {
+             weekresponse  = resp;
+             this.showChart = true;
+           
+        },
+        () => {
+  
+        },
+        () => {
+                  this.getWeekData(weekresponse.downloads);
+                  weekdatapoint = this.groupedByWeek.length - 1;
+                  week = this.groupedByWeek[weekdatapoint]; 
+                  this.weeksum=week.downloads;   
+             });
+  }
+  
+//to aggregate current year,current month data
   getAggregate(data: any) {
-    data.forEach((downLoadObj: any) => {
-      let totaldownload: any = downLoadObj.downloads;
-      this.sum = this.sum + totaldownload;
+        data.forEach((downLoadObj: any) => {
+        let totaldownload: any = downLoadObj.downloads;
+        this.sum = this.sum + totaldownload;
     });
 
   }
 }
 
 export class PackageModel {
-  fromDate: string = '';
+  fromDate: any = '';
   toDate: any = '';
   packageName: any = '';
 }
@@ -428,7 +446,7 @@ export class DayWiseDownloadCount {
     ];
   }
 }
-
+//To display Per Month chart
 export class MonthWiseDownload {
 
   monthwise: number[];
@@ -436,7 +454,7 @@ export class MonthWiseDownload {
     this.monthwise = [];
 
   }
-
+//method to get monthyear
   getMonthYear(day: string) {
     const date = new Date(day);
     const mnth = ("0" + (date.getMonth() + 1)).slice(-2);
@@ -456,14 +474,14 @@ export class MonthWiseDownload {
     return this.monthwise;
   }
 }
-
+//To Display Per Year Chart
 export class YearWiseDownload {
   yearWise: number[];
   constructor() {
     this.yearWise = [];
 
   }
-
+//Method to get fullyear
   getYear(day: string) {
     const date = new Date(day);
     return [date.getFullYear()].join("-");
