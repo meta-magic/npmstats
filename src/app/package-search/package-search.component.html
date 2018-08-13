@@ -1,9 +1,7 @@
 
-<br>
-<br>
 <amexio-row>
          <amexio-column [size]="4">
-                   <amexio-datapoints [background-color]="'#FFCCBC'" [center]="true"[south]="true" >
+                   <amexio-datapoints [background-color]="'#FFCCBC'"[west]="true" [center]="true"[south]="true" >
                     <amexio-west [content-align]="'center'">
                       <amexio-image [icon-class]="'fa fa-line-chart fa-3x'">
                       </amexio-image>
@@ -22,7 +20,7 @@
 
             <amexio-column [size]="4"> 
 
-                        <amexio-datapoints [background-color]="'#FFCC80'" [center]="true"[south]="true" >
+                        <amexio-datapoints [background-color]="'#FFCC80'" [west]="true" [center]="true"[south]="true" >
 
                             <amexio-west [content-align]="'center'">
                                 <amexio-image [icon-class]="'fa fa-line-chart fa-3x'">
@@ -38,9 +36,10 @@
                       </amexio-datapoints>
             </amexio-column> 
 
-              <amexio-column [size]="4"> 
+           
+            <amexio-column [size]="4"> 
                     
-                        <amexio-datapoints [background-color]="'#F8BBD0'" [center]="true"[south]="true" >
+                        <amexio-datapoints [background-color]="'#F8BBD0'" [west]="true" [center]="true"[south]="true" >
                             <amexio-west [content-align]="'center'">
                                 <amexio-image [icon-class]="'fa fa-line-chart fa-3x'">
                                 </amexio-image>
@@ -57,7 +56,7 @@
 </amexio-row>
 
 <amexio-row>   
-<amexio-column [size] ="12">
+<amexio-column [size] ="8">
     <amexio-card
           [header]="true"
           [header-align]="'left'"
@@ -78,9 +77,25 @@
             </amexio-body>
        </amexio-card>
     </amexio-column >
+
+    <amexio-column [size] ="4">
+      <amexio-card [header]="true"
+      [header-align]="'left'"
+      [body-height]="'66'">
+          <amexio-header>
+              Downloads per Quarter(Current Year)
+          </amexio-header>
+          <amexio-body>
+              <div *ngIf="showChart" [ngClass]="{'signal':!showChart}">
+        <amexio-chart-column [data]="QuarterChart"[height]="'400px'">
+            <amexio-chart-legend [position]="'top'"></amexio-chart-legend>
+      </amexio-chart-column>
+      </div>
+    </amexio-body>
+        </amexio-card>   
+    </amexio-column>
 </amexio-row> 
-<br>
-<br>  
+
 
 <amexio-row>
     <amexio-column [size] ="4">

@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
   lineChartData: any;
   lineChartData1: any;
   WeekChart: any;
+  QuarterChart: any;
   fromdate: any;
   todate: any;
   packagename: any;
@@ -53,7 +54,11 @@ export class AppComponent implements OnInit {
   monthwisedata: any;
   monthsum1: any;
   yearsum: any;
-  //response:any;
+  weeksum: any;
+  quarter1download: number = 0;
+  quarter2download: number = 0;
+  quarter3download: number = 0;
+  quarter4download: number = 0;
 
   constructor(private http: HttpClient) {
     this.packageModel = new PackageModel();
@@ -77,7 +82,7 @@ export class AppComponent implements OnInit {
   getData() {
     this.sum = 0;
     this.yearsum = 0;
-    this.monthsum1=0;
+    this.monthsum1 = 0;
     this.currentyearsum = 0;
     this.currentmonthsum = 0;
     this.showChart = false;
@@ -93,7 +98,12 @@ export class AppComponent implements OnInit {
     this.currentyearchart = [];
     this.WeekChart = [];
     this.monthwisedata = [];
+    this.QuarterChart = [];
     let inputUrl: any;
+    this.quarter1download = 0;
+    this.quarter2download = 0;
+    this.quarter3download = 0;
+    this.quarter4download = 0;
     this.convertFromDate(this.packageModel.fromDate);
     this.convertToDate(this.packageModel.toDate);
     inputUrl = this.convertfromdate + ':' + this.converttodate + '/' + this.packageModel.packageName
@@ -125,27 +135,38 @@ export class AppComponent implements OnInit {
         let downloadDataArray1 = response.downloads;
         this.sum = 0;
         this.getAggregate(downloadDataArray1);
+        this.getQuarterChart(downloadDataArray1);
         this.total = this.sum;
 
-       this.lineChartData.push([
+        this.lineChartData.push([
           { "datatype": "string", "label": 'Date' },
-          { "datatype": "number", "label": this.perdaydownload }
+          { "datatype": "number", "label": 'Downloads Per Day' }
         ]);
 
         this.monthWiseDataarray.push([
           { "datatype": "string", "label": 'Months' },
-          { "datatype": "number", "label": this.perdaydownload }
+          { "datatype": "number", "label": 'Downloads Per Month' }
         ]);
 
         this.yearWiseDataarray.push([
           { "datatype": "string", "label": 'Years' },
-          { "datatype": "number", "label": this.perdaydownload }
+          { "datatype": "number", "label": 'Downloads Per Year' }
         ]);
 
+        this.QuarterChart.push(
+          [
+            { "datatype": "string", "label": 'Quarter' },
+            { "datatype": "number", "label": 'Downloads Per Quarter' }
+          ],
+          ['Q1', this.quarter1download],
+          ['Q2', this.quarter2download],
+          ['Q3', this.quarter3download],
+          ['Q4', this.quarter4download],
+        );
         response.downloads.forEach((downLoadObj: any) => {
           let dayWiseDownloadCount: any = new DayWiseDownloadCount(downLoadObj.day, downLoadObj.downloads);
 
-          
+
           this.lineChartData.push(dayWiseDownloadCount.add());
         });
 
@@ -214,7 +235,7 @@ export class AppComponent implements OnInit {
     window.open(link, '_blank');
   }
 
-  
+
 
   convertFromDate(str: any) {
     var date = new Date(str),
@@ -233,6 +254,36 @@ export class AppComponent implements OnInit {
 
   }
 
+  getQuarterChart(downloadDataArray1) {
+
+    let date = new Date();
+    let currentyear: any;
+    currentyear = date.getFullYear();
+    let currentquarter: any;
+
+    downloadDataArray1.forEach((quarter: any) => {
+      currentquarter = this.getQuarter(quarter.day);
+      if (quarter.day.includes(currentyear) && currentquarter == 1) {
+        this.quarter1download = this.quarter1download + quarter.downloads;
+      }
+      else if (quarter.day.includes(currentyear) && currentquarter == 2) {
+        this.quarter2download = this.quarter2download + quarter.downloads;
+      }
+      else if (quarter.day.includes(currentyear) && currentquarter == 3) {
+        this.quarter3download = this.quarter3download + quarter.downloads;
+      }
+      else if (quarter.day.includes(currentyear) && currentquarter == 4) {
+        this.quarter4download = this.quarter4download + quarter.downloads;
+      }
+    });
+  }
+
+  getQuarter(date: any) {
+    let q = [1, 2, 3, 4];
+    let d = new Date(date);
+    let currentmonth = d.getMonth();
+    return q[Math.floor(currentmonth / 3)];
+  }
   getWeekData(downloadDataArray1) {
 
     this.groupedByWeek = downloadDataArray1.reduce((m, o) => {
@@ -251,7 +302,7 @@ export class AppComponent implements OnInit {
     let weekData = [];
     this.WeekChart.push([
       { "datatype": "string", "label": 'Weeks' },
-      { "datatype": "number", "label": this.perdaydownload }
+      { "datatype": "number", "label": 'Downloads Per Week' }
     ]);
     this.groupedByWeek.forEach((week: any) => {
       Weekwisecount = new DayWiseDownloadCount(week.day, week.downloads);
@@ -280,7 +331,7 @@ export class AppComponent implements OnInit {
     let returnweek = Math.ceil(dayOfYear / 7);
     return 'W' + returnweek + '-' + date.getFullYear();
   }
- //To Display Datapoint for day,month,year,week
+  //To Display Datapoint for day,month,year,week
   getDataPoint3() {
 
     let date1 = new Date();
@@ -304,7 +355,7 @@ export class AppComponent implements OnInit {
         this.sum = 0;
         this.getAggregate(monthresponse.downloads)
         this.monthsum1 = this.sum;
-      });  
+      });
   }
 
   getDataPoint2() {
@@ -328,11 +379,11 @@ export class AppComponent implements OnInit {
       },
       () => {
         this.sum = 0;
-      
+
         this.getAggregate(yearresponse.downloads)
         this.yearsum = this.sum;
       });
-   
+
   }
 
 
