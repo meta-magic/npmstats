@@ -45,6 +45,7 @@ export class AppComponent implements OnInit {
   activeTab: boolean;
   perdaydownload: any;
   groupedByWeek = [];
+  currentWeek=[];
   range: any;
   monthrange: any;
   totalDays: any;
@@ -211,11 +212,11 @@ export class AppComponent implements OnInit {
 
 
         }
-        this.getDataPoint1(); 
+    
         this.getDataPoint2();
         this.getDataPoint3();
         this.getWeekData(downloadDataArray1);
-
+        this.getDataPoint1(); 
       }
     );
 
@@ -322,6 +323,25 @@ export class AppComponent implements OnInit {
     let returnweek = Math.ceil(dayOfYear / 7);
     return 'W' + returnweek + '-' + date.getFullYear();
   }
+
+ getCurrentWeekDatapoint(data:any)
+ {
+
+        this.currentWeek = data.reduce((m, o) => {
+        let monday = this.getMonday(new Date(o.day));
+        let mondayYMD = monday.toISOString().slice(0, 10);
+        let found = m.find(e => e.day === mondayYMD);
+        if (found) {
+          found.downloads = found.downloads + o.downloads;
+        } else {
+          o.day = mondayYMD;
+          m.push(o);
+        }
+        return m;
+      }, []);
+ }
+
+
   //To Display Datapoint for total,current month,current year,current week
   getDataPoint3() {
 
@@ -397,9 +417,9 @@ export class AppComponent implements OnInit {
   
         },
         () => {
-                  this.getWeekData(weekresponse.downloads);
-                  weekdatapoint = this.groupedByWeek.length - 1;
-                  week = this.groupedByWeek[weekdatapoint]; 
+                  this.getCurrentWeekDatapoint(weekresponse.downloads);
+                  weekdatapoint = this.currentWeek.length - 1;
+                  week = this.currentWeek[weekdatapoint]; 
                   this.weeksum=week.downloads;   
              });
   }
