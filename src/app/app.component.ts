@@ -326,7 +326,6 @@ export class AppComponent implements OnInit {
 
  getCurrentWeekDatapoint(data:any)
  {
-
         this.currentWeek = data.reduce((m, o) => {
         let monday = this.getMonday(new Date(o.day));
         let mondayYMD = monday.toISOString().slice(0, 10);
