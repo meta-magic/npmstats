@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -22,6 +22,7 @@ export class AppComponent implements OnInit {
   fromdate: any;
   todate: any;
   packagename: any;
+  packagename1:any;
   downloadDataArray: any[] = [];
   obj = {};
   other = [];
@@ -61,13 +62,17 @@ export class AppComponent implements OnInit {
   quarter3download: number = 0;
   quarter4download: number = 0;
 
+  Redme:any;
+  html:any;
+  urls:string;
+  stringArray:any;
+  apicall:any;
   constructor(private http: HttpClient) {
     this.packageModel = new PackageModel();
     this.packageModel.packageName = "amexio-ng-extensions";
     this.packageModel.fromDate = new Date('1-Jun-2017');
     this.packageModel.toDate = new Date();
-
-
+    this.stringArray=["ie_/_edge\">","firefox\">","chrome\">","safari\">","opera\">","ios_safari\">","chrome_for_android\">"];
 
   }
 
@@ -108,6 +113,8 @@ export class AppComponent implements OnInit {
     this.validatePackageName();
     this.convertFromDate(this.packageModel.fromDate);
     this.convertToDate(this.packageModel.toDate);
+    this.packagename1=this.packageModel.packageName;
+    console.log("package",this.packagename1);
     inputUrl = this.convertfromdate + ':' + this.converttodate + '/' + this.packageModel.packageName
     this.perdaydownload = this.packageModel.packageName + ' ' + ':' + ' ' + this.convertfromdate + ' ' + 'to' + ' ' + this.converttodate
     this.range = this.convertfromdate + ' ' + 'to' + ' ' + this.converttodate
@@ -136,6 +143,7 @@ export class AppComponent implements OnInit {
 
         let downloadDataArray1 = response.downloads;
         this.sum = 0;
+        this.getRedme(this.packagename1);
         this.getAggregate(downloadDataArray1);
         this.getQuarterChart(downloadDataArray1);
       
@@ -223,6 +231,51 @@ export class AppComponent implements OnInit {
 
     this.activeTab = true;
   }
+  getRedme(data:any) :
+  any{
+    this.apicall='https://api.npms.io/v2/package/'+data;
+    let redmeResponse: any;
+    this.http.get('https://api.npms.io/v2/package/'+data)
+    .subscribe(
+    response => {
+    redmeResponse = response
+    },
+    (err: any) => {
+    console.log("Unable to connect");
+    },
+    () => {
+      
+                  this.urls="godban.github.io/";
+                  this.Redme=redmeResponse.collected.metadata.readme;
+                  let showdown  = require('showdown'),
+                  converter = new showdown.Converter();
+                  showdown.setOption('simplifiedAutoLink', true);
+                  converter.setFlavor('github');
+                  this.html= converter.makeHtml(this.Redme);
+                  for(let i=0;i<this.urls.length;i++)
+                  {
+                        if( this.html.match("godban.github.io/"))
+                        {
+                            this.html=this.html.replace("godban.github.io/","");
+                            this.html=this.html.replace("](http://browsers-support-badges/)","");
+                         }
+                }
+
+                for(let j=0;j<this.stringArray.length;j++)
+                {
+                  if( this.html.match(this.stringArray[j]))
+                      {
+                       this.html=this.html.replace(this.stringArray[j],"");
+                      
+                      }
+                }
+
+               // console.log("url",this.apicall);
+              //  console.log("serviceoutput", this.html);
+         }
+    );
+    }
+
 
 //Setting by default Packagename
   validatePackageName() {
