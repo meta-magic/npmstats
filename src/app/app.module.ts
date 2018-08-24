@@ -11,19 +11,13 @@ import { BrowserModule }    from '@angular/platform-browser';
 import { HttpClientModule,HttpClient } from '@angular/common/http';
 import {HttpModule} from "@angular/http";
 import { RedmeComponent } from './redme/redme.component';
-import { VersionsComponent } from './versions/versions.component';
-import { DependenciesComponent } from './dependencies/dependencies.component';
- 
-
-
 
 @NgModule({
   declarations: [
       AppComponent,
       PackageSearchComponent,
       RedmeComponent,
-      VersionsComponent,
-      DependenciesComponent,
+   
     ],
   imports: [
     BrowserModule,
