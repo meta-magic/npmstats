@@ -138,6 +138,7 @@ export class AppComponent implements OnInit {
         this.sum = 0;
         this.getAggregate(downloadDataArray1);
         this.getQuarterChart(downloadDataArray1);
+      
         this.total = this.sum;
 
         this.lineChartData.push([
@@ -174,9 +175,9 @@ export class AppComponent implements OnInit {
 
 
 
-          let monthwisedata: MonthWiseDownload;
-           monthwisedata = new MonthWiseDownload();
-           response.downloads.forEach((objects: any) => {
+             let monthwisedata: MonthWiseDownload;
+             monthwisedata = new MonthWiseDownload();
+             response.downloads.forEach((objects: any) => {
              monthwisedata.groupData(objects.day, objects.downloads);
 
         });
@@ -194,9 +195,9 @@ export class AppComponent implements OnInit {
         }
 
 
-         let yearwisedata: YearWiseDownload;
-         yearwisedata = new YearWiseDownload();
-        response.downloads.forEach((objects: any) => {
+          let yearwisedata: YearWiseDownload;
+          yearwisedata = new YearWiseDownload();
+          response.downloads.forEach((objects: any) => {
           yearwisedata.groupData(objects.day, objects.downloads);
         });
 
@@ -242,10 +243,10 @@ export class AppComponent implements OnInit {
   }
 
   convertToDate(str: any) {
-    let date = new Date(str),
+      let date = new Date(str),
       mnth = ("0" + (date.getMonth() + 1)).slice(-2),
       day = ("0" + date.getDate()).slice(-2);
-    this.converttodate = [date.getFullYear(), mnth, day].join("-");
+      this.converttodate = [date.getFullYear(), mnth, day].join("-");
 
   }
 // Method contains logic to display QuarterChart
@@ -495,7 +496,9 @@ export class MonthWiseDownload {
 }
 //To Display Per Year Chart
 export class YearWiseDownload {
+  
   yearWise: number[];
+ 
   constructor() {
     this.yearWise = [];
 

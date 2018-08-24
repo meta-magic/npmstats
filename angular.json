@@ -27,7 +27,9 @@
               "node_modules/font-awesome/css/font-awesome.css",
               "node_modules/amexio-ng-extensions/styles/css/at-md-black.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/showdown/dist/showdown.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -78,7 +80,9 @@
               "node_modules/font-awesome/css/font-awesome.css",
               "node_modules/amexio-ng-extensions/styles/css/at-md-black.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/showdown/dist/showdown.min.js"
+            ],
             "assets": [
               "src/favicon.ico",
               "src/assets"

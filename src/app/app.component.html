@@ -3,9 +3,6 @@
 <br><br><br><br>
 
 <div class="space" class="margin">
-
-        <amexio-row >
-                <amexio-column [size] ="12" >
                         
                              <amexio-box border-color="blue" border="left"  padding="true">
                         
@@ -43,34 +40,23 @@
                                     </package-search>
                                 </amexio-tab>
                             
-                                <amexio-tab [amexio-color]="'green'" disabled="true" title="Package Info" [active]="false" [closable]="false">
+                                <amexio-tab [amexio-color]="'green'"  title="Package Info" [active]="false" [closable]="false">
                                     <app-redme></app-redme>
                                 </amexio-tab>
                             
-                                <amexio-tab [amexio-color]="'red'" title="Dependencies "disabled="true" [active]="false" [closable]="false">
+                                <amexio-tab [amexio-color]="'red'" title="Versions "disabled="false" [active]="false" [closable]="false">
+                                    <app-versions></app-versions>
+                                </amexio-tab>
+                            
+                                <amexio-tab [amexio-color]="'red'" title="Dependencies" disabled="true" [active]="false" [closable]="false">
+                                    <app-dependencies></app-dependencies>
                                 </amexio-tab>
                             
                                 <amexio-tab [amexio-color]="'purple'" title="Dependent" disabled="true" [active]="false" [closable]="false">
                                 </amexio-tab>
-                       
-                            </amexio-tab-view>
-                        
-                        <amexio-notification
-                                 [data]="errorMessage"
-                                 [vertical-position]="'top'"
-                                 [horizontal-position]="'center'"
-                                 [close-on-escape] ="true"
-                                 [background-color]="'orange '"
-                                 [foreground-color]="'black'"
-                                 [auto-dismiss-msg-interval]="6000"
-                                 [close-on-escape]="true"
-                                 [auto-dismiss-msg]="true">
-                        </amexio-notification>
-                </amexio-column>
-             
-             </amexio-row>
-
-             <amexio-row>
+                      </amexio-tab-view>
+               
+             <amexio-row  class="paddingtop" >
                 <amexio-column [size] =3 >
                     <amexio-card [body-height]="'40'" [header]="true" [footer]="true" [footer-align]="'center'">
                         <amexio-header>Amexio API</amexio-header>
@@ -154,6 +140,7 @@
                     </amexio-card>
              </amexio-column>
       </amexio-row>
+
              <br>
              <br>
        

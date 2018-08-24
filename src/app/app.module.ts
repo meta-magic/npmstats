@@ -11,6 +11,10 @@ import { BrowserModule }    from '@angular/platform-browser';
 import { HttpClientModule,HttpClient } from '@angular/common/http';
 import {HttpModule} from "@angular/http";
 import { RedmeComponent } from './redme/redme.component';
+import { VersionsComponent } from './versions/versions.component';
+import { DependenciesComponent } from './dependencies/dependencies.component';
+ 
+
 
 
 @NgModule({
@@ -18,6 +22,8 @@ import { RedmeComponent } from './redme/redme.component';
       AppComponent,
       PackageSearchComponent,
       RedmeComponent,
+      VersionsComponent,
+      DependenciesComponent,
     ],
   imports: [
     BrowserModule,
@@ -28,7 +34,7 @@ import { RedmeComponent } from './redme/redme.component';
     AmexioChartsModule,
     BrowserModule,
     HttpClientModule,
-    AmexioDashBoardModule
+    AmexioDashBoardModule,
   ],
   providers: [HttpClient,DatePipe],
   bootstrap: [AppComponent]

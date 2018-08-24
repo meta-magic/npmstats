@@ -1,82 +1,76 @@
 
 <amexio-row>
          <amexio-column [size]="3">
-                   <amexio-datapoints [background-color]="'#FFCCBC'"[west]="true" [center]="true"[south]="true" >
+                <amexio-datapoints [background-color]="'#FFCCBC'" [west]="true" [center]="true" [south]="true">
                     <amexio-west [content-align]="'center'">
-                      <amexio-image [icon-class]="'fa fa-line-chart fa-3x'">
-                      </amexio-image>
-                   </amexio-west>
-                   <amexio-center [content-align]="'center'">
-                             <amexio-label size="large-bold">{{total}}</amexio-label>
-                                <br/>
-                              </amexio-center>
-                              <amexio-south [content-align]="'center'">
-                               <amexio-label size="medium">Total</amexio-label>       
-                               </amexio-south>
-                   </amexio-datapoints>
+                        <amexio-image [icon-class]="'fa fa-line-chart fa-3x'">
+                        </amexio-image>
+                    </amexio-west>
+                    <amexio-center [content-align]="'center'">
+                        <amexio-label size="large-bold">{{total}}</amexio-label>
+                        <br/>
+                    </amexio-center>
+                    <amexio-south [content-align]="'center'">
+                        <amexio-label size="medium">Total</amexio-label>
+                    </amexio-south>
+                </amexio-datapoints>
             </amexio-column> 
             
             
-
-            <amexio-column [size]="3"> 
+      <amexio-column [size]="3"> 
 
                         <amexio-datapoints [background-color]="'#FFCC80'" [west]="true" [center]="true"[south]="true" >
 
                             <amexio-west [content-align]="'center'">
                                 <amexio-image [icon-class]="'fa fa-line-chart fa-3x'">
                                 </amexio-image>
-                              </amexio-west>
-                                    <amexio-center [content-align]="'center'">
-                                      <amexio-label size="large-bold">{{yearsum}}</amexio-label>
-                                      <br/>
-                                    </amexio-center>
-                                    <amexio-south [content-align]="'center'">
-                                     <amexio-label size="medium">Current Year</amexio-label>       
-                                     </amexio-south>
+                            </amexio-west>
+                            <amexio-center [content-align]="'center'">
+                                <amexio-label size="large-bold">{{yearsum}}</amexio-label>
+                                <br/>
+                            </amexio-center>
+                            <amexio-south [content-align]="'center'">
+                                <amexio-label size="medium">Current Year</amexio-label>
+                            </amexio-south>
                       </amexio-datapoints>
             </amexio-column> 
 
            
             <amexio-column [size]="3"> 
                     
-                        <amexio-datapoints [background-color]="'#F8BBD0'" [west]="true" [center]="true"[south]="true" >
+                        <amexio-datapoints [background-color]="'#F8BBD0'" [west]="true" [center]="true" [south]="true">
                             <amexio-west [content-align]="'center'">
                                 <amexio-image [icon-class]="'fa fa-line-chart fa-3x'">
                                 </amexio-image>
-                              </amexio-west>          
-                           <amexio-center [content-align]="'center'">
-                                      <amexio-label size="large-bold">{{monthsum1}}</amexio-label>
-                                      <br/>
-                                    </amexio-center>
-                                    <amexio-south [content-align]="'center'">
-                                     <amexio-label size="medium">Current Month</amexio-label>       
-                                     </amexio-south>
-                     </amexio-datapoints>
+                            </amexio-west>
+                            <amexio-center [content-align]="'center'">
+                                <amexio-label size="large-bold">{{monthsum1}}</amexio-label>
+                                <br/>
+                            </amexio-center>
+                            <amexio-south [content-align]="'center'">
+                                <amexio-label size="medium">Current Month</amexio-label>
+                            </amexio-south>
+                        </amexio-datapoints>
         </amexio-column>
        
         <amexio-column [size]="3"> 
                     
-          <amexio-datapoints [background-color]="'#FFCCBC'" [west]="true"[center]="true"[south]="true" >
-              <amexio-west [content-align]="'center'">
-                  <amexio-image [icon-class]="'fa fa-line-chart fa-3x'">
-                  </amexio-image>
-                </amexio-west>          
-             <amexio-center [content-align]="'center'">
-                        <amexio-label size="large-bold">{{weeksum}}</amexio-label>
-                        <br/>
-                      </amexio-center>
-                      <amexio-south [content-align]="'center'">
-                       <amexio-label size="medium">Current Week</amexio-label>       
-                       </amexio-south>
-       </amexio-datapoints>
+        <amexio-datapoints [background-color]="'#FFCCBC'" [west]="true" [center]="true" [south]="true">
+            <amexio-west [content-align]="'center'">
+                <amexio-image [icon-class]="'fa fa-line-chart fa-3x'">
+                </amexio-image>
+            </amexio-west>
+            <amexio-center [content-align]="'center'">
+                <amexio-label size="large-bold">{{weeksum}}</amexio-label>
+                <br/>
+            </amexio-center>
+            <amexio-south [content-align]="'center'">
+                <amexio-label size="medium">Current Week</amexio-label>
+            </amexio-south>
+        </amexio-datapoints>
 </amexio-column>   
-        
-
-
-
-
-
 </amexio-row>
+
 
 <amexio-row>   
 <amexio-column [size] ="8">
@@ -120,7 +114,7 @@
 </amexio-row> 
 
 
-<amexio-row>
+<amexio-row  class="paddingbottom">
     <amexio-column [size] ="4">
         <amexio-card
         [header]="true"
