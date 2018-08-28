@@ -13,7 +13,7 @@ import { ViewEncapsulation } from '@angular/core';
   selector: 'app-redme',
   templateUrl: './redme.component.html',
   styleUrls: ['./redme.component.css'],
-  encapsulation: ViewEncapsulation.Native,
+ 
 })
 export class RedmeComponent implements OnInit {
  
