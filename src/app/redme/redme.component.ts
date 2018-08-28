@@ -25,7 +25,7 @@ export class RedmeComponent implements OnInit {
 
   
   ngOnInit() {
-       //  console.log("redme",this.shareservice.html)
+      
   }
 
 }

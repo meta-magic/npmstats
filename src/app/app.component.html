@@ -28,29 +28,33 @@
                                 </amexio-column>
                                 <amexio-column size="1" style="display: flex;flex-direction: column; justify-content: flex-end; padding: 5px;">
                                     <amexio-button [disabled]="false" [label]="'Search'" [form-bind]="'validateForm '" [type]="'green'" [tooltip]="'Search'"
-                                        (onClick)="getData()">
+                                        (onClick)="searchData(amexiotab)">
                                     </amexio-button>
                                 </amexio-column>
                          </amexio-row>
                             
                             
-                        <amexio-tab-view [closable]="false" [divide-header-equally]="true">
-                                <amexio-tab [amexio-color]="'blue'" title="Dashboard" [active]="activeTab" [closable]="false">
-                                    <package-search  [isLoading]="isLoading"  [QuarterChart]="QuarterChart" [WeekChart]="WeekChart"[range]="range" [weeksum]="weeksum"[monthsum1]="monthsum1" [yearsum]="yearsum" [total]="total"  [currentyearchart]="currentyearchart" [yearWiseDataarray]="yearWiseDataarray" [showMonthChart]="showMonthChart" [showChart]="showChart" [lineChartData]="lineChartData" [monthWiseDataarray]="monthWiseDataarray">
-                                    </package-search>
+                        <amexio-tab-view   #amexiotab [closable]="false" [divide-header-equally]="true">
+                                <amexio-tab [amexio-color]="'blue'" title="Dashboard" [active]="dashboardActiveTab" [closable]="false">
+                                    <ng-container *ngIf="dashboardActiveTab">
+                                            <package-search [isLoading]="isLoading"  [QuarterChart]="QuarterChart" [WeekChart]="WeekChart"[range]="range" [weeksum]="weeksum"[monthsum1]="monthsum1" [yearsum]="yearsum" [total]="total"  [currentyearchart]="currentyearchart" [yearWiseDataarray]="yearWiseDataarray" [showMonthChart]="showMonthChart" [showChart]="showChart" [lineChartData]="lineChartData" [monthWiseDataarray]="monthWiseDataarray">
+                                             </package-search>
+                                    </ng-container>
+                                    
                                 </amexio-tab>
                             
-                                <amexio-tab [amexio-color]="'green'"  title="Package Info" [active]="false" [closable]="false">
-                                    <app-redme [html]="html"></app-redme>
+                                <amexio-tab [amexio-color]="'green'" [active]="packagesearchtab" title="Package Info" [closable]="false">
+                                  <app-redme [html]="html"></app-redme>
+                               </amexio-tab>
+                            
+                                <amexio-tab [amexio-color]="'red'" title="Versions "disabled="true"  [closable]="false">
                                 </amexio-tab>
                             
-                                <amexio-tab [amexio-color]="'red'" title="Versions "disabled="true" [active]="false" [closable]="false">
+                                <amexio-tab [amexio-color]="'red'" title="Dependencies" [active]="dependencytab" [closable]="false">
+                                    <app-dependencies [dependencyarray]="dependencyarray" [devdependency]="devdependency"></app-dependencies>
                                 </amexio-tab>
                             
-                                <amexio-tab [amexio-color]="'red'" title="Dependencies" disabled="true" [active]="false" [closable]="false">
-                                </amexio-tab>
-                            
-                                <amexio-tab [amexio-color]="'purple'" title="Dependent" disabled="true" [active]="false" [closable]="false">
+                                <amexio-tab [amexio-color]="'purple'" title="Dependent" disabled="true"  [closable]="false">
                                 </amexio-tab>
                       </amexio-tab-view>
                

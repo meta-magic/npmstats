@@ -1,5 +1,6 @@
 import { Component, OnInit,Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { AmexioTabComponent } from 'amexio-ng-extensions';
 
 
 @Component({
@@ -33,6 +34,10 @@ export class AppComponent implements OnInit {
   monthdatapoint: any;
   disabledDate: any[];
   errorMessage: any = [];
+  dependencies:any[]=[];
+  devdependencies:any[]=[];
+  dependencyarray:any=[];
+  devdependency:any[]=[];
   showChart: boolean;
   showMonthChart: boolean;
   showYearChart: boolean;
@@ -43,7 +48,9 @@ export class AppComponent implements OnInit {
   currentyearsum: number = 0;
   currentmonthsum: number = 0;
   isLoading1: boolean;
-  activeTab: boolean;
+  dashboardActiveTab: boolean;
+  packagesearchtab:boolean;
+  dependencytab:boolean;
   perdaydownload: any;
   groupedByWeek = [];
   currentWeek=[];
@@ -79,13 +86,19 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.getData();
 
-
   }
 
   d = new Date();
 
+  searchData(amexioTab : AmexioTabComponent){
+    amexioTab.setActiveTab(1);
+    this.getData();
+  }
   //THIS METHOD IS USED FOR GET THE DATA FROM SERVICE AND CREATE CHART JSON 
   getData() {
+    this.dashboardActiveTab=false;
+    this.packagesearchtab=false;
+    this.dependencytab=false;
     this.sum = 0;
     this.yearsum = 0;
     this.monthsum1 = 0;
@@ -140,14 +153,16 @@ export class AppComponent implements OnInit {
         this.isLoading1 = false;
       },
       () => {
-
-        let downloadDataArray1 = response.downloads;
-        this.sum = 0;
-        this.getRedme(this.packagename1);
-        this.getAggregate(downloadDataArray1);
-        this.getQuarterChart(downloadDataArray1);
-      
-        this.total = this.sum;
+             
+              this.dashboardActiveTab=true;
+              let downloadDataArray1 = response.downloads;
+              this.sum = 0;
+              this.getRedme(this.packagename1);
+              this.getDependencies(this.packagename1);
+              this.getAggregate(downloadDataArray1);
+              this.getQuarterChart(downloadDataArray1);
+       
+              this.total = this.sum;
 
         this.lineChartData.push([
           { "datatype": "string", "label": 'Date' },
@@ -229,22 +244,23 @@ export class AppComponent implements OnInit {
       }
     );
 
-    this.activeTab = true;
   }
   getRedme(data:any) :
   any{
+    console.log("getredme")
     this.apicall='https://api.npms.io/v2/package/'+data;
     let redmeResponse: any;
     this.http.get('https://api.npms.io/v2/package/'+data)
     .subscribe(
     response => {
     redmeResponse = response
+  
     },
     (err: any) => {
     console.log("Unable to connect");
     },
     () => {
-      
+              
                   this.urls="godban.github.io/";
                   this.Redme=redmeResponse.collected.metadata.readme;
                   let showdown  = require('showdown'),
@@ -265,16 +281,56 @@ export class AppComponent implements OnInit {
                 {
                   if( this.html.match(this.stringArray[j]))
                       {
-                       this.html=this.html.replace(this.stringArray[j],"");
-                      
+                         this.html=this.html.replace(this.stringArray[j],"");
+                       
                       }
                 }
-
-               // console.log("url",this.apicall);
-              //  console.log("serviceoutput", this.html);
          }
+        
     );
+  
     }
+
+    getDependencies(griddata:any):
+    any{
+      let redmeResponse: any;
+      this.http.get('https://api.npms.io/v2/package/'+griddata)
+      .subscribe(
+      response => {
+      redmeResponse = response
+      },
+      (err: any) => {
+      console.log("Unable to connect");
+      },
+      () => {
+                    this.dependencies=redmeResponse.collected.metadata.dependencies;
+                    this.devdependencies= redmeResponse.collected.metadata.devDependencies;             
+                    let arrayOfdepKeys = Object.keys(this.dependencies);
+                    let arrayOfdepValues=Object.values(this.dependencies);
+                    for(let i=0;i<arrayOfdepKeys.length;i++)
+                    {
+                         let depobj={};
+                         depobj['depkey']= arrayOfdepKeys[i];   
+                         depobj['depvalue']= arrayOfdepValues[i];
+                         this.dependencyarray.push(depobj);
+
+                   }
+                   
+                    let arrayOfdevKeys = Object.keys(this.devdependencies);
+                    let arrayOfdevValues=Object.values(this.devdependencies);
+                  
+                   for(let i=0;i<arrayOfdevKeys.length;i++)
+                   {
+                        let devobj={};
+                        devobj['depkey']=arrayOfdevKeys[i];   
+                        devobj['depvalue']=arrayOfdevValues[i];
+                        this.devdependency.push(devobj);
+                  }
+           }
+      );
+
+      }
+
 
 
 //Setting by default Packagename
