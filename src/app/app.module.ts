@@ -19,7 +19,7 @@ import { DependenciesComponent } from './dependencies/dependencies.component';
       PackageSearchComponent,
       RedmeComponent,
       DependenciesComponent,
-    ],
+   ],
   imports: [
     BrowserModule,
     FormsModule,
@@ -35,4 +35,3 @@ import { DependenciesComponent } from './dependencies/dependencies.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-

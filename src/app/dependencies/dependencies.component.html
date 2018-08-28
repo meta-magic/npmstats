@@ -1,4 +1,6 @@
-<div class="space">
+
+<div class="space"> 
+ 
 <amexio-datagrid title="Dependencies" 
  [data]="dependencyarray"[page-size]="10">
   <amexio-data-table-column [data-index]="'depkey'" [data-type]="'string'" [hidden]="false" [text]="'Dependencies'">
@@ -8,10 +10,15 @@
 </amexio-datagrid>
 
 
+
+
 <amexio-datagrid title="DevDependencies" [data]="devdependency" [page-size]="10">
+ 
   <amexio-data-table-column [data-index]="'depkey'" [data-type]="'string'" [hidden]="false" [text]="'DevDependencies'">
   </amexio-data-table-column>
   <amexio-data-table-column [data-index]="'depvalue'" [data-type]="'string'" [hidden]="false" [text]="'Version'" >
   </amexio-data-table-column> 
 </amexio-datagrid>
+
+
 </div>

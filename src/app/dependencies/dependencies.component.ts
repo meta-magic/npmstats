@@ -6,9 +6,10 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
   styleUrls: ['./dependencies.component.css']
 })
 export class DependenciesComponent implements OnInit {
+ 
 @Input() dependencyarray:any;
 @Input() devdependency:any; 
-  constructor(private http: HttpClient) {
+constructor(private http: HttpClient) {
   }
 
   ngOnInit() {

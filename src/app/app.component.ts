@@ -24,6 +24,8 @@ export class AppComponent implements OnInit {
   todate: any;
   packagename: any;
   packagename1:any;
+  showgrid1:boolean;
+  showgrid2:boolean;
   downloadDataArray: any[] = [];
   obj = {};
   other = [];
@@ -35,7 +37,7 @@ export class AppComponent implements OnInit {
   disabledDate: any[];
   errorMessage: any = [];
   dependencies:any[]=[];
-  devdependencies:any[]=[];
+  devdependencies:any=[];
   dependencyarray:any=[];
   devdependency:any[]=[];
   showChart: boolean;
@@ -106,6 +108,8 @@ export class AppComponent implements OnInit {
     this.currentyearsum = 0;
     this.currentmonthsum = 0;
     this.showChart = false;
+    this.showgrid1=false;
+    this.showgrid2=false;
     this.showMonthChart = false;
     this.showYearChart = false;
     this.isLoading = true;
@@ -118,6 +122,8 @@ export class AppComponent implements OnInit {
     this.WeekChart = [];
     this.monthwisedata = [];
     this.QuarterChart = [];
+    this.dependencyarray=[];
+    this.devdependency=[];
     let inputUrl: any;
     this.quarter1download = 0;
     this.quarter2download = 0;
@@ -161,7 +167,6 @@ export class AppComponent implements OnInit {
               this.getDependencies(this.packagename1);
               this.getAggregate(downloadDataArray1);
               this.getQuarterChart(downloadDataArray1);
-       
               this.total = this.sum;
 
         this.lineChartData.push([
@@ -231,7 +236,6 @@ export class AppComponent implements OnInit {
             year.push(key);
             year.push(element);
             this.yearWiseDataarray.push(year);
-
           }
 
 
@@ -247,7 +251,7 @@ export class AppComponent implements OnInit {
   }
   getRedme(data:any) :
   any{
-    console.log("getredme")
+    
     this.apicall='https://api.npms.io/v2/package/'+data;
     let redmeResponse: any;
     this.http.get('https://api.npms.io/v2/package/'+data)
@@ -281,7 +285,7 @@ export class AppComponent implements OnInit {
                 {
                   if( this.html.match(this.stringArray[j]))
                       {
-                         this.html=this.html.replace(this.stringArray[j],"");
+                          this.html=this.html.replace(this.stringArray[j],"");
                        
                       }
                 }
@@ -293,6 +297,8 @@ export class AppComponent implements OnInit {
 
     getDependencies(griddata:any):
     any{
+            this.dependencyarray=[];
+            this.devdependency=[];
       let redmeResponse: any;
       this.http.get('https://api.npms.io/v2/package/'+griddata)
       .subscribe(
@@ -302,23 +308,14 @@ export class AppComponent implements OnInit {
       (err: any) => {
       console.log("Unable to connect");
       },
-      () => {
+      () => {        
+                    this.devdependencies= redmeResponse.collected.metadata.devDependencies; 
                     this.dependencies=redmeResponse.collected.metadata.dependencies;
-                    this.devdependencies= redmeResponse.collected.metadata.devDependencies;             
-                    let arrayOfdepKeys = Object.keys(this.dependencies);
-                    let arrayOfdepValues=Object.values(this.dependencies);
-                    for(let i=0;i<arrayOfdepKeys.length;i++)
-                    {
-                         let depobj={};
-                         depobj['depkey']= arrayOfdepKeys[i];   
-                         depobj['depvalue']= arrayOfdepValues[i];
-                         this.dependencyarray.push(depobj);
-
-                   }
-                   
                     let arrayOfdevKeys = Object.keys(this.devdependencies);
                     let arrayOfdevValues=Object.values(this.devdependencies);
                   
+                    if(this.devdependencies!=null)
+                    {
                    for(let i=0;i<arrayOfdevKeys.length;i++)
                    {
                         let devobj={};
@@ -326,9 +323,26 @@ export class AppComponent implements OnInit {
                         devobj['depvalue']=arrayOfdevValues[i];
                         this.devdependency.push(devobj);
                   }
-           }
-      );
+                   
+                }
+                 
+                let arrayOfdepKeys = Object.keys(this.dependencies);
+                let arrayOfdepValues=Object.values(this.dependencies);
+                if(this.dependencies!=null)
+                {
+                for(let i=0;i<arrayOfdepKeys.length;i++)
+                {
+                     let depobj={};
+                     depobj['depkey']= arrayOfdepKeys[i];   
+                     depobj['depvalue']= arrayOfdepValues[i];
+                     this.dependencyarray.push(depobj);
 
+                }
+                 
+             } 
+     }
+      );
+      
       }
 
 
