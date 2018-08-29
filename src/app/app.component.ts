@@ -79,7 +79,7 @@ export class AppComponent implements OnInit {
   constructor(private http: HttpClient) {
     this.packageModel = new PackageModel();
     this.packageModel.packageName = "amexio-ng-extensions";
-    this.packageModel.fromDate = new Date('1-Jun-2017');
+    this.packageModel.fromDate = new Date("1/06/2017");
     this.packageModel.toDate = new Date();
     this.stringArray=["ie_/_edge\">","firefox\">","chrome\">","safari\">","opera\">","ios_safari\">","chrome_for_android\">"];
 
