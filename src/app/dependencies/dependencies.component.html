@@ -1,6 +1,7 @@
 
 <div class="space"> 
- 
+  
+ <div *ngIf="dependencyarray && dependencyarray.length>0">
 <amexio-datagrid title="Dependencies" 
  [data]="dependencyarray"[page-size]="10">
   <amexio-data-table-column [data-index]="'depkey'" [data-type]="'string'" [hidden]="false" [text]="'Dependencies'">
@@ -8,17 +9,16 @@
   <amexio-data-table-column [data-index]="'depvalue'" [data-type]="'string'" [hidden]="false" [text]="'Version'" >
   </amexio-data-table-column> 
 </amexio-datagrid>
+</div>
 
 
-
-
+<div *ngIf="devdependency && devdependency.length>0" >
 <amexio-datagrid title="DevDependencies" [data]="devdependency" [page-size]="10">
- 
+  
   <amexio-data-table-column [data-index]="'depkey'" [data-type]="'string'" [hidden]="false" [text]="'DevDependencies'">
   </amexio-data-table-column>
   <amexio-data-table-column [data-index]="'depvalue'" [data-type]="'string'" [hidden]="false" [text]="'Version'" >
   </amexio-data-table-column> 
 </amexio-datagrid>
-
-
+</div>
 </div>

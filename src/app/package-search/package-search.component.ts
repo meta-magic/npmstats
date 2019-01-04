@@ -1,4 +1,5 @@
 import { Component, OnInit, Pipe, PipeTransform, Input } from '@angular/core';
+//import { toDate } from '@angular/common/src/i18n/format_date';
 
 @Component({
   selector: 'package-search',
@@ -24,11 +25,20 @@ export class PackageSearchComponent implements OnInit {
   @Input() currentyearchart:any;
   @Input() range:any;
   @Input() WeekChart:any;
-  @Input() QuarterChart:any
+  @Input() QuarterChart:any;
+  @Input() fromDate:any;
+  @Input() toDate:any;
+  @Input() Year:any;
+  @Input() week:any;
   constructor() {
+
+  
   }
 
-  ngOnInit() { }
+  ngOnInit() { 
+
+
+  }
 
   
 }
