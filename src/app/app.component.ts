@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
   obj = {};
   other = [];
   array: any = [];
-  total: any;
+  total: number=0;
   downloads = [];
   yeardatapoint: any
   monthdatapoint: any;
@@ -93,7 +93,9 @@ export class AppComponent implements OnInit {
   toDate:any;
   Year:any;
   week:any;
-
+  YearKey:any;
+ totalcount:any[]=[];
+ jandate:any;
   constructor(private http: HttpClient) {
     this.packageModel = new PackageModel();
     this.packageModel.packageName = "amexio-ng-extensions";
@@ -105,17 +107,17 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.getData();
     this.getDataPoint2();
-    this.getTotal();
     this.getDataPoint3();
     this.formDropdownData();
+   // this.getTotal();
   }
   //search button click method
   searchData(amexioTab: AmexioTabComponent) {
     amexioTab.setActiveTab(1);
     this.getData();
     this.getDataPoint2();
-    this.getTotal();
     this.getDataPoint3();
+   // this.getTotal();
   }
 //form year dropdown data
   formDropdownData()
@@ -168,6 +170,9 @@ export class AppComponent implements OnInit {
     this.validatePackageName();
     this.convertFromDate(this.packageModel.fromDate);
     this.convertToDate(this.packageModel.toDate);
+    let year= this.packageModel.fromDate.getFullYear();
+    // let string= '1' + '/' + '01' + '/' + year;
+    // this.jandate=new Date(string);
     this.packagename1 = this.packageModel.packageName;
     inputUrl = this.convertfromdate + ':' + this.converttodate + '/' + this.packageModel.packageName
     this.perdaydownload = this.packageModel.packageName + ' ' + ':' + ' ' + this.convertfromdate + ' ' + 'to' + ' ' + this.converttodate
@@ -201,6 +206,7 @@ export class AppComponent implements OnInit {
         let downloadDataArray1 = response.downloads;
 
         this.sum = 0;
+        let years:any;
         this.getRedme(this.packagename1);
         this.getDependencies(this.packagename1);
        
@@ -259,6 +265,19 @@ export class AppComponent implements OnInit {
           }
         }
         this.getWeekData(downloadDataArray1);
+         this.YearKey=[];
+
+         response.downloads.forEach((objects: any) => {
+            years = this.getYears(objects.day); 
+             if(this.YearKey.includes(years))
+             {
+               return this.YearKey;
+             } 
+             else{
+                    this.YearKey.push(years);
+             }
+        });
+           this.getTotal();
     }
     );
 
@@ -496,6 +515,7 @@ export class AppComponent implements OnInit {
       return m;
     }, []);
   }
+
   //To Display Datapoint for total,current month,current year,current week
   getDataPoint3() {
 
@@ -555,36 +575,87 @@ export class AppComponent implements OnInit {
       this.sum = this.sum + totaldownload;
     });
   }
+
+
+  getYears(day: string) {
+    const date = new Date(day);
+    return [date.getFullYear()].join("-");
+  }
+
 //to calculate total downloads formdate  to todate
   getTotal() {
-    let fromdate = this.packageModel.fromDate;
-    let todate = this.packageModel.toDate;
-    //for fromdate
-    let formmnth = ("0" + (fromdate.getMonth() + 1)).slice(-2);
-    let formday = ("0" + fromdate.getDate()).slice(-2);
-    let formyear = fromdate.getFullYear();
-    //for todate
-    let tomnth = ("0" + (todate.getMonth() + 1)).slice(-2);
-    let today = ("0" + todate.getDate()).slice(-2);
-    let toyear = todate.getFullYear();
 
-    let fromdate1 = formyear + '-' + formmnth + '-' + formday;
-    let todate1 = toyear + '-' + tomnth + '-' + today;
-    let url = fromdate1 + ':' + todate1 + '/' + this.packageModel.packageName
-    let yearresponse: any
-    this.http.get('https://api.npmjs.org/downloads/range/' + url, {}).subscribe(
-      resp => {
-        yearresponse = resp;
-        this.showChart = true;
-      },
-      () => {
+               this.total=0;
+               let url:string;
+     
+                let fromdate = this.packageModel.fromDate;
+                let todate=this.packageModel.toDate;
 
-      },
-      () => {
-        this.sum = 0;
-        this.getAggregate(yearresponse.downloads)
-        this.total = this.sum;
-      });
+                 //for fromdate
+                let formmnth = ("0" + (fromdate.getMonth() + 1)).slice(-2);
+                let formday = ("0" + fromdate.getDate()).slice(-2);
+                let formyear = fromdate.getFullYear();
+                 //for todate
+                 let tomnth = ("0" + (todate.getMonth() + 1)).slice(-2);
+                 let today = ("0" + todate.getDate()).slice(-2);
+                 let toyear = todate.getFullYear();
+
+      this.YearKey.forEach(year => {
+        if(this.YearKey.length>1 && year==fromdate.getFullYear())
+        {                
+          let formmnth = ("0" + (fromdate.getMonth() + 1)).slice(-2);
+          let formday = ("0" + fromdate.getDate()).slice(-2);
+          let formyear = fromdate.getFullYear();   
+          let fromdate1 = formyear + '-' + formmnth + '-' + formday;               
+          let todate1 = year + '-' + '12' + '-' + '31';
+           url = fromdate1 + ':' + todate1 + '/' + this.packageModel.packageName;
+        }
+        else{
+
+          if(this.YearKey.length>1 && year!=fromdate.getFullYear() && year!=todate.getFullYear()){
+              let fromdate1 = year + '-' + '01' + '-' + '01';
+              let todate1 = year + '-' + '12' + '-' + '31';
+               url = fromdate1 + ':' + todate1 + '/' + this.packageModel.packageName;  
+          }
+       }
+       if(this.YearKey.length>1 && year==todate.getFullYear())
+       {
+            let fromdate1 = year + '-' + '01' + '-' + '01';
+            let todate1 = toyear + '-' + tomnth + '-' + today;
+             url = fromdate1 + ':' + todate1 + '/' + this.packageModel.packageName;  
+        }
+        if(this.YearKey.length==1)
+        {
+            let fromdate1 = formyear + '-' + formmnth + '-' + formday;
+            let todate1 = toyear + '-' + tomnth + '-' + today;
+            url = fromdate1 + ':' + todate1 + '/' + this.packageModel.packageName                             
+      }
+        let yearresponse: any
+        this.http.get('https://api.npmjs.org/downloads/range/' + url, {}).subscribe(
+          resp => {
+            yearresponse = resp;
+            this.showChart = true;
+          },
+          () => {
+    
+          },
+          () => {
+          
+            if(yearresponse){
+              this.sum = 0;
+              this.getAggregate(yearresponse.downloads);
+              if(this.YearKey.length>1)
+              {
+                     let yeartotal=this.sum;
+                     this.total=this.total+yeartotal;
+              }
+              else{
+                      this.total=this.sum;
+                  }
+              }
+       });
+     });
+
   }
 }
 
@@ -643,6 +714,7 @@ export class MonthWiseDownload {
   }
 
   groupMonth(key: string, count: number): any {
+   
     const monthkey = this.getMonthYear(key);
 
     if (this.monthwise[monthkey + ""] != undefined) {
@@ -659,9 +731,10 @@ export class MonthWiseDownload {
 export class YearWiseDownload {
 
   yearWise: number[];
-
+  yearkey:any;
   constructor() {
     this.yearWise = [];
+   
 
   }
   //Method to get fullyear
@@ -671,8 +744,10 @@ export class YearWiseDownload {
   }
 
   groupYear(key: string, count: number): any {
+    
     const monthkey = this.getYear(key);
-
+  
+   
     if (this.yearWise[monthkey + ""] != undefined) {
       let currentcount = this.yearWise[monthkey + ""];
       currentcount = currentcount + count;
