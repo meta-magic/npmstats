@@ -7,11 +7,11 @@
                    </amexio-image>
                </amexio-west>
                <amexio-center [content-align]="'center'">
-                   <amexio-label size="large-bold">{{total | number}}</amexio-label>
+                   <amexio-label size="large-bold">{{totaldownloadcount | number}}</amexio-label>
                    <br/>
                </amexio-center>
                <amexio-south [content-align]="'center'">
-                   <amexio-label size="medium">{{fromDate | date:'dd MMM,yyyy' }} to  {{toDate |  date:'dd MMM,yyyy' }}</amexio-label>
+                   <amexio-label size="medium">{{fromDate | date:'dd MMM, yyyy' }} to  {{toDate |  date:'dd MMM, yyyy' }}</amexio-label>
                </amexio-south>
            </amexio-datapoints>
   </amexio-column> 
@@ -29,7 +29,7 @@
            <br/>
        </amexio-center>
        <amexio-south [content-align]="'center'">
-           <amexio-label size="medium">Week of {{toDate |  date:' MMM,yyyy' }}</amexio-label>
+           <amexio-label size="medium">Week of {{toDate |  date:' MMM, yyyy' }}</amexio-label>
        </amexio-south>
    </amexio-datapoints>
                    
@@ -48,7 +48,7 @@
                            <br/>
                        </amexio-center>
                        <amexio-south [content-align]="'center'">
-                           <amexio-label size="medium">{{toDate |  date:' MMM,yyyy' }}</amexio-label>
+                           <amexio-label size="medium">{{toDate |  date:' MMM, yyyy' }}</amexio-label>
                        </amexio-south>
                    </amexio-datapoints>
    </amexio-column>

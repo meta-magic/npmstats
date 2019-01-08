@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
   obj = {};
   other = [];
   array: any = [];
-  total: number=0;
+  totaldownloadcount:any;
   downloads = [];
   yeardatapoint: any
   monthdatapoint: any;
@@ -140,6 +140,7 @@ export class AppComponent implements OnInit {
     this.yearsum = 0;
     this.monthsum1 = 0;
     this.weeksum = 0;
+    this.totaldownloadcount=0
     this.currentyearsum = 0;
     this.currentmonthsum = 0;
     this.showChart = false;
@@ -277,7 +278,8 @@ export class AppComponent implements OnInit {
                     this.YearKey.push(years);
              }
         });
-           this.getTotal();
+         
+            this.getTotal();
     }
     );
 
@@ -585,8 +587,9 @@ export class AppComponent implements OnInit {
 //to calculate total downloads formdate  to todate
   getTotal() {
 
-               this.total=0;
-               let url:string;
+                 this.totaldownloadcount=0;
+                 let yearcount=0
+                 let url:string;
      
                 let fromdate = this.packageModel.fromDate;
                 let todate=this.packageModel.toDate;
@@ -647,16 +650,24 @@ export class AppComponent implements OnInit {
               if(this.YearKey.length>1)
               {
                      let yeartotal=this.sum;
-                     this.total=this.total+yeartotal;
+                     yearcount=yearcount+yeartotal;
+                     if(year==todate.getFullYear()){
+                      this.totaldownloadcount= yearcount;
+                     }
+                    
               }
               else{
-                      this.total=this.sum;
+                      
+                      this.totaldownloadcount=this.sum;
                   }
-              }
-       });
+                  
+              }   
+              console.log("totalcount",this.totaldownloadcount);
+         });
      });
-
+    
   }
+ 
 }
 
 export class PackageModel {
