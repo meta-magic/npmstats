@@ -660,10 +660,8 @@ export class AppComponent implements OnInit {
                       
                       this.totaldownloadcount=this.sum;
                   }
-                  
               }   
-              console.log("totalcount",this.totaldownloadcount);
-         });
+        });
      });
     
   }

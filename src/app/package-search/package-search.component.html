@@ -29,7 +29,7 @@
            <br/>
        </amexio-center>
        <amexio-south [content-align]="'center'">
-           <amexio-label size="medium">Week of {{toDate |  date:' MMM, yyyy' }}</amexio-label>
+           <amexio-label size="medium"> This Week of {{toDate |  date:' MMM, yyyy' }}</amexio-label>
        </amexio-south>
    </amexio-datapoints>
                    
@@ -98,7 +98,7 @@
  <amexio-card [header]="true"
  [header-align]="'left'">
      <amexio-header>
-         Downloads per Quarter({{Year}})
+         Downloads per Quarter ({{Year}})
      </amexio-header>
      <amexio-body>
          <div *ngIf="QuarterChart && QuarterChart.length>0" [ngClass]="{'signal':!showChart}">
