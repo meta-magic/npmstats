@@ -183,7 +183,6 @@ export class AppComponent implements OnInit {
 
     this.packagename1 = this.packageModel.packageName;
     inputUrl = this.convertfromdate + ':' + this.converttodate + '/' + this.packageModel.packageName;
-    // console.log("url",   inputUrl );
     this.perdaydownload = this.packageModel.packageName + ' ' + ':' + ' ' + this.convertfromdate + ' ' + 'to' + ' ' + this.converttodate
     this.range = this.convertfromdate + ' ' + 'to' + ' ' + this.converttodate;
     let response: any;
@@ -597,7 +596,7 @@ export class AppComponent implements OnInit {
       let totaldownload: any = downLoadObj.downloads;
       sum = sum + totaldownload;
     });
-    // console.log("sum",sum);
+  
     return sum;
   }
 
