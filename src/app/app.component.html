@@ -32,7 +32,7 @@
             </amexio-date-time-picker>
         </amexio-column>
         <amexio-column [size]="2">
-            <amexio-dropdown [place-holder]="'Choose Year'" name="Year" [field-label]="'Choose Year'" [display-field]="'year'" [value-field]="'year'"
+            <amexio-dropdown [place-holder]="'Choose Year '" [enable-sort]="true" [sort]="'desc'" name="Year" [field-label]="'Choose Year for Qtr Analysis'" [display-field]="'year'" [value-field]="'year'"
                 [data]="dropdowndata" [(ngModel)]="packageModel.year">
           </amexio-dropdown>
         </amexio-column>
@@ -154,7 +154,6 @@
             target="_blank">Apache 2 License</a> by
         <a href="https://creativecommons.org/licenses/by/4.0/legalcode" target="_blank"> CC By 4.0</a>
     </amexio-label>
-
     <br>
     <br>
 </div>
