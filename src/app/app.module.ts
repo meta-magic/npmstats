@@ -1,6 +1,6 @@
 
 import { NgModule } from '@angular/core';
-
+import{BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import { AppComponent } from './app.component';
 import { PackageSearchComponent } from './package-search/package-search.component';
 import {RouterModule} from "@angular/router";
@@ -30,6 +30,8 @@ import { DependenciesComponent } from './dependencies/dependencies.component';
     BrowserModule,
     HttpClientModule,
     AmexioDashBoardModule,
+    BrowserAnimationsModule
+
   ],
   providers: [HttpClient,DatePipe],
   bootstrap: [AppComponent]

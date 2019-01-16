@@ -105,7 +105,7 @@ export class AppComponent implements OnInit {
     // this.YearKey=[];
     this.packageModel = new PackageModel();
     this.packageModel.packageName = "amexio-ng-extensions";
-    this.packageModel.fromDate = new Date("1/06/2017");
+    this.packageModel.fromDate = new Date("06/16/2017");
     this.packageModel.toDate = new Date();
     this.stringArray = ["ie_/_edge\">", "firefox\">", "chrome\">", "safari\">", "opera\">", "ios_safari\">", "chrome_for_android\">"]; 
   }
@@ -180,7 +180,6 @@ export class AppComponent implements OnInit {
     this.convertFromDate(this.packageModel.fromDate);
     this.convertToDate(this.packageModel.toDate);
     let year= this.packageModel.fromDate.getFullYear();
-
     this.packagename1 = this.packageModel.packageName;
     inputUrl = this.convertfromdate + ':' + this.converttodate + '/' + this.packageModel.packageName;
     this.perdaydownload = this.packageModel.packageName + ' ' + ':' + ' ' + this.convertfromdate + ' ' + 'to' + ' ' + this.converttodate
@@ -207,6 +206,7 @@ export class AppComponent implements OnInit {
       () => {
 
         const data = JSON.parse(JSON.stringify(response.downloads));
+       
       
         data.forEach((objects: any) => {
           let  years = this.getYears(objects.day); 
@@ -244,10 +244,7 @@ export class AppComponent implements OnInit {
           { "datatype": "number", "label": 'Downloads Per Month' }
         ]);
 
-        this.yearWiseDataarray.push([
-          { "datatype": "string", "label": 'Years' },
-          { "datatype": "number", "label": 'Downloads Per Year' }
-        ]);
+       
 
         data.forEach((downLoadObj: any) => {
           let dayWiseDownloadCount: any = new DayWiseDownloadCount(downLoadObj.day, downLoadObj.downloads);
@@ -270,23 +267,27 @@ export class AppComponent implements OnInit {
             this.monthWiseDataarray.push(obj);
           }
         }
+      
+      // debugger;
+      //   let yearwisedata: YearWiseDownload;
+      //   yearwisedata = new YearWiseDownload();
+      //   data.forEach((objects: any) => {
+      //     yearwisedata.groupYear(objects.day, objects.downloads);
+      //   });
 
-        let yearwisedata: YearWiseDownload;
-        yearwisedata = new YearWiseDownload();
-        data.forEach((objects: any) => {
-          yearwisedata.groupYear(objects.day, objects.downloads);
-        });
+       
 
-        for (const key in yearwisedata.yearWise) {
-          if (yearwisedata.yearWise.hasOwnProperty(key)) {
-            const element = yearwisedata.yearWise[key];
-            let year = [];
-            year.push(key);
-            year.push(element);
-            this.yearWiseDataarray.push(year);
-          }
-        }
-
+      //   for (const key in yearwisedata.yearWise) {
+      //     if (yearwisedata.yearWise.hasOwnProperty(key)) {
+      //       const element = yearwisedata.yearWise[key];
+      //       let year = [];
+      //       year.push(key);
+      //       year.push(element);
+      //       this.yearWiseDataarray.push(year);
+      //     }
+      //   }
+   
+        
           if(data){
              this.getWeekData(data);
          }
@@ -611,6 +612,7 @@ export class AppComponent implements OnInit {
                  let yearcount=0
                  let url:string;
                  this.yearindex=0;
+                 let responseyeararray:any[]=[]; 
 
                 let fromdate = this.packageModel.fromDate;
                 let todate=this.packageModel.toDate;
@@ -660,14 +662,12 @@ export class AppComponent implements OnInit {
             let todate1 = toyear + '-' + tomnth + '-' + today;
             url = fromdate1 + ':' + todate1 + '/' + this.packageModel.packageName                             
         }
-     
-          this.toCalaculateYearWiseData(url);
+          this.toCalaculateYearWiseData(url,responseyeararray);
        });  
 
   }
 
-
-  toCalaculateYearWiseData(url:string){
+  toCalaculateYearWiseData(url:string,array){
     let yearresponse:any;
     let currentsum:number;
     this.http.get('https://api.npmjs.org/downloads/range/' + url, {}).subscribe(
@@ -680,12 +680,21 @@ export class AppComponent implements OnInit {
       },
       () => {
          if(yearresponse) {
-
+           
+            let date= new Date(yearresponse.downloads[0].day);    
+            let year=date.getFullYear();
             this.yearindex++;
             currentsum = this.getYearAggregate(yearresponse.downloads);
             this.YearDatapointcount.push(currentsum);
+            array.push([year+"",currentsum]);
+           
+              
+         if(this.YearKey.length == this.yearindex) {
+          this.yearWiseDataarray.push([
+            { "datatype": "string", "label": 'Years' },
+            { "datatype": "number", "label": 'Downloads Per Year' }
+          ]);
 
-           if(this.YearKey.length == this.yearindex) {
              let yeartotal:number=0;
              this.YearDatapointcount.forEach(element => {
                
@@ -693,6 +702,17 @@ export class AppComponent implements OnInit {
               
             });
                  this.totaldownloadcount= yeartotal;
+             
+                 this.YearKey.forEach(year1 => {
+                    array.forEach(element2 => {
+                         let currentyear=element2[0];
+                           if(currentyear == year1)
+                           {
+                                this.yearWiseDataarray.push(element2);
+                           }
+
+                    });
+              });         
            }
         } 
     });

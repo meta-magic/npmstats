@@ -163,8 +163,8 @@
     Downloads Per Year 
 </amexio-header>
 <amexio-body>
-   
-      <div *ngIf="showChart" [ngClass]="{'signal':!showChart}">
+  
+      <div *ngIf="yearWiseDataarray && yearWiseDataarray.length>0" [ngClass]="{'signal':!showChart}">
             <amexio-chart-column [data]="yearWiseDataarray"[height]="'400px'">
                     <amexio-chart-legend [position]="'top'"></amexio-chart-legend>
               </amexio-chart-column>
