@@ -1,175 +1,175 @@
+<amexio-layout-grid [layout]="'chartLayout'">
+    <amexio-grid-item [name]="'gridheader1'">
 
-<amexio-row>
-    <amexio-column  [size]="3">
-           <amexio-datapoints [background-color]="'#FFCCBC'" [west]="true" [center]="true" [south]="true">
-               <amexio-west [content-align]="'center'">
-                   <amexio-image [icon-class]="'fa fa-line-chart fa-3x'">
-                   </amexio-image>
-               </amexio-west>
-               <amexio-center [content-align]="'center'">
-                   <amexio-label size="large-bold">{{totaldownloadcount | number}}</amexio-label>
-                   <br/>
-               </amexio-center>
-               <amexio-south [content-align]="'center'">
-                   <amexio-label size="medium">{{fromDate | date:'dd MMM, yyyy' }} to  {{toDate |  date:'dd MMM, yyyy' }}</amexio-label>
-               </amexio-south>
-           </amexio-datapoints>
-  </amexio-column> 
+        <amexio-card-ce [style-type]="'narrower-header'">
+            <amexio-header-ce [background]="'linear-gradient(60deg,#26c6da,#00acc1)'" [align]="'space-between'">
+                <amexio-image [icon-class]="'fa fa-line-chart fa-3x'">
+                </amexio-image>
+                <amexio-label size="large-bold">{{totaldownloadcount | number}}</amexio-label>
+            </amexio-header-ce>
+            <amexio-body-ce></amexio-body-ce>
+            <amexio-action-ce [height]="'50px'" [align]="'center'" [color]="'grey'" [border-top]="true">
+                <amexio-label style="color:rgb(226, 49, 43)" size="medium">
+                    {{fromDate | date:'dd MMM, yyyy' }} to
+                    {{toDate | date:'dd MMM, yyyy' }}</amexio-label>
+            </amexio-action-ce>
+        </amexio-card-ce>
 
+    </amexio-grid-item>
 
- <amexio-column [size]="3"> 
-                               
-   <amexio-datapoints [background-color]="'#BAA1D5'" [west]="true" [center]="true" [south]="true">
-       <amexio-west [content-align]="'center'">
-           <amexio-image [icon-class]="'fa fa-line-chart fa-3x'">
-           </amexio-image>
-       </amexio-west>
-       <amexio-center [content-align]="'center'">
-           <amexio-label size="large-bold">{{weeksum | number}}</amexio-label>
-           <br/>
-       </amexio-center>
-       <amexio-south [content-align]="'center'">
-           <amexio-label size="medium"> This Week of {{toDate |  date:' MMM, yyyy' }}</amexio-label>
-       </amexio-south>
-   </amexio-datapoints>
-                   
-       </amexio-column> 
+    <amexio-grid-item [name]="'gridheader2'">
+        <amexio-card-ce [style-type]="'narrower-header'">
+            <amexio-header-ce [background]="'linear-gradient(60deg,#ef5350,#e53935)'" [align]="'space-between'">
+                <amexio-image [icon-class]="'fa fa-line-chart fa-3x'">
+                </amexio-image>
+                <amexio-label size="large-bold">{{weeksum | number}}</amexio-label>
+            </amexio-header-ce>
+            <amexio-body-ce></amexio-body-ce>
+            <amexio-action-ce [height]="'50px'" [align]="'center'" [color]="'grey'" [border-top]="true">
+                <amexio-label style="color:rgb(27, 122, 231)" size="medium">
+                    This Week of {{toDate | date:' MMM, yyyy' }}</amexio-label>
+            </amexio-action-ce>
+        </amexio-card-ce>
 
-      
-       <amexio-column [size]="3"> 
-               
-                   <amexio-datapoints [background-color]="'#C9D864'" [west]="true" [center]="true" [south]="true">
-                       <amexio-west [content-align]="'center'">
-                           <amexio-image [icon-class]="'fa fa-line-chart fa-3x'">
-                           </amexio-image>
-                       </amexio-west>
-                       <amexio-center [content-align]="'center'">
-                           <amexio-label size="large-bold">{{monthsum1 | number}}</amexio-label>
-                           <br/>
-                       </amexio-center>
-                       <amexio-south [content-align]="'center'">
-                           <amexio-label size="medium">{{toDate |  date:' MMM, yyyy' }}</amexio-label>
-                       </amexio-south>
-                   </amexio-datapoints>
-   </amexio-column>
-   
-<amexio-column [size]="3"> 
-       <amexio-datapoints [background-color]="'#96C1B3'" [west]="true" [center]="true"[south]="true" >
+    </amexio-grid-item>
 
-           <amexio-west [content-align]="'center'">
-               <amexio-image [icon-class]="'fa fa-line-chart fa-3x'">
-               </amexio-image>
-           </amexio-west>
-           <amexio-center [content-align]="'center'">
-               <amexio-label size="large-bold">{{yearsum | number}}</amexio-label>
-               <br/>
-           </amexio-center>
-           <amexio-south [content-align]="'center'">
-               <amexio-label size="medium">{{Year }}</amexio-label>
-           </amexio-south>
-     </amexio-datapoints>
-</amexio-column>   
-</amexio-row>
+    <amexio-grid-item [name]="'gridheader3'">
+        <amexio-card-ce [style-type]="'narrower-header'">
+            <amexio-header-ce [background]="'linear-gradient(60deg,#ffa726,#fb8c00)'" [align]="'space-between'">
+                <amexio-image [icon-class]="'fa fa-line-chart fa-3x'">
+                </amexio-image>
+                <amexio-label size="large-bold">{{monthsum1 | number}}</amexio-label>
+            </amexio-header-ce>
+            <amexio-body-ce></amexio-body-ce>
+            <amexio-action-ce [height]="'50px'" [align]="'center'" [color]="'grey'" [border-top]="true">
+                <amexio-label style="color:rgb(166, 8, 228)" size="medium">
+                    {{toDate | date:' MMM, yyyy' }}</amexio-label>
+            </amexio-action-ce>
+        </amexio-card-ce>
+
+    </amexio-grid-item>
+
+    <amexio-grid-item [name]="'gridheader4'">
+        <amexio-card-ce [style-type]="'narrower-header'">
+            <amexio-header-ce [background]="'linear-gradient(60deg,#66bb6a,#43a047)'" [align]="'space-between'">
+                <amexio-image [icon-class]="'fa fa-line-chart fa-3x'">
+                </amexio-image>
+                <amexio-label size="large-bold">{{yearsum | number}}</amexio-label>
+            </amexio-header-ce>
+            <amexio-body-ce></amexio-body-ce>
+            <amexio-action-ce [height]="'50px'" [align]="'center'" [color]="'grey'" [border-top]="true">
+                <amexio-label style="color:rgb(235, 73, 23)" size="medium">
+                    {{Year}}</amexio-label>
+            </amexio-action-ce>
+        </amexio-card-ce>
+
+    </amexio-grid-item>
 
 
-<amexio-row>   
-<amexio-column [fit]="true"[size] ="8">
-<amexio-card
-     [header]="true"
-     [header-align]="'left'" >
-       <amexio-header>
-           Downloads per day
-       </amexio-header>
-       <amexio-body>
-           <div *ngIf="showChart" [ngClass]="{'signal':!showChart}">
-               <amexio-chart-line [data]="lineChartData" [height]="'400px'" [width]="'100%'">
-                 <amexio-chart-legend [position]="'top'" [font-name]="'downloads'"></amexio-chart-legend>
-                     <amexio-chart-horizontal-axis [title]="'Date'">
-                     </amexio-chart-horizontal-axis>
-                     <amexio-chart-vertical-axis [title]="'Downloads'">
-                     </amexio-chart-vertical-axis>
-               </amexio-chart-line> 
-             </div>   
-       </amexio-body>
-  </amexio-card>
-</amexio-column >
-
-<amexio-column [fit]="true" [size] ="4">
- <amexio-card [header]="true"
- [header-align]="'left'">
-     <amexio-header>
-         Downloads per Quarter ({{Year}})
-     </amexio-header>
-     <amexio-body>
-         <div *ngIf="QuarterChart && QuarterChart.length>0" [ngClass]="{'signal':!showChart}">
-   <amexio-chart-column [data]="QuarterChart"[height]="'400px'">
-       <amexio-chart-legend [position]="'top'"></amexio-chart-legend>
- </amexio-chart-column>
- </div>
-</amexio-body>
-   </amexio-card>   
-</amexio-column>
-</amexio-row> 
 
 
-<amexio-row  class="paddingbottom">
-<amexio-column [fit]="true" [size] ="4">
-   <amexio-card
-   [header]="true"
-   [header-align]="'left'">
-     <amexio-header>
-         Downloads Per Week
-     </amexio-header>
-     <amexio-body>
-           <div *ngIf="showChart &&  WeekChart.length>0" [ngClass]="{'signal':!showChart}">
-             <amexio-chart-line [data]="WeekChart" [height]="'400px'" [width]="'100%'">
-                      <amexio-chart-legend [position]="'top'" [font-name]="'downloads'"></amexio-chart-legend>
-                          <amexio-chart-horizontal-axis [title]="'Weeks'">
-                          </amexio-chart-horizontal-axis>
-                          <amexio-chart-vertical-axis [title]="'Downloads'">
-                          </amexio-chart-vertical-axis>
-                    </amexio-chart-line> 
-             </div>
-      </amexio-body>
-   </amexio-card>
- </amexio-column>
- 
-<amexio-column [fit]="true"[size] ="4">
- <amexio-card
-   [header]="true"
-   [header-align]="'left'">
-     <amexio-header>
-         Downloads Per Month
-     </amexio-header>
-     <amexio-body>
-           <div  *ngIf="showChart" [ngClass]="{'signal':!showChart}">
-             <amexio-chart-line [data]="monthWiseDataarray" [height]="'400px'" [width]="'100%'">
-                      <amexio-chart-legend [position]="'top'" [font-name]="'downloads'"></amexio-chart-legend>
-                          <amexio-chart-horizontal-axis [title]="'Month'">
-                          </amexio-chart-horizontal-axis>
-                          <amexio-chart-vertical-axis [title]="'Downloads'">
-                          </amexio-chart-vertical-axis>
-                    </amexio-chart-line> 
-           </div>
-     </amexio-body>
-</amexio-card>
-</amexio-column>
 
-<amexio-column [fit]="true" [size] ="4">
-<amexio-card
-[header]="true"
-[header-align]="'left'">
-<amexio-header>
-    Downloads Per Year 
-</amexio-header>
-<amexio-body>
-  
-      <div *ngIf="yearWiseDataarray && yearWiseDataarray.length>0" [ngClass]="{'signal':!showChart}">
-            <amexio-chart-column [data]="yearWiseDataarray"[height]="'400px'">
-                    <amexio-chart-legend [position]="'top'"></amexio-chart-legend>
-              </amexio-chart-column>
-        </div>
- </amexio-body>
-</amexio-card>
-</amexio-column>
-</amexio-row>
+    <amexio-grid-item [name]="'gridchart1'">
+        <amexio-card [header]="true" [header-align]="'left'">
+            <amexio-header>
+                Downloads per day
+            </amexio-header>
+            <amexio-body>
+                <div *ngIf="showChart" [ngClass]="{'signal':!showChart}">
+                    <amexio-chart-line [data]="lineChartData" [height]="'400px'" [width]="'100%'">
+                        <amexio-chart-legend [position]="'top'" [font-name]="'downloads'"></amexio-chart-legend>
+                        <amexio-chart-horizontal-axis [title]="'Date'">
+                        </amexio-chart-horizontal-axis>
+                        <amexio-chart-vertical-axis [title]="'Downloads'">
+                        </amexio-chart-vertical-axis>
+                    </amexio-chart-line>
+                </div>
+            </amexio-body>
+        </amexio-card>
+
+    </amexio-grid-item>
+
+    <amexio-grid-item [name]="'gridchart2'">
+
+        <amexio-card [header]="true" [header-align]="'left'">
+            <amexio-header>
+                Downloads per Quarter ({{Year}})
+            </amexio-header>
+            <amexio-body>
+                <div *ngIf="QuarterChart && QuarterChart.length>0" [ngClass]="{'signal':!showChart}">
+                    <amexio-d3-chart-bar [data]="QuarterChart" [label]="true">
+                    </amexio-d3-chart-bar>
+                </div>
+            </amexio-body>
+        </amexio-card>
+
+    </amexio-grid-item>
+
+    <amexio-grid-item [name]="'gridchart3'" class="paddingbottom">
+
+
+        <amexio-card [header]="true" [header-align]="'left'">
+            <amexio-header>
+                Downloads Per Week
+            </amexio-header>
+            <amexio-body>
+                <div *ngIf="showChart &&  WeekChart.length>0" [ngClass]="{'signal':!showChart}">
+
+
+                    <amexio-chart-line [data]="WeekChart" [height]="'400px'" [width]="'100%'">
+                        <amexio-chart-legend [position]="'top'" [font-name]="'downloads'"></amexio-chart-legend>
+                        <amexio-chart-horizontal-axis [title]="'Weeks'">
+                        </amexio-chart-horizontal-axis>
+                        <amexio-chart-vertical-axis [title]="'Downloads'">
+                        </amexio-chart-vertical-axis>
+                    </amexio-chart-line>
+
+                    <!-- <amexio-d3-chart-line [title]="'Downloads Per Week'" [data]="WeekChart" [label]="false">
+                    </amexio-d3-chart-line> -->
+
+                </div>
+            </amexio-body>
+        </amexio-card>
+
+    </amexio-grid-item>
+
+    <amexio-grid-item [name]="'gridchart4'" class="paddingbottom">
+
+        <amexio-card [header]="true" [header-align]="'left'">
+            <amexio-header>
+                Downloads Per Month
+            </amexio-header>
+            <amexio-body>
+                <div *ngIf="showChart" [ngClass]="{'signal':!showChart}">
+                    <amexio-chart-line [data]="monthWiseDataarray" [height]="'400px'" [width]="'100%'">
+                        <amexio-chart-legend [position]="'top'" [font-name]="'downloads'"></amexio-chart-legend>
+                        <amexio-chart-horizontal-axis [title]="'Month'">
+                        </amexio-chart-horizontal-axis>
+                        <amexio-chart-vertical-axis [title]="'Downloads'">
+                        </amexio-chart-vertical-axis>
+                    </amexio-chart-line>
+                </div>
+            </amexio-body>
+        </amexio-card>
+
+
+    </amexio-grid-item>
+
+    <amexio-grid-item [name]="'gridchart5'" class="paddingbottom">
+
+
+        <amexio-card [header]="true" [header-align]="'left'">
+            <amexio-header>
+                Downloads Per Year
+            </amexio-header>
+            <amexio-body>
+                <div *ngIf="yearWiseDataarray && yearWiseDataarray.length>0" [ngClass]="{'signal':!showChart}">
+
+                    <amexio-d3-chart-bar [data]="yearWiseDataarray" [label]="true">
+                    </amexio-d3-chart-bar>
+                </div>
+            </amexio-body>
+        </amexio-card>
+
+    </amexio-grid-item>
+</amexio-layout-grid>

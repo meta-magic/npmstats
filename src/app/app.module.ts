@@ -13,6 +13,9 @@ import {HttpModule} from "@angular/http";
 import { RedmeComponent } from './redme/redme.component';
 import { DependenciesComponent } from './dependencies/dependencies.component';
 
+import { AmexioChartD3Module } from 'amexio-chart-d3';
+
+
 @NgModule({
   declarations: [
       AppComponent,
@@ -24,6 +27,7 @@ import { DependenciesComponent } from './dependencies/dependencies.component';
     BrowserModule,
     FormsModule,
     CommonModule,
+    AmexioChartD3Module,
     RouterModule,
     AmexioWidgetModule,
     AmexioChartsModule,

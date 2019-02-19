@@ -1,6 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AmexioTabComponent } from 'amexio-ng-extensions';
+import { AmexioGridLayoutService, GridConfig, GridConstants} from "amexio-ng-extensions";
+
 
 
 @Component({
@@ -9,8 +11,8 @@ import { AmexioTabComponent } from 'amexio-ng-extensions';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-   
-  YearDatapointcount:any[]=[];
+
+  YearDatapointcount: any[] = [];
   currentDate: any;
   convertfromdate: any;
   converttodate: any;
@@ -31,7 +33,7 @@ export class AppComponent implements OnInit {
   obj = {};
   other = [];
   array: any = [];
-  totaldownloadcount:number=0;
+  totaldownloadcount: number = 0;
   downloads = [];
   yeardatapoint: any
   monthdatapoint: any;
@@ -74,9 +76,9 @@ export class AppComponent implements OnInit {
   monthsum1: any;
   yearsum: any;
   weeksum: any;
-  dropdowndata: any[]=[];
-  dropdownArray=[];
-  yearindex:number=0;
+  dropdowndata: any[] = [];
+  dropdownArray = [];
+  yearindex: number = 0;
   quarter1download: number = 0;
   quarter2download: number = 0;
   quarter3download: number = 0;
@@ -86,28 +88,54 @@ export class AppComponent implements OnInit {
   lastsixmonthrelease: number = 0;
   lastyearrelease: number = 0;
   completerelease: number = 0;
-  
+
   Redme: any;
   html: any;
   urls: string;
   stringArray: any;
   apicall: any;
-  fromDate:any;
-  toDate:any;
-  Year:any;
-  week:any;
-  YearKey:any[]=[];
-  totalcount:any[]=[];
-  
- jandate:any;
-  constructor(private http: HttpClient) {
-    this.totaldownloadcount=0
+  fromDate: any;
+  toDate: any;
+  Year: any;
+  week: any;
+  YearKey: any[] = [];
+  totalcount: any[] = [];
+  jandate: any;
+
+
+  gridDesktop: GridConfig;
+  gridTablet: GridConfig;
+  gridMobile: GridConfig;
+
+  cardGridDesktop: GridConfig;
+  cardGridTablet: GridConfig;
+  cardGridMobile: GridConfig;
+
+
+
+  constructor(private http: HttpClient, private _gridlayoutService : AmexioGridLayoutService) {
+    this.totaldownloadcount = 0
     // this.YearKey=[];
     this.packageModel = new PackageModel();
     this.packageModel.packageName = "amexio-ng-extensions";
     this.packageModel.fromDate = new Date("06/16/2017");
     this.packageModel.toDate = new Date();
-    this.stringArray = ["ie_/_edge\">", "firefox\">", "chrome\">", "safari\">", "opera\">", "ios_safari\">", "chrome_for_android\">"]; 
+    this.stringArray = ["ie_/_edge\">", "firefox\">", "chrome\">", "safari\">", "opera\">", "ios_safari\">", "chrome_for_android\">"];
+  
+  
+    this.createLayouts();
+
+    // Create the Layouts
+    this._gridlayoutService.createLayout(this.gridDesktop);
+    this._gridlayoutService.createLayout(this.gridTablet);
+    this._gridlayoutService.createLayout(this.gridMobile);
+
+
+    // Create the Layouts
+    this._gridlayoutService.createLayout(this.cardGridDesktop);
+    this._gridlayoutService.createLayout(this.cardGridTablet);
+    this._gridlayoutService.createLayout(this.cardGridMobile);
+
   }
 
   ngOnInit() {
@@ -115,7 +143,68 @@ export class AppComponent implements OnInit {
     this.getDataPoint2();
     this.getDataPoint3();
     this.formDropdownData();
-   
+
+  }
+
+ // grid layout creation
+  createLayouts() {
+    this.gridDesktop = new GridConfig('npmLayout', GridConstants.Desktop)
+      .addlayout(["gridbox", "gridbox", "gridbox", "gridbox"])
+      .addlayout(["griddatainput", "griddatainput", "griddatainput", "griddatainput"])
+      .addlayout(["gridinput1", "gridinput2", "gridinput3", "gridinput4"])
+      .addlayout(["gridtab", "gridtab", "gridtab", "gridtab"])
+      
+
+      .addlayout(["gridcard1", "gridcard2", "gridcard3", "gridcard4"])
+      .addlayout(["gridlabel", "gridlabel", "gridlabel", "gridlabel"])
+
+      this.gridTablet = new GridConfig('npmLayout', GridConstants.Tablet)
+      .addlayout(["gridbox", "gridbox", "gridbox", "gridbox"])
+      .addlayout(["griddatainput", "griddatainput", "griddatainput", "griddatainput"])
+      .addlayout(["gridinput1", "gridinput1", "gridinput2", "gridinput2"])
+      .addlayout(["gridinput3", "gridinput3", "gridinput4", "gridinput4"])
+      .addlayout(["gridtab", "gridtab", "gridtab", "gridtab"])
+
+
+      .addlayout(["gridcard1", "gridcard1", "gridcard2", "gridcard2"])
+      .addlayout(["gridcard3", "gridcard3", "gridcard4", "gridcard4"])
+      .addlayout(["gridlabel", "gridlabel", "gridlabel", "gridlabel"]);
+
+
+      this.gridMobile = new GridConfig('npmLayout', GridConstants.Mobile)
+      .addlayout(["gridbox", "gridbox", "gridbox", "gridbox"])
+      .addlayout(["griddatainput", "griddatainput", "griddatainput", "griddatainput"])
+      
+      .addlayout(["gridinput1", "gridinput1", "gridinput1", "gridinput1"])
+      .addlayout(["gridinput2", "gridinput2", "gridinput2", "gridinput2"])
+      .addlayout(["gridinput3", "gridinput3", "gridinput3", "gridinput3"])
+      .addlayout(["gridinput4", "gridinput4", "gridinput4", "gridinput4"])
+      .addlayout(["gridtab", "gridtab", "gridtab", "gridtab"])
+      
+      .addlayout(["gridcard1", "gridcard1", "gridcard1", "gridcard1"])
+      .addlayout(["gridcard2", "gridcard2", "gridcard2", "gridcard2"])
+      .addlayout(["gridcard3", "gridcard3", "gridcard3", "gridcard3"])
+      .addlayout(["gridcard4", "gridcard4", "gridcard4", "gridcard4"])
+
+      .addlayout(["gridlabel", "gridlabel", "gridlabel", "gridlabel"]);
+
+
+      this.cardGridDesktop = new GridConfig('cardlayout', GridConstants.Desktop)
+      .addlayout(["gridinput1", "gridinput2", "gridinput3", "gridinput4", "gridbutton"])
+      
+
+    this.cardGridTablet = new GridConfig('cardlayout', GridConstants.Tablet)
+    .addlayout(["gridinput1", "gridinput1", "gridinput2", "gridinput2", "."])
+    .addlayout(["gridinput3", "gridinput3", "gridinput4", "gridinput4", "gridbutton"])
+
+
+    this.cardGridMobile = new GridConfig('cardlayout', GridConstants.Mobile)
+    .addlayout(["gridinput1", "gridinput1", "gridinput1", "gridinput1", "gridinput1"])
+    .addlayout(["gridinput2", "gridinput2", "gridinput2", "gridinput2", "gridinput2"])
+    .addlayout(["gridinput3", "gridinput3", "gridinput3", "gridinput3", "gridinput3"])
+    .addlayout(["gridinput4", "gridinput4", "gridinput4", "gridinput4", "gridinput4"])
+    .addlayout(["gridbutton", "gridbutton", "gridbutton", "gridbutton", "gridbutton"])
+
   }
   //search button click method
   searchData(amexioTab: AmexioTabComponent) {
@@ -123,31 +212,30 @@ export class AppComponent implements OnInit {
     this.getData();
     this.getDataPoint2();
     this.getDataPoint3();
- 
+
   }
-//form year dropdown data
-  formDropdownData()
-  {
+  //form year dropdown data
+  formDropdownData() {
     let minYear = 2000;
     let maxyear = new Date().getFullYear();
 
-    for (let i =maxyear; i>= minYear;i--) {
+    for (let i = maxyear; i >= minYear; i--) {
       this.dropdowndata.push({ 'year': i + '' });
     }
   }
-  
+
   //THIS METHOD IS USED FOR GET THE DATA FROM SERVICE AND CREATE CHART JSON 
   getData() {
     this.dashboardActiveTab = false;
     this.packagesearchtab = false;
     this.generalinfotab = false;
     this.dependencytab = false;
-    this.yearindex=0;
+    this.yearindex = 0;
     this.sum = 0;
     this.yearsum = 0;
     this.monthsum1 = 0;
     this.weeksum = 0;
-    this.totaldownloadcount=0
+    this.totaldownloadcount = 0
     this.currentyearsum = 0;
     this.currentmonthsum = 0;
     this.showChart = false;
@@ -162,7 +250,7 @@ export class AppComponent implements OnInit {
     this.monthWiseDataarray = [];
     this.yearWiseDataarray = [];
     this.currentyearchart = [];
-    this.YearDatapointcount=[];
+    this.YearDatapointcount = [];
     this.WeekChart = [];
     this.monthwisedata = [];
     this.QuarterChart = [];
@@ -174,24 +262,24 @@ export class AppComponent implements OnInit {
     this.quarter2download = 0;
     this.quarter3download = 0;
     this.quarter4download = 0;
-    this.YearKey=[];
+    this.YearKey = [];
 
     this.validatePackageName();
     this.convertFromDate(this.packageModel.fromDate);
     this.convertToDate(this.packageModel.toDate);
-    let year= this.packageModel.fromDate.getFullYear();
+    let year = this.packageModel.fromDate.getFullYear();
     this.packagename1 = this.packageModel.packageName;
     inputUrl = this.convertfromdate + ':' + this.converttodate + '/' + this.packageModel.packageName;
     this.perdaydownload = this.packageModel.packageName + ' ' + ':' + ' ' + this.convertfromdate + ' ' + 'to' + ' ' + this.converttodate
     this.range = this.convertfromdate + ' ' + 'to' + ' ' + this.converttodate;
     let response: any;
-    this.http.get('https://api.npmjs.org/downloads/range/' +  inputUrl, {}).subscribe(
+    this.http.get('https://api.npmjs.org/downloads/range/' + inputUrl, {}).subscribe(
       resp => {
         response = resp;
         this.showChart = true;
-        },
+      },
       error => {
-       
+
         this.showChart = false;
         if (JSON.stringify(error.error.error) == '"end date > start date"') {
           this.errorMessage.push("To-Date should be greater than From-Date")
@@ -206,35 +294,33 @@ export class AppComponent implements OnInit {
       () => {
 
         const data = JSON.parse(JSON.stringify(response.downloads));
-       
-      
-        data.forEach((objects: any) => {
-          let  years = this.getYears(objects.day); 
-             if(this.YearKey.includes(years))
-             {
-                //  console.log('included');
-             } 
-             else{
-                    this.YearKey.push(years);
-             }
-        });
-       
-         if(this.YearKey.length>0)   {
-          this.getTotal(this.YearKey);
-         }
 
-        this.fromDate=this.packageModel.fromDate;
-        this.toDate=this.packageModel.toDate;
-        this.Year=this.packageModel.year;
-        
+
+        data.forEach((objects: any) => {
+          let years = this.getYears(objects.day);
+          if (this.YearKey.includes(years)) {
+          }
+          else {
+            this.YearKey.push(years);
+          }
+        });
+
+        if (this.YearKey.length > 0) {
+          this.getTotal(this.YearKey);
+        }
+
+        this.fromDate = this.packageModel.fromDate;
+        this.toDate = this.packageModel.toDate;
+        this.Year = this.packageModel.year;
+
         this.dashboardActiveTab = true;
         this.sum = 0;
-        let years:any;
+        let years: any;
         this.getRedme(this.packagename1);
         this.getDependencies(this.packagename1);
-       
 
-     this.lineChartData.push([
+
+        this.lineChartData.push([
           { "datatype": "string", "label": 'Date' },
           { "datatype": "number", "label": 'Downloads Per Day' }
         ]);
@@ -244,21 +330,21 @@ export class AppComponent implements OnInit {
           { "datatype": "number", "label": 'Downloads Per Month' }
         ]);
 
-       
+
 
         data.forEach((downLoadObj: any) => {
           let dayWiseDownloadCount: any = new DayWiseDownloadCount(downLoadObj.day, downLoadObj.downloads);
           this.lineChartData.push(dayWiseDownloadCount.add());
         });
 
-          let monthwisedata: MonthWiseDownload;
-          monthwisedata = new MonthWiseDownload();
-          data.forEach((objects: any) => {
+        let monthwisedata: MonthWiseDownload;
+        monthwisedata = new MonthWiseDownload();
+        data.forEach((objects: any) => {
           monthwisedata.groupMonth(objects.day, objects.downloads);
 
         });
 
-       for (const key in monthwisedata.monthwise) {
+        for (const key in monthwisedata.monthwise) {
           if (monthwisedata.monthwise.hasOwnProperty(key)) {
             const element = monthwisedata.monthwise[key];
             let obj = [];
@@ -267,31 +353,31 @@ export class AppComponent implements OnInit {
             this.monthWiseDataarray.push(obj);
           }
         }
-      
-      // debugger;
-      //   let yearwisedata: YearWiseDownload;
-      //   yearwisedata = new YearWiseDownload();
-      //   data.forEach((objects: any) => {
-      //     yearwisedata.groupYear(objects.day, objects.downloads);
-      //   });
 
-       
+        // debugger;
+        //   let yearwisedata: YearWiseDownload;
+        //   yearwisedata = new YearWiseDownload();
+        //   data.forEach((objects: any) => {
+        //     yearwisedata.groupYear(objects.day, objects.downloads);
+        //   });
 
-      //   for (const key in yearwisedata.yearWise) {
-      //     if (yearwisedata.yearWise.hasOwnProperty(key)) {
-      //       const element = yearwisedata.yearWise[key];
-      //       let year = [];
-      //       year.push(key);
-      //       year.push(element);
-      //       this.yearWiseDataarray.push(year);
-      //     }
-      //   }
-   
-        
-          if(data){
-             this.getWeekData(data);
-         }
-    }
+
+
+        //   for (const key in yearwisedata.yearWise) {
+        //     if (yearwisedata.yearWise.hasOwnProperty(key)) {
+        //       const element = yearwisedata.yearWise[key];
+        //       let year = [];
+        //       year.push(key);
+        //       year.push(element);
+        //       this.yearWiseDataarray.push(year);
+        //     }
+        //   }
+
+
+        if (data) {
+          this.getWeekData(data);
+        }
+      }
     );
 
   }
@@ -332,7 +418,7 @@ export class AppComponent implements OnInit {
             }
           }
         });
- }
+  }
 
   getDependencies(griddata: any):
     any {
@@ -426,7 +512,7 @@ export class AppComponent implements OnInit {
     let todate1 = year + '-' + '12' + '-' + '31';
     let url = fromdate1 + ':' + todate1 + '/' + this.packageModel.packageName
     let response: any;
-  
+
     downloadDataArray1.forEach((quarter: any) => {
       currentquarter = this.getQuarter(quarter.day);
       if (quarter.day.includes(currentyear) && currentquarter == 1) {
@@ -443,17 +529,15 @@ export class AppComponent implements OnInit {
       }
     });
 
-    this.QuarterChart.push(
-          [
-            { "datatype": "string", "label": 'Quarter' },
-            { "datatype": "number", "label": 'Downloads Per Quarter' }
-          ],
+      {
+        this.QuarterChart.push(
+          ['Quarters', 'download'],
           ['Q1', this.quarter1download],
           ['Q2', this.quarter2download],
           ['Q3', this.quarter3download],
           ['Q4', this.quarter4download],
         );
-     
+      }
   }
 
   //Getting quarter of that date
@@ -466,8 +550,8 @@ export class AppComponent implements OnInit {
 
   //Method contains logic to display weekchart
   getWeekData(dataweek: any) {
-     let weekdata=dataweek;   
-    
+    let weekdata = dataweek;
+
     this.groupedByWeek = weekdata.reduce((m, o) => {
       let monday = this.getMonday(new Date(o.day));
       let mondayYMD = monday.toISOString().slice(0, 10);
@@ -485,17 +569,19 @@ export class AppComponent implements OnInit {
     this.WeekChart.push([
       { "datatype": "string", "label": 'Weeks' },
       { "datatype": "number", "label": 'Downloads Per Week' }
-    ]);   
+    ]);
     this.groupedByWeek.forEach((week: any) => {
       Weekwisecount = new DayWiseDownloadCount(week.day, week.downloads);
 
       let currentWeekNumber = this.getWeek(new Date(week.day));
       this.WeekChart.push([currentWeekNumber, week.downloads]);
-    }) 
-            let weekcount=this.WeekChart.length-1;
-            this.weeksum=this.WeekChart[weekcount][1];
-            this.week=this.WeekChart[weekcount][0];          
+    })
+    let weekcount = this.WeekChart.length - 1;
+    this.weeksum = this.WeekChart[weekcount][1];
+    this.week = this.WeekChart[weekcount][0];
+
   }
+
 
   getMonday(d) {
     let day = d.getDay();
@@ -512,7 +598,7 @@ export class AppComponent implements OnInit {
     dayOfYear = ((today - onejan + 86400000) / 86400000);
 
     let returnweek = Math.ceil(dayOfYear / 7);
-    return 'W' + returnweek + '-' + date.getFullYear();  
+    return 'W' + returnweek + '-' + date.getFullYear();
   }
 
   getCurrentWeekDatapoint(data: any) {
@@ -551,14 +637,14 @@ export class AppComponent implements OnInit {
 
       },
       () => {
-          this.sum = 0;
-          this.getAggregate(monthresponse.downloads);
-          this.monthsum1 = this.sum;
+        this.sum = 0;
+        this.getAggregate(monthresponse.downloads);
+        this.monthsum1 = this.sum;
       });
   }
 
   getDataPoint2() {
-    this.QuarterChart=[];    
+    this.QuarterChart = [];
     let year = this.packageModel.year;
     let fromdate1 = year + '-' + '01' + '-' + '01';
     let todate1 = year + '-' + '12' + '-' + '31';
@@ -574,17 +660,17 @@ export class AppComponent implements OnInit {
 
       },
       () => {
-       
+
         this.sum = 0;
-        this.quarterdata =yearresponse.downloads;
+        this.quarterdata = yearresponse.downloads;
         this.getAggregate(yearresponse.downloads)
         this.yearsum = this.sum;
-        this.getQuarterChart(yearresponse.downloads);         
-    });
+        this.getQuarterChart(yearresponse.downloads);
+      });
   }
   //to aggregate current year,current month data
   getAggregate(data1: any) {
-    this.sum=0;
+    this.sum = 0;
     data1.forEach((downLoadObj: any) => {
       let totaldownload: any = downLoadObj.downloads;
       this.sum = this.sum + totaldownload;
@@ -592,12 +678,12 @@ export class AppComponent implements OnInit {
   }
 
   getYearAggregate(yeardata: any) {
-    let sum=0;
+    let sum = 0;
     yeardata.forEach((downLoadObj: any) => {
       let totaldownload: any = downLoadObj.downloads;
       sum = sum + totaldownload;
     });
-  
+
     return sum;
   }
 
@@ -606,70 +692,67 @@ export class AppComponent implements OnInit {
     return [date.getFullYear()].join("-");
   }
 
-//to calculate total downloads formdate  to todate
-  getTotal(yeararray:any) {
-                 this.totaldownloadcount=0;
-                 let yearcount=0
-                 let url:string;
-                 this.yearindex=0;
-                 let responseyeararray:any[]=[]; 
+  //to calculate total downloads formdate  to todate
+  getTotal(yeararray: any) {
+    this.totaldownloadcount = 0;
+    let yearcount = 0
+    let url: string;
+    this.yearindex = 0;
+    let responseyeararray: any[] = [];
 
-                let fromdate = this.packageModel.fromDate;
-                let todate=this.packageModel.toDate;
+    let fromdate = this.packageModel.fromDate;
+    let todate = this.packageModel.toDate;
 
-                 //for fromdate
-                let formmnth = ("0" + (fromdate.getMonth() + 1)).slice(-2);
-                let formday = ("0" + fromdate.getDate()).slice(-2);
-                let formyear = fromdate.getFullYear();
-                 //for todate
-                 let tomnth = ("0" + (todate.getMonth() + 1)).slice(-2);
-                 let today = ("0" + todate.getDate()).slice(-2);
-                 let toyear = todate.getFullYear();
+    //for fromdate
+    let formmnth = ("0" + (fromdate.getMonth() + 1)).slice(-2);
+    let formday = ("0" + fromdate.getDate()).slice(-2);
+    let formyear = fromdate.getFullYear();
+    //for todate
+    let tomnth = ("0" + (todate.getMonth() + 1)).slice(-2);
+    let today = ("0" + todate.getDate()).slice(-2);
+    let toyear = todate.getFullYear();
 
-      
- 
-         yeararray.forEach((year:any,index:number) => {
-           if(this.YearKey.length>1){
-            if(year==fromdate.getFullYear())
-            {                
-              let formmnth = ("0" + (fromdate.getMonth() + 1)).slice(-2);
-              let formday = ("0" + fromdate.getDate()).slice(-2);
-              let formyear = fromdate.getFullYear();   
-              let fromdate1 = formyear + '-' + formmnth + '-' + formday;               
-              let todate1 = year + '-' + '12' + '-' + '31';
-               url = fromdate1 + ':' + todate1 + '/' + this.packageModel.packageName;
-            }
-            else{
-    
-              if(year!=fromdate.getFullYear() && year!=todate.getFullYear()){
-                  let fromdate1 = year + '-' + '01' + '-' + '01';
-                  let todate1 = year + '-' + '12' + '-' + '31';
-                   url = fromdate1 + ':' + todate1 + '/' + this.packageModel.packageName; 
-                  }
-     }
-           
-         if(year==todate.getFullYear())
-          {
-               let fromdate1 = year + '-' + '01' + '-' + '01';
-               let todate1 = toyear + '-' + tomnth + '-' + today;
-               url = fromdate1 + ':' + todate1 + '/' + this.packageModel.packageName;
-          }
-   }
 
-  if(this.YearKey.length==1)
-        {
-            let fromdate1 = formyear + '-' + formmnth + '-' + formday;
-            let todate1 = toyear + '-' + tomnth + '-' + today;
-            url = fromdate1 + ':' + todate1 + '/' + this.packageModel.packageName                             
+
+    yeararray.forEach((year: any, index: number) => {
+      if (this.YearKey.length > 1) {
+        if (year == fromdate.getFullYear()) {
+          let formmnth = ("0" + (fromdate.getMonth() + 1)).slice(-2);
+          let formday = ("0" + fromdate.getDate()).slice(-2);
+          let formyear = fromdate.getFullYear();
+          let fromdate1 = formyear + '-' + formmnth + '-' + formday;
+          let todate1 = year + '-' + '12' + '-' + '31';
+          url = fromdate1 + ':' + todate1 + '/' + this.packageModel.packageName;
         }
-          this.toCalaculateYearWiseData(url,responseyeararray);
-       });  
+        else {
+
+          if (year != fromdate.getFullYear() && year != todate.getFullYear()) {
+            let fromdate1 = year + '-' + '01' + '-' + '01';
+            let todate1 = year + '-' + '12' + '-' + '31';
+            url = fromdate1 + ':' + todate1 + '/' + this.packageModel.packageName;
+          }
+        }
+
+        if (year == todate.getFullYear()) {
+          let fromdate1 = year + '-' + '01' + '-' + '01';
+          let todate1 = toyear + '-' + tomnth + '-' + today;
+          url = fromdate1 + ':' + todate1 + '/' + this.packageModel.packageName;
+        }
+      }
+
+      if (this.YearKey.length == 1) {
+        let fromdate1 = formyear + '-' + formmnth + '-' + formday;
+        let todate1 = toyear + '-' + tomnth + '-' + today;
+        url = fromdate1 + ':' + todate1 + '/' + this.packageModel.packageName
+      }
+      this.toCalaculateYearWiseData(url, responseyeararray);
+    });
 
   }
 
-  toCalaculateYearWiseData(url:string,array){
-    let yearresponse:any;
-    let currentsum:number;
+  toCalaculateYearWiseData(url: string, array) {
+    let yearresponse: any;
+    let currentsum: number;
     this.http.get('https://api.npmjs.org/downloads/range/' + url, {}).subscribe(
       resp => {
         yearresponse = resp;
@@ -679,58 +762,56 @@ export class AppComponent implements OnInit {
 
       },
       () => {
-         if(yearresponse) {
-           
-            let date= new Date(yearresponse.downloads[0].day);    
-            let year=date.getFullYear();
-            this.yearindex++;
-            currentsum = this.getYearAggregate(yearresponse.downloads);
-            this.YearDatapointcount.push(currentsum);
-            array.push([year+"",currentsum]);
-           
-              
-         if(this.YearKey.length == this.yearindex) {
-          this.yearWiseDataarray.push([
-            { "datatype": "string", "label": 'Years' },
-            { "datatype": "number", "label": 'Downloads Per Year' }
-          ]);
+        if (yearresponse) {
 
-             let yeartotal:number=0;
-             this.YearDatapointcount.forEach(element => {
-               
-                yeartotal=yeartotal+element;
-              
+          let date = new Date(yearresponse.downloads[0].day);
+          let year = date.getFullYear();
+          this.yearindex++;
+          currentsum = this.getYearAggregate(yearresponse.downloads);
+          this.YearDatapointcount.push(currentsum);
+          array.push([year + "", currentsum]);
+
+
+          if (this.YearKey.length == this.yearindex) {
+            this.yearWiseDataarray.push(
+              ['Year', 'Downloads']
+            );
+
+            let yeartotal: number = 0;
+            this.YearDatapointcount.forEach(element => {
+
+              yeartotal = yeartotal + element;
+
             });
-                 this.totaldownloadcount= yeartotal;
-             
-                 this.YearKey.forEach(year1 => {
-                    array.forEach(element2 => {
-                         let currentyear=element2[0];
-                           if(currentyear == year1)
-                           {
-                                this.yearWiseDataarray.push(element2);
-                           }
+            this.totaldownloadcount = yeartotal;
 
-                    });
-              });         
-           }
-        } 
-    });
+            this.YearKey.forEach(year1 => {
+              array.forEach(element2 => {
+                let currentyear = element2[0];
+                if (currentyear == year1) {
+                  this.yearWiseDataarray.push(element2);
+                }
+
+              });
+            });
+          }
+        }
+      });
   }
- 
+
 }
 
 export class PackageModel {
-  fromDate: any ;
-  toDate: any ;
-  packageName: any ;
+  fromDate: any;
+  toDate: any;
+  packageName: any;
   year: any;
-  
-  constructor(){
-  this.fromDate= '';
-  this.toDate = '';
-  this.packageName= '';
-  this.year = new Date().getFullYear()+'';
+
+  constructor() {
+    this.fromDate = '';
+    this.toDate = '';
+    this.packageName = '';
+    this.year = new Date().getFullYear() + '';
   }
 }
 
@@ -775,7 +856,7 @@ export class MonthWiseDownload {
   }
 
   groupMonth(key: string, count: number): any {
-   
+
     const monthkey = this.getMonthYear(key);
 
     if (this.monthwise[monthkey + ""] != undefined) {
@@ -792,10 +873,10 @@ export class MonthWiseDownload {
 export class YearWiseDownload {
 
   yearWise: number[];
-//  yearkey:any;
+  //  yearkey:any;
   constructor() {
     this.yearWise = [];
-   
+
 
   }
   //Method to get fullyear
@@ -805,10 +886,10 @@ export class YearWiseDownload {
   }
 
   groupYear(key: string, count: number): any {
-    
+
     const monthkey = this.getYear(key);
-  
-   
+
+
     if (this.yearWise[monthkey + ""] != undefined) {
       let currentcount = this.yearWise[monthkey + ""];
       currentcount = currentcount + count;
