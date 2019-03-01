@@ -97,7 +97,7 @@
             </amexio-header>
             <amexio-body>
                 <div *ngIf="QuarterChart && QuarterChart.length>0" [ngClass]="{'signal':!showChart}">
-                    <amexio-d3-chart-bar [data]="QuarterChart" [label]="true">
+                    <amexio-d3-chart-bar [data]="QuarterChart" [label]="true" [show-zero-values]="false">
                     </amexio-d3-chart-bar>
                 </div>
             </amexio-body>
