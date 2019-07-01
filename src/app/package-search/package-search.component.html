@@ -140,7 +140,7 @@
                 Downloads Per Month
             </amexio-header>
             <amexio-body>
-                <div *ngIf="showChart" [ngClass]="{'signal':!showChart}">
+                <div *ngIf="showChart && monthWiseDataarray.length>0" [ngClass]="{'signal':!showChart}">
                     <amexio-chart-line [data]="monthWiseDataarray" [height]="'400px'" [width]="'100%'">
                         <amexio-chart-legend [position]="'top'" [font-name]="'downloads'"></amexio-chart-legend>
                         <amexio-chart-horizontal-axis [title]="'Month'">
