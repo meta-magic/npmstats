@@ -29,7 +29,7 @@
     "font-awesome": "^4.7.0",
     "ng-showdown": "^1.1.0",
     "ngx-md": "^6.0.0",
-    "rxjs": "^6.0.0",
+    "rxjs": "6.0.0",
     "showdown": "^1.8.6",
     "zone.js": "^0.8.26"
   },

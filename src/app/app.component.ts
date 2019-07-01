@@ -88,7 +88,7 @@ export class AppComponent implements OnInit {
   lastsixmonthrelease: number = 0;
   lastyearrelease: number = 0;
   completerelease: number = 0;
-
+  totalDownloads:any[]=[];
   Redme: any;
   html: any;
   urls: string;
@@ -268,6 +268,8 @@ export class AppComponent implements OnInit {
     this.convertFromDate(this.packageModel.fromDate);
     this.convertToDate(this.packageModel.toDate);
     let year = this.packageModel.fromDate.getFullYear();
+    let fromYear=this.packageModel.fromDate.getFullYear();
+    let toYear = this.packageModel.toDate.getFullYear();
     this.packagename1 = this.packageModel.packageName;
     inputUrl = this.convertfromdate + ':' + this.converttodate + '/' + this.packageModel.packageName;
     this.perdaydownload = this.packageModel.packageName + ' ' + ':' + ' ' + this.convertfromdate + ' ' + 'to' + ' ' + this.converttodate
@@ -295,16 +297,15 @@ export class AppComponent implements OnInit {
 
         const data = JSON.parse(JSON.stringify(response.downloads));
 
+        let confromYear = Number(fromYear);
+        let contoYear = Number(toYear);
+        let diffYear = contoYear -confromYear;
+        this.YearKey.push(confromYear + "");
 
-        data.forEach((objects: any) => {
-          let years = this.getYears(objects.day);
-          if (this.YearKey.includes(years)) {
-          }
-          else {
-            this.YearKey.push(years);
-          }
-        });
-
+        for(let i=1;i<=diffYear;i++) {
+          confromYear = confromYear + 1;
+          this.YearKey.push(confromYear+"");
+        }
         if (this.YearKey.length > 0) {
           this.getTotal(this.YearKey);
         }
@@ -715,6 +716,7 @@ export class AppComponent implements OnInit {
 
 
     yeararray.forEach((year: any, index: number) => {
+      debugger;
       if (this.YearKey.length > 1) {
         if (year == fromdate.getFullYear()) {
           let formmnth = ("0" + (fromdate.getMonth() + 1)).slice(-2);
