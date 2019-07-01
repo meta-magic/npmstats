@@ -379,8 +379,6 @@ export class AppComponent implements OnInit {
     any {
     this.dependencyarray = [];
     this.devdependency = [];
-
-
     let redmeResponse: any;
     this.http.get('https://api.npms.io/v2/package/' + griddata)
       .subscribe(
@@ -635,7 +633,6 @@ export class AppComponent implements OnInit {
   getYearAggregate(yeardata: any) {
     let sum = 0;
     yeardata.forEach((downLoadObj: any) => {
-      this.totalDownloads.push(downLoadObj);
       let totaldownload: any = downLoadObj.downloads;
       sum = sum + totaldownload;
     });
@@ -650,6 +647,7 @@ export class AppComponent implements OnInit {
 
   //to calculate total downloads formdate  to todate
   async  getTotal(yeararray: any) {
+    this.totalDownloads = [];
     this.totaldownloadcount = 0;
     this.yearindex = 0;
     let responseyeararray = [];
