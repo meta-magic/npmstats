@@ -86,6 +86,7 @@
             <amexio-tab-view #amexiotab [closable]="false" [divide-header-equally]="true">
                 <amexio-tab [amexio-color]="'blue'" title="Dashboard" [active]="dashboardActiveTab" [closable]="false">
                     <ng-container *ngIf="dashboardActiveTab">
+                    <ng-container *ngIf="showChart">
                         <package-search [isLoading]="isLoading" [QuarterChart]="QuarterChart" [WeekChart]="WeekChart"
                             [range]="range" [weeksum]="weeksum" [fromDate]="fromDate" [week]="week" [toDate]="toDate"
                             [Year]=" Year" [monthsum1]="monthsum1" [yearsum]="yearsum" [totaldownloadcount]="totaldownloadcount"
@@ -93,6 +94,7 @@
                             [showMonthChart]="showMonthChart" [showChart]="showChart" [lineChartData]="lineChartData"
                             [monthWiseDataarray]="monthWiseDataarray">
                         </package-search>
+                        </ng-container>
                     </ng-container>
                 </amexio-tab>
 

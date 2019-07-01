@@ -75,7 +75,7 @@
                 Downloads per day
             </amexio-header>
             <amexio-body>
-                <div *ngIf="showChart" [ngClass]="{'signal':!showChart}">
+                <div *ngIf="showChart &&  WeekChart.length>0" [ngClass]="{'signal':!showChart}">
                     <amexio-chart-line [data]="lineChartData" [height]="'400px'" [width]="'100%'">
                         <amexio-chart-legend [position]="'top'" [font-name]="'downloads'"></amexio-chart-legend>
                         <amexio-chart-horizontal-axis [title]="'Date'">
@@ -151,8 +151,6 @@
                 </div>
             </amexio-body>
         </amexio-card>
-
-
     </amexio-grid-item>
 
     <amexio-grid-item [name]="'gridchart5'" class="paddingbottom">

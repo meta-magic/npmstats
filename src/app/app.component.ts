@@ -283,7 +283,6 @@ export class AppComponent implements OnInit {
     this.http.get('https://api.npmjs.org/downloads/range/' + inputUrl, {}).subscribe(
       resp => {
         response = resp;
-        this.showChart = true;
       },
       error => {
 
@@ -301,15 +300,7 @@ export class AppComponent implements OnInit {
       () => {
 
         const data = JSON.parse(JSON.stringify(response.downloads));
-        this.lineChartData.push([
-          { "datatype": "string", "label": 'Date' },
-          { "datatype": "number", "label": 'Downloads Per Day' }
-        ]);
-
-        this.monthWiseDataarray.push([
-          { "datatype": "string", "label": 'Months' },
-          { "datatype": "number", "label": 'Downloads Per Month' }
-        ]);
+       
         let confromYear = Number(fromYear);
         let contoYear = Number(toYear);
         let diffYear = contoYear -confromYear;
@@ -321,6 +312,8 @@ export class AppComponent implements OnInit {
         }
         if (this.YearKey.length > 0) {
           this.getTotal(this.YearKey);
+        this.showChart = true;
+
         }
         this.fromDate = this.packageModel.fromDate;
         this.toDate = this.packageModel.toDate;
@@ -701,12 +694,21 @@ export class AppComponent implements OnInit {
      }
   }
   showYearWiseChart() {
+
+    this.lineChartData.push([
+      { "datatype": "string", "label": 'Date' },
+      { "datatype": "number", "label": 'Downloads Per Day' }
+    ]);
     this.totalDownloads.forEach((downLoadObj: any) => {        
     let dayWiseDownloadCount: any = new DayWiseDownloadCount(downLoadObj.day, downLoadObj.downloads);
     this.lineChartData.push(dayWiseDownloadCount.add());
   });
   }
   showMonthWiseChart() {
+    this.monthWiseDataarray.push([
+      { "datatype": "string", "label": 'Months' },
+      { "datatype": "number", "label": 'Downloads Per Month' }
+    ]);
         let monthwisedata: MonthWiseDownload;
         monthwisedata = new MonthWiseDownload();
         this.totalDownloads.forEach((objects: any) => {

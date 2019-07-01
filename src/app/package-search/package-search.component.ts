@@ -13,7 +13,7 @@ import { AmexioGridLayoutService, GridConfig, GridConstants } from "amexio-ng-ex
 export class PackageSearchComponent implements OnInit {
 
   @Input() lineChartData: any;
-  @Input() showChart: boolean;
+  @Input() showChart = false;
   @Input() isLoading: boolean;
   @Input() isLoading1: boolean;
   @Input() monthWiseDataarray: any;
