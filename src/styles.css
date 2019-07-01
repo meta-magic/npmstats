@@ -53,5 +53,8 @@ You can add global styles to this file, and also import other style files
     padding: 0px!important;
 }
 
-
+amexio-nav img.navbar-logo  {
+    width: max-content;
+    height: 50px;
+}
 
