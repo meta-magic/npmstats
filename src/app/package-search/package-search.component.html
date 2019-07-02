@@ -1,3 +1,4 @@
+
 <amexio-layout-grid [layout]="'chartLayout'">
     <amexio-grid-item style="height: 130px" [name]="'gridheader1'">
 
@@ -62,14 +63,13 @@
                     {{Year}}</amexio-label>
             </amexio-action-ce>
         </amexio-card-ce>
-
     </amexio-grid-item>
 
 
 
 
-
     <amexio-grid-item [name]="'gridchart1'">
+            <br>
         <amexio-card [header]="true" [header-align]="'left'">
             <amexio-header>
                 Downloads per day
@@ -86,17 +86,15 @@
                 </div>
             </amexio-body>
         </amexio-card>
-
     </amexio-grid-item>
-
     <amexio-grid-item [name]="'gridchart2'">
-
-        <amexio-card [header]="true" [header-align]="'left'">
+            <br>
+        <amexio-card  [header]="true" [header-align]="'left'">
             <amexio-header>
                 Downloads per Quarter ({{Year}})
             </amexio-header>
             <amexio-body>
-                <div *ngIf="QuarterChart && QuarterChart.length>0" [ngClass]="{'signal':!showChart}">
+                <div style="height:400px" *ngIf="QuarterChart && QuarterChart.length>0" [ngClass]="{'signal':!showChart}">
                     <amexio-d3-chart-bar [data]="QuarterChart" [label]="true" [show-zero-values]="false">
                     </amexio-d3-chart-bar>
                 </div>
@@ -161,7 +159,7 @@
                 Downloads Per Year
             </amexio-header>
             <amexio-body>
-                <div *ngIf="yearWiseDataarray && yearWiseDataarray.length>0" [ngClass]="{'signal':!showChart}">
+                <div style="height: 400px" *ngIf="yearWiseDataarray && yearWiseDataarray.length>0" [ngClass]="{'signal':!showChart}">
 
                     <amexio-d3-chart-bar [data]="yearWiseDataarray" [label]="true">
                     </amexio-d3-chart-bar>
