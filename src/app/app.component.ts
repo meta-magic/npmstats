@@ -305,10 +305,11 @@ export class AppComponent implements OnInit {
         let contoYear = Number(toYear);
         let diffYear = contoYear -confromYear;
         this.YearKey.push(confromYear + "");
-
-        for(let i=1;i<=diffYear;i++) {
-          confromYear = confromYear + 1;
-          this.YearKey.push(confromYear+"");
+        if (diffYear > 0) {
+          for(let i=1;i<=diffYear;i++) {
+            confromYear = confromYear + 1;
+            this.YearKey.push(confromYear+"");
+          }
         }
         if (this.YearKey.length > 0) {
           this.getTotal(this.YearKey);
@@ -646,10 +647,11 @@ export class AppComponent implements OnInit {
     let responseyeararray = [];
     let yearresponse: any;
     let currentsum: number;
-
+    let duplicateArray:any[]=[];
     for (let i = 0; i < this.YearKey.length; i++) {
-      if (this.YearKey.length > 1) {
-        let url=  this.createUrl(this.YearKey[i]);      
+      if (this.YearKey.length > 0) {
+        let url=  this.createUrl(this.YearKey[i]);  
+        yearresponse = [];    
         yearresponse = await this.http.get('https://api.npmjs.org/downloads/range/' + url, {}).toPromise();     
         if (yearresponse) {
           let date = new Date(yearresponse.downloads[0].day);
@@ -659,6 +661,7 @@ export class AppComponent implements OnInit {
           yearresponse.downloads.forEach(downloadobj => {
             this.totalDownloads.push(downloadobj);
           });
+         duplicateArray = JSON.parse(JSON.stringify(this.totalDownloads ));
           this.YearDatapointcount.push(currentsum);
           responseyeararray.push([year + "", currentsum]);
        
@@ -687,14 +690,11 @@ export class AppComponent implements OnInit {
         }
       }
      }
-     if(this.totalDownloads.length > 0) {
+     if(duplicateArray.length > 0) {
       this.showYearWiseChart(); 
-      this.getWeekData(this.totalDownloads); 
-      this.showMonthWiseChart();
      }
   }
   showYearWiseChart() {
-
     this.lineChartData.push([
       { "datatype": "string", "label": 'Date' },
       { "datatype": "number", "label": 'Downloads Per Day' }
@@ -703,29 +703,29 @@ export class AppComponent implements OnInit {
     let dayWiseDownloadCount: any = new DayWiseDownloadCount(downLoadObj.day, downLoadObj.downloads);
     this.lineChartData.push(dayWiseDownloadCount.add());
   });
-  }
-  showMonthWiseChart() {
-    this.monthWiseDataarray.push([
-      { "datatype": "string", "label": 'Months' },
-      { "datatype": "number", "label": 'Downloads Per Month' }
-    ]);
-        let monthwisedata: MonthWiseDownload;
-        monthwisedata = new MonthWiseDownload();
-        this.totalDownloads.forEach((objects: any) => {
-          monthwisedata.groupMonth(objects.day, objects.downloads);
+  this.monthWiseDataarray.push([
+    { "datatype": "string", "label": 'Months' },
+    { "datatype": "number", "label": 'Downloads Per Month' }
+  ]);
+      let monthwisedata: MonthWiseDownload;
+      monthwisedata = new MonthWiseDownload();
+      this.totalDownloads.forEach((objects: any) => {
+        monthwisedata.groupMonth(objects.day, objects.downloads);
 
-        });
-
-        for (const key in monthwisedata.monthwise) {
-          if (monthwisedata.monthwise.hasOwnProperty(key)) {
-            const element = monthwisedata.monthwise[key];
-            let obj = [];
-            obj.push(key);
-            obj.push(element);
-            this.monthWiseDataarray.push(obj);
-          }
+      });
+  
+      for (const key in monthwisedata.monthwise) {
+        if (monthwisedata.monthwise.hasOwnProperty(key)) {
+          const element = monthwisedata.monthwise[key];
+          let obj = [];
+          obj.push(key);
+          obj.push(element);
+          this.monthWiseDataarray.push(obj);
         }
+      }
+      this.getWeekData(this.totalDownloads);
   }
+  
   createUrl(year:any) {
     let url: string;
     let fromdate = this.packageModel.fromDate;
