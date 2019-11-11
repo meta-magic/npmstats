@@ -54,8 +54,8 @@ export class PackageSearchComponent implements OnInit {
   createLayouts() {
     this.gridDesktop = new GridConfig('chartLayout', GridConstants.Desktop)
       .addlayout(["gridheader1", "gridheader1", "gridheader1", "gridheader2", "gridheader2", "gridheader2", "gridheader3", "gridheader3", "gridheader3", "gridheader4", "gridheader4", "gridheader4"])
-      .addlayout(["gridchart1", "gridchart1", "gridchart1", "gridchart1", "gridchart1", "gridchart1", "gridchart1", "gridchart1", "gridchart2", "gridchart2", "gridchart2", "gridchart2"])
-      .addlayout(["gridchart3", "gridchart3", "gridchart3", "gridchart3", "gridchart4", "gridchart4", "gridchart4", "gridchart4", "gridchart5", "gridchart5", "gridchart5", "gridchart5",]);
+      .addlayout([ "gridchart4", "gridchart4", "gridchart4", "gridchart4", "gridchart2", "gridchart2", "gridchart2", "gridchart2","gridchart5", "gridchart5", "gridchart5", "gridchart5"])
+      .addlayout(["gridchart1", "gridchart1", "gridchart1", "gridchart1", "gridchart1", "gridchart1", "gridchart1", "gridchart1", "gridchart3", "gridchart3", "gridchart3", "gridchart3"]);
 
 
     this.gridTablet = new GridConfig('chartLayout', GridConstants.Tablet)
@@ -63,9 +63,9 @@ export class PackageSearchComponent implements OnInit {
       .addlayout(["gridheader3", "gridheader3", "gridheader3", "gridheader3", "gridheader3", "gridheader3", "gridheader4", "gridheader4", "gridheader4", "gridheader4", "gridheader4", "gridheader4"])
 
 
-      .addlayout(["gridchart1", "gridchart1", "gridchart1", "gridchart1", "gridchart1", "gridchart1", "gridchart1", "gridchart1", "gridchart1", "gridchart1",  "gridchart1", "gridchart1"])
-      .addlayout(["gridchart2", "gridchart2", "gridchart2", "gridchart2", "gridchart2", "gridchart2",   "gridchart3", "gridchart3", "gridchart3", "gridchart3", "gridchart3", "gridchart3",])
       .addlayout([ "gridchart4", "gridchart4", "gridchart4", "gridchart4", "gridchart4", "gridchart4",   "gridchart5", "gridchart5", "gridchart5", "gridchart5", "gridchart5", "gridchart5",])
+      .addlayout(["gridchart2", "gridchart2", "gridchart2", "gridchart2", "gridchart2", "gridchart2",   "gridchart3", "gridchart3", "gridchart3", "gridchart3", "gridchart3", "gridchart3",])
+      .addlayout(["gridchart1", "gridchart1", "gridchart1", "gridchart1", "gridchart1", "gridchart1", "gridchart1", "gridchart1", "gridchart1", "gridchart1",  "gridchart1", "gridchart1"])
 
 
     this.gridMobile = new GridConfig('chartLayout', GridConstants.Mobile)
@@ -74,14 +74,12 @@ export class PackageSearchComponent implements OnInit {
       .addlayout(["gridheader3", "gridheader3", "gridheader3", "gridheader3",      "gridheader3", "gridheader3", "gridheader3", "gridheader3",     "gridheader3", "gridheader3", "gridheader3", "gridheader3"])
       .addlayout(["gridheader4", "gridheader4", "gridheader4", "gridheader4",       "gridheader4", "gridheader4", "gridheader4", "gridheader4",     "gridheader4", "gridheader4", "gridheader4", "gridheader4"])
 
-
-      .addlayout(["gridchart1", "gridchart1", "gridchart1", "gridchart1", "gridchart1", "gridchart1", "gridchart1", "gridchart1", "gridchart1", "gridchart1",  "gridchart1", "gridchart1"])
-      .addlayout(["gridchart2", "gridchart2", "gridchart2", "gridchart2", "gridchart2", "gridchart2", "gridchart2", "gridchart2", "gridchart2", "gridchart2", "gridchart2", "gridchart2"])
-      .addlayout(["gridchart3", "gridchart3", "gridchart3", "gridchart3", "gridchart3", "gridchart3", "gridchart3", "gridchart3", "gridchart3", "gridchart3", "gridchart3", "gridchart3"])
       .addlayout(["gridchart4", "gridchart4", "gridchart4", "gridchart4", "gridchart4", "gridchart4", "gridchart4", "gridchart4", "gridchart4", "gridchart4", "gridchart4", "gridchart4"])
       .addlayout(["gridchart5", "gridchart5", "gridchart5", "gridchart5", "gridchart5", "gridchart5", "gridchart5", "gridchart5", "gridchart5", "gridchart5", "gridchart5", "gridchart5"])
-
-
+      .addlayout(["gridchart2", "gridchart2", "gridchart2", "gridchart2", "gridchart2", "gridchart2", "gridchart2", "gridchart2", "gridchart2", "gridchart2", "gridchart2", "gridchart2"])
+      .addlayout(["gridchart1", "gridchart1", "gridchart1", "gridchart1", "gridchart1", "gridchart1", "gridchart1", "gridchart1", "gridchart1", "gridchart1",  "gridchart1", "gridchart1"])
+      .addlayout(["gridchart3", "gridchart3", "gridchart3", "gridchart3", "gridchart3", "gridchart3", "gridchart3", "gridchart3", "gridchart3", "gridchart3", "gridchart3", "gridchart3"])
+     
 
 
   }

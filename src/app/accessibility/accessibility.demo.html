@@ -1,0 +1,332 @@
+
+<div style=" padding: 0% 1% 0% 1%;">
+
+<amexio-box amexioColorPalette [color-palette]="'classic'" [gradient]="true" class="api-header-style " [padding]="true"
+    align="left">
+    <amexio-label size="large">
+        ARIA, WCAG, Section 508
+    </amexio-label>
+    <br>
+    <br>
+    The power of the Web is in its universality.
+    Access by everyone regardless of disability is an essential aspect. Tim Berners-Lee.
+    <br />
+</amexio-box>
+<amexio-row>
+    <amexio-column size="12">
+        <amexio-card style="display: block; padding-top:30px;">
+            <amexio-body>
+                <p>
+                    When you build a Web Application or a Web Site it's critical that it is designed to work for all
+                    people irrespective of the Hardware, Software, Language and Location which is used to build the
+                    App. It's mandatory to meet the above goal and when your application meets the above goal then it
+                    is accessible to people with a diverse range of hearing, movement, sight, and cognitive ability.
+                    <a style="color: blue;" href="https://www.w3.org/standards/webdesign/accessibility"><b>Read more...</b></a>
+                </p>
+                <p>
+                    Accessibility of web content requires semantic information about widgets, structures, and
+                    behaviors, in order to allow assistive technologies to convey appropriate information to persons
+                    with disabilities.
+                    This specification provides an ontology of roles, states, and properties that define accessible
+                    user interface elements and can be used to improve the accessibility and interoperability of web
+                    content and applications.
+                    These semantics are designed to allow an author to properly convey user interface behaviors and
+                    structural information to assistive technologies in document-level markup.
+                </p>
+                <p>
+                    The Web Accessibility Initiative's Accessible Rich Internet Applications specification (WAI-ARIA,
+                    or just ARIA) is good for bridging areas with accessibility issues that can't be managed with
+                    native HTML.
+                    It works by allowing you to specify attributes that modify the way an element is translated into
+                    the accessibility tree.
+                </p>
+                <p>
+                    After a brief introduction section, the guide begins with ARIA implementation patterns for
+                    common widgets that both enumerate expected behaviors.
+                    <!-- >aria-label-ARIA can add extra label and description text that is only exposed to assistive technology APIs.
+                    >aria-controls-ARIA can express semantic relationships between elements that extend the standard parent/child connection, such as a custom scrollbar that controls a specific region. -->
+                </p>
+                <p>
+                    ><b>Roles</b> are element types and will not change with time or user actions. And to provide
+                    normal
+                    processing of the specified element type.
+                </p>
+                <p>
+                    ><b>States and properties</b> are used to declare important attributes of an element that affect
+                    and
+                    describe interaction.
+                    They enable the user agent and operating system to properly handle the element even when the
+                    attributes are dynamically changed by client-side scripts.
+                </p>
+                <p>
+                    ><b>Managing Focus</b> to be managed by the container using the
+                    aria-activedescendant attribute on the managing container element, or by the container managing the
+                    tabindex of its child elements and setting focus on the appropriate child.When active descendant
+                    has
+                    focus, the user may navigate through the container by pressing additional
+                    keys, such as the arrow keys, to change the currently active descendant. Any additional press of
+                    the main navigation key (generally the TAB key) will move out of the container to the next widget.
+                </p>
+                <p><b>WHAT DOES ARIA DO?</b>
+                    ARIA can modify existing element semantics or add semantics to elements where no native semantics
+                    exist. It can also express semantic patterns that don't exist at all in HTML, like a menu or a tab
+                    panel. Often, ARIA lets us create widget-type elements that wouldn't be possible with plain HTML.
+                </p>
+                <ul>
+                    <li>
+                        For example, ARIA can add extra label and description text that is only exposed to
+                        assistive technology APIs.
+                    </li>
+                    <li>
+                        ARIA can express semantic relationships between elements that extend the standard parent/child
+                        connection, such as a custom scrollbar that controls a specific region.
+                    </li>
+                </ul>
+                <amexio-box border-color="blue" border="borderPosition" [padding]="true" [closable]="false" align="left">
+                    <b>Example of Aria CheckBox</b><br>
+                    <span>
+                    </span><span>
+                        </span> <span>li><span>
+                            </span>&nbsp;
+                    </span>
+                    <span>tabindex = "0" class="checkbox" role="checkbox" checked aria-checked="true"</span>
+                    <span>></span><br>
+                    <span>/li></span>
+
+                        <!--  checked aria-checked="true"> -->
+                        <!-- Receive promotional offers -->
+                        <!-- </li> -->
+
+                </amexio-box><br>
+                <amexio-box border-color="blue" border="borderPosition" [padding]="true" [closable]="false" align="left">
+                    <b>Example of Aria Button</b><br>
+                    <span>
+                    </span> <span>
+                        </span> <span>div&nbsp;
+                    </span>
+                    <span>tabindex = "0" id="savechanges" role="button" pressed aria-pressed="false"</span>
+                    <span>></span><br>
+                    <span>
+                    </span>
+                    <span>/div>
+                        </span>
+
+                </amexio-box>
+
+                <p>
+                    Figure illustrates the relationship between user agents (e.g., browsers),
+                    accessibility APIs, and assistive technologies. It describes the "contract" provided by the user
+                    agent to assistive technologies,which includes typical accessibility information found in the
+                    accessibility API for many of our
+                    accessible platforms for GUIs (role, state, selection, event notification,
+                    relationship information, and descriptions). The DOM, usually HTML, acts as the data model and view
+                    in a typical model-view-controller relationship, and JavaScript acts as the controller by
+                    manipulating the style and content of the displayed data.
+                    The user agent conveys relevant information to the operating system's accessibility API,
+                    which can be used by any assistive technologies, such as screen readers.
+                </p>
+                <amexio-image width="100%" [path]="'assets/images/accessibilitydemo.jpeg'" [tooltip]="'Image'"></amexio-image>
+            </amexio-body>
+        </amexio-card>
+        <amexio-card style="display: block; padding-top:20px">
+            <amexio-body>
+                <amexio-layout-grid [layout]="'LayoutSample'">
+                    <amexio-grid-item [name]="'gridtable1'">
+                        <amexio-card [header]="true" [header-align]="'left'" [footer]="false" [footer-align]="'left'"
+                            [show]="'showVariable'" height="height">
+                            <amexio-header>
+                                Panel
+                            </amexio-header>
+                            <amexio-body>
+                                <amexio-datagrid [data-reader]="'data'" [height]="'200'" [http-url]="'assets/menuaccessibilityjson/panelaccessibility.json'"
+                                    [http-method]="'get'" (rowSelect)="onRowSelect($event)">
+                                    <amexio-data-table-column [data-index]="'Component'" [data-type]="'string'"
+                                        [hidden]="false" [text]="'Component'">
+                                    </amexio-data-table-column>
+                                    <amexio-data-table-column [data-index]="'Keyboard'" [data-type]="'string'" [hidden]="false"
+                                        [text]="'Keyboard'">
+                                    </amexio-data-table-column>
+                                    <amexio-data-table-column [data-index]="'Screen-Reader'" [data-type]="'string'"
+                                        [hidden]="false" [text]="'Screen-Reader'">
+                                    </amexio-data-table-column>
+                                </amexio-datagrid>
+                            </amexio-body>
+                        </amexio-card>
+                    </amexio-grid-item>
+                    <amexio-grid-item [name]="'gridtable2'">
+                        <amexio-card [header]="true" [header-align]="'left'" [footer]="false" [footer-align]="'left'"
+                            [show]="'showVariable'" height="height">
+                            <amexio-header>
+                                App-Navigation
+                            </amexio-header>
+                            <amexio-body>
+                                <amexio-datagrid [data-reader]="'data'" [height]="'200'" [http-url]="'assets/menuaccessibilityjson/appnavigationaccesibility.json'"
+                                    [http-method]="'get'" (rowSelect)="onRowSelect($event)">
+                                    <amexio-data-table-column [data-index]="'Component'" [data-type]="'string'"
+                                        [hidden]="false" [text]="'Component'">
+                                    </amexio-data-table-column>
+                                    <amexio-data-table-column [data-index]="'Keyboard'" [data-type]="'string'" [hidden]="false"
+                                        [text]="'Keyboard'">
+                                    </amexio-data-table-column>
+                                    <amexio-data-table-column [data-index]="'Screen-Reader'" [data-type]="'string'"
+                                        [hidden]="false" [text]="'Screen-Reader'">
+                                    </amexio-data-table-column>
+                                </amexio-datagrid>
+                            </amexio-body>
+                        </amexio-card>
+                    </amexio-grid-item>
+                    <amexio-grid-item [name]="'gridtable3'">
+                        <amexio-card [header]="true" [header-align]="'left'" [footer]="false" [footer-align]="'left'"
+                            [show]="'showVariable'" height="height">
+                            <amexio-header>
+                                Layout
+                            </amexio-header>
+                            <amexio-body>
+                                <amexio-datagrid [data-reader]="'data'" [height]="'200'" [http-url]="'assets/menuaccessibilityjson/layoutaccessibility.json'"
+                                    [http-method]="'get'" (rowSelect)="onRowSelect($event)">
+                                    <amexio-data-table-column [data-index]="'Component'" [data-type]="'string'"
+                                        [hidden]="false" [text]="'Component'">
+                                    </amexio-data-table-column>
+                                    <amexio-data-table-column [data-index]="'Keyboard'" [data-type]="'string'" [hidden]="false"
+                                        [text]="'Keyboard'">
+                                    </amexio-data-table-column>
+                                    <amexio-data-table-column [data-index]="'Screen-Reader'" [data-type]="'string'"
+                                        [hidden]="false" [text]="'Screen-Reader'">
+                                    </amexio-data-table-column>
+                                </amexio-datagrid>
+
+                            </amexio-body>
+                        </amexio-card>
+                    </amexio-grid-item>
+                    <amexio-grid-item [name]="'gridtable4'">
+                        <amexio-card [header]="true" [header-align]="'left'" [footer]="false" [footer-align]="'left'"
+                            [show]="'showVariable'" height="height">
+                            <amexio-header>
+                                Form-Actions
+                            </amexio-header>
+                            <amexio-body>
+                                <amexio-datagrid [data-reader]="'data'" [height]="'200'" [http-url]="'assets/menuaccessibilityjson/formactionaccessibility.json'"
+                                    [http-method]="'get'" (rowSelect)="onRowSelect($event)">
+                                    <amexio-data-table-column [data-index]="'Component'" [data-type]="'string'"
+                                        [hidden]="false" [text]="'Component'">
+                                    </amexio-data-table-column>
+                                    <amexio-data-table-column [data-index]="'Keyboard'" [data-type]="'string'" [hidden]="false"
+                                        [text]="'Keyboard'">
+                                    </amexio-data-table-column>
+                                    <amexio-data-table-column [data-index]="'Screen-Reader'" [data-type]="'string'"
+                                        [hidden]="false" [text]="'Screen-Reader'">
+                                    </amexio-data-table-column>
+                                </amexio-datagrid>
+                            </amexio-body>
+                        </amexio-card>
+                    </amexio-grid-item>
+                    <amexio-grid-item [name]="'gridtable5'">
+                        <amexio-card [header]="true" [header-align]="'left'" [footer]="false" [footer-align]="'left'"
+                            [show]="'showVariable'" height="height">
+                            <amexio-header>
+                                Enterprise
+                            </amexio-header>
+                            <amexio-body>
+                                <amexio-datagrid [data-reader]="'data'" [height]="'200'" [http-url]="'assets/menuaccessibilityjson/enterpriseaccessibility.json'"
+                                    [http-method]="'get'" (rowSelect)="onRowSelect($event)">
+                                    <amexio-data-table-column [data-index]="'Component'" [data-type]="'string'"
+                                        [hidden]="false" [text]="'Component'">
+                                    </amexio-data-table-column>
+                                    <amexio-data-table-column [data-index]="'Keyboard'" [data-type]="'string'" [hidden]="false"
+                                        [text]="'Keyboard'">
+                                    </amexio-data-table-column>
+                                    <amexio-data-table-column [data-index]="'Screen-Reader'" [data-type]="'string'"
+                                        [hidden]="false" [text]="'Screen-Reader'">
+                                    </amexio-data-table-column>
+                                </amexio-datagrid>
+                            </amexio-body>
+                        </amexio-card>
+                    </amexio-grid-item>
+                    <amexio-grid-item [name]="'gridtable6'">
+                        <amexio-card [header]="true" [header-align]="'left'" [footer]="false" [footer-align]="'left'"
+                            [show]="'showVariable'" height="height">
+                            <amexio-header>
+                                Data
+                            </amexio-header>
+                            <amexio-body>
+                                <amexio-datagrid [data-reader]="'data'" [height]="'200'" [http-url]="'assets/menuaccessibilityjson/dataaccessibility.json'"
+                                    [http-method]="'get'" (rowSelect)="onRowSelect($event)">
+                                    <amexio-data-table-column [data-index]="'Component'" [data-type]="'string'"
+                                        [hidden]="false" [text]="'Component'">
+                                    </amexio-data-table-column>
+                                    <amexio-data-table-column [data-index]="'Keyboard'" [data-type]="'string'" [hidden]="false"
+                                        [text]="'Keyboard'">
+                                    </amexio-data-table-column>
+                                    <amexio-data-table-column [data-index]="'Screen-Reader'" [data-type]="'string'"
+                                        [hidden]="false" [text]="'Screen-Reader'">
+                                    </amexio-data-table-column>
+                                </amexio-datagrid>
+                            </amexio-body>
+                        </amexio-card>
+                    </amexio-grid-item>
+                    <amexio-grid-item [name]="'gridtable7'">
+                        <amexio-card [header]="true" [header-align]="'left'" [footer]="false" [footer-align]="'left'"
+                            [show]="'showVariable'">
+                            <amexio-header>
+                                Form-Inputs
+                            </amexio-header>
+                            <amexio-body>
+                                <amexio-datagrid [data-reader]="'data'" [height]="'920'" [http-url]="'assets/menuaccessibilityjson/forminputaccessibility.json'"
+                                    [http-method]="'get'" (rowSelect)="onRowSelect($event)">
+                                    <amexio-data-table-column [data-index]="'Component'" [data-type]="'string'"
+                                        [hidden]="false" [text]="'Component'">
+                                    </amexio-data-table-column>
+                                    <amexio-data-table-column [data-index]="'Keyboard'" [data-type]="'string'" [hidden]="false"
+                                        [text]="'Keyboard'">
+                                    </amexio-data-table-column>
+                                    <amexio-data-table-column [data-index]="'Screen-Reader'" [data-type]="'string'"
+                                        [hidden]="false" [text]="'Screen-Reader'">
+                                    </amexio-data-table-column>
+                                </amexio-datagrid>
+                            </amexio-body>
+                        </amexio-card>
+                    </amexio-grid-item>
+                </amexio-layout-grid>
+            </amexio-body>
+        </amexio-card>
+        <amexio-card-ce  style="display: block; padding-top:20px">
+            <amexio-body-ce>
+                <span style="font-weight:bold">Home: <a href="https://www.w3schools.com/html/" style="text-decoration: none; color:blue">https://www.w3schools.com/html/</a></span><br>
+                <span style="font-weight:bold">Patterns: <a href="https://a11yproject.com/patterns" style="text-decoration: none; color:blue">https://a11yproject.com/patterns</a></span><br>
+                <span style="font-weight:bold">Checklist: <a href="https://a11yproject.com/checklist" style="text-decoration: none; color:blue">https://a11yproject.com/checklist</a></span><br>
+                <span style="font-weight:bold">WAVE - Chrome Extension: <a href="https://chrome.google.com/webstore/detail/wave-evaluation-tool/jbbplnpkjmmeebjpijfedlgcdilocofh"
+                        style="text-decoration: none; color:blue">https://chrome.google.com/webstore/detail/wave-evaluation-tool/jbbplnpkjmmeebjpijfedlgcdilocofh</a></span><br>
+
+                <p>Overview</p>
+                <p>Evaluate web accessibility within the Chrome browser.</p>
+                <p>
+                    WAVE is a web accessibility evaluation tool developed by WebAIM.org. It provides visual feedback
+                    about the accessibility of your web content by injecting icons and indicators into your page. No
+                    automated tool can tell you if your page is accessible, but WAVE facilitates human evaluation and
+                    educates about accessibility issues. All analysis is done entirely within the Chrome browser
+                    allowing secure valuation of intranet, local, password protected, and other sensitive web pages.
+                </p>
+
+
+                <span style="font-weight:bold">Tools to test the
+                    Site for Accessibility Compliance -Link 1: <a href="https://www.powermapper.com/products/sortsite/checks/accessibility-checks/"
+                        style="text-decoration: none; color:blue">https://www.powermapper.com/products/sortsite/checks/accessibility-checks/</a></span><br>
+
+                <span style="font-weight:bold">Tools
+                    to test the
+                    Site for Accessibility Compliance -Link 2: <a href="http://www.508checker.com/" style="text-decoration: none; color:blue">http://www.508checker.com/</a></span><br>
+
+            </amexio-body-ce>
+
+        </amexio-card-ce>
+    </amexio-column>
+
+</amexio-row>
+
+
+<amexio-action-ce [align]="'space-between'">
+    <amexio-button [label]="'Previous'" [type]="'theme-color'" (onClick)="previous()">
+    </amexio-button>
+</amexio-action-ce>
+
+</div>

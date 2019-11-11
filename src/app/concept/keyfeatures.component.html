@@ -1,0 +1,27 @@
+<amexio-label [size]="'large-bold'">
+    Key Features
+</amexio-label>
+<br /><br />
+<amexio-row>
+    <amexio-column [fit]="true" [size]=4 *ngFor="let item of features">
+        <amexio-card-ce>
+            <amexio-layout-columns
+                [alignment]="'start'"
+                [orientation]="'horizontal'"
+                [responsive-mode]="'true'">
+                <amexio-layout-item>
+                    <amexio-image [height]="'100px'" [width]="'100px'" [path]="item.image" [filter]="'round'">
+                    </amexio-image>
+                </amexio-layout-item>
+                <amexio-layout-item >
+                    <amexio-label [size]="'medium-bold'"> {{item.title}}</amexio-label> <br/>
+                    <amexio-label [size]="'small'"> {{item.desc}}</amexio-label> <br/>
+                </amexio-layout-item>
+            </amexio-layout-columns>
+        </amexio-card-ce>
+    </amexio-column>
+    <amexio-column [size]=6>
+
+    </amexio-column>
+
+</amexio-row>

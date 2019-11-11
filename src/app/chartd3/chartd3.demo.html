@@ -1,0 +1,230 @@
+<div style=" padding: 0% 1% 0% 1%;">
+<amexio-row>
+    <amexio-column size="12">
+        <amexio-card [header]="false" [show]="'true'">
+
+            <amexio-body>
+                <amexio-image [path]="'/assets/staticPageImages/D3_chart_page1.jpg'" [tooltip]="'Image'"></amexio-image>
+
+                <p><b>D3</b> allows you to bind arbitrary data to a Document Object Model (DOM),
+                    and then apply data-driven transformations to the document. For example,
+                    you can use D3 to generate an HTML table from an array of numbers.
+                    Or, use the same data to create an interactive SVG bar chart with smooth transitions
+                    and interaction.</p>
+
+                <p>D3 is not a monolithic framework that seeks to provide every conceivable feature.
+                    Instead, D3 solves the crux of the problem: efficient manipulation of documents
+                    based on data. This avoids proprietary representation and affords extraordinary
+                    flexibility, exposing the full capabilities of web standards such as HTML, SVG, and CSS.
+                    With minimal overhead, D3 is extremely fast, supporting large datasets and dynamic
+                    behaviors for interaction and animation. D3’s functional style allows code reuse
+                    through a diverse collection of <span style="color: #0000FF"><ins>official</ins></span> and <span
+                        style="color: #0000FF"><ins>community-developed</ins></span> modules.</p>
+
+            </amexio-body>
+        </amexio-card>
+    </amexio-column>
+</amexio-row>
+
+
+<amexio-row>
+    <amexio-column size="6" [fit]="true">
+        <amexio-card [header]="true" [show]="'true'">
+            <amexio-header>
+                amexio D3-bar chart
+            </amexio-header>
+            <amexio-body>
+                <amexio-d3-chart-bar [title]="'Population Of Cities In India'" [label]="true" [color]="userDefineColors" [data]="userDefineColorData">
+                </amexio-d3-chart-bar>
+            </amexio-body>
+        </amexio-card>
+    </amexio-column>
+
+    <amexio-column size="6" [fit]="true">
+        <amexio-card [header]="true" [show]="'true'">
+            <amexio-header>
+                amexio D3-line chart
+            </amexio-header>
+            <amexio-body>
+                <amexio-d3-chart-line [title]="'Popularity Of XYZ & PQR'" [label]="true" [data]="doubleLineData">
+                </amexio-d3-chart-line>
+            </amexio-body>
+        </amexio-card>
+    </amexio-column>
+</amexio-row>
+
+
+
+<amexio-row>
+
+    <amexio-column size="6" [fit]="true">
+        <amexio-card [header]="true" [show]="'true'">
+            <amexio-header>
+                amexio D3-donut chart
+            </amexio-header>
+            <amexio-body>
+                <amexio-d3-chart-donut [label]="true" [title]="'Browser Popularity'" [color]="donutDataColor" [data]="donutData">
+                </amexio-d3-chart-donut>
+            </amexio-body>
+        </amexio-card>
+    </amexio-column>
+
+    <amexio-column size="6" [fit]="true">
+        <amexio-card [header]="true" [show]="'true'">
+            <amexio-header>
+                amexio D3-pie chart
+            </amexio-header>
+            <amexio-body>
+                <amexio-d3-chart-pie [label]="true" [title]="'Visitor Visit Country Ratio'" [color]="userDefineColors" [data]="pieData">
+                </amexio-d3-chart-pie>
+            </amexio-body>
+        </amexio-card>
+    </amexio-column>
+</amexio-row>
+
+<amexio-row>
+    <amexio-column size="6" [fit]="true">
+        <amexio-card [header]="true" [show]="'true'">
+            <amexio-header>
+                Amexio D3-multiseries Chart
+            </amexio-header>
+            <amexio-body>
+                <amexio-d3-chart-multiseries [title]="'Market Information'" [data]="stackData" [label]="true">
+                </amexio-d3-chart-multiseries>
+            </amexio-body>
+        </amexio-card>
+    </amexio-column>
+
+    <amexio-column size="6" [fit]="true">
+        <amexio-card [header]="true" [show]="'true'">
+            <amexio-header>
+                amexio D3-Stack Bar chart
+            </amexio-header>
+            <amexio-body>
+                <amexio-d3-chart-barstack [title]="'Market Information'" [data]="stackData" [label]="true">
+                </amexio-d3-chart-barstack>
+
+            </amexio-body>
+        </amexio-card>
+    </amexio-column>
+</amexio-row>
+<amexio-row>
+
+    <amexio-column size="6" [fit]="true">
+        <amexio-card [header]="true" [show]="'true'">
+            <amexio-header>
+                amexio D3-Horizontal bar chart
+            </amexio-header>
+            <amexio-body>
+                <amexio-d3-chart-bar [label]="true" [title]="'Production Information'" [horizontal]="true" [data]="horizontalBarData">
+                </amexio-d3-chart-bar>
+            </amexio-body>
+        </amexio-card>
+    </amexio-column>
+
+    <amexio-column size="6" [fit]="true">
+        <amexio-card [header]="true" [show]="'true'">
+            <amexio-header>
+                amexio D3-Combo Chart
+            </amexio-header>
+            <amexio-body>
+                <amexio-d3-combochart [title]="'State Wise Rice Production'" [data]="comboChartData" >
+                </amexio-d3-combochart>
+            </amexio-body>
+        </amexio-card>
+    </amexio-column>
+</amexio-row>
+
+<amexio-row>
+
+    <amexio-column size="6" [fit]="true">
+        <amexio-card [header]="true" [show]="'true'">
+            <amexio-header>
+                amexio D3-Multi-Area chart
+            </amexio-header>
+            <amexio-body>
+                <amexio-d3-chart-multiarea [label]="true" [data]="multiAreaData" [title]="'Stock Market Information'">
+                </amexio-d3-chart-multiarea>
+            </amexio-body>
+        </amexio-card>
+    </amexio-column>
+
+    <amexio-column size="6" [fit]="true">
+        <amexio-card [header]="true" [show]="'true'">
+            <amexio-header>
+                amexio D3-Scatter chart
+            </amexio-header>
+            <amexio-body>
+                <amexio-d3-chart-scatter [title]="'Age vs Weight'" [label]="true" [data]="scatterChartData" [color]="'green'">
+                </amexio-d3-chart-scatter>
+            </amexio-body>
+        </amexio-card>
+    </amexio-column>
+</amexio-row>
+
+<amexio-row>
+    <amexio-column size="6" [fit]="true">
+        <amexio-card [header]="true" [show]="'true'">
+            <amexio-header>
+                amexio D3-Histogram chart
+            </amexio-header>
+            <amexio-body>
+                <amexio-d3-chart-histogram [label]="true" [title]="'Count Of Dinosaur'" [data]="histogramdata" [color]="'blue'"></amexio-d3-chart-histogram>
+            </amexio-body>
+        </amexio-card>
+    </amexio-column>
+
+    <amexio-column size="6" [fit]="true">
+        <amexio-card [header]="true" [show]="'true'">
+            <amexio-header>
+                amexio D3-Waterfall chart
+            </amexio-header>
+            <amexio-body>
+                <amexio-d3-chart-waterfall [title]="'Product Information'" [data]="waterfallChartData" [label]="true">
+                </amexio-d3-chart-waterfall>
+
+            </amexio-body>
+        </amexio-card>
+    </amexio-column>
+</amexio-row>
+
+
+<amexio-row>
+    <amexio-column size="6" [fit]="true">
+        <amexio-card [header]="true" [show]="'true'">
+            <amexio-header>
+                amexio D3-Bubble chart
+            </amexio-header>
+            <amexio-body>
+                <amexio-d3-chart-bubble [title]="'Region Wise Life Expectancy '" [label]="true"
+                [zoom-enable]="true" [data]="bubblechart">
+                </amexio-d3-chart-bubble>
+            </amexio-body>
+        </amexio-card>
+    </amexio-column>
+    <amexio-column size="6" [fit]="true">
+        <amexio-card [header]="true" [show]="'true'">
+            <amexio-header>
+                amexio D3-Combo Chart with multi lines
+            </amexio-header>
+            <amexio-body>
+                <amexio-d3-combochart [title]="' Production in India'" 
+                
+               [data]="barData"
+               [bar-data-index]="barArray"
+               [line-data-index]="lineArray"
+               >
+               </amexio-d3-combochart>   
+            </amexio-body>
+        </amexio-card>
+    </amexio-column>
+</amexio-row>
+
+
+<amexio-action-ce [align]="'space-between'">
+        <amexio-button [label]="'Previous'" [type]="'theme-color'" (onClick)="previous()">
+        </amexio-button>
+        <amexio-button [label]="'Next'" [type]="'theme-color'" [tooltip]="'toolTip'"  (onClick)="next()">
+        </amexio-button>
+</amexio-action-ce>
+</div>
