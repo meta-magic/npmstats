@@ -1,0 +1,125 @@
+{
+    "data": [
+        {
+            "Component": "Checkbox",
+            "Keyboard": "No",
+            "Screen-Reader": "Yes",
+            "link": "forms-Input/singlecheckbox-demo"
+        },
+        {
+            "Component": "Checkbox Group",
+            "Keyboard": "No",
+            "Screen-Reader": "Yes",
+            "link": "forms-Input/checkboxgroup-demo"
+        },
+        {
+            "Component": "Chips",
+            "Keyboard": "Yes",
+            "Screen-Reader": "Yes",
+            "link": "forms-Input/chips-demo"
+        },
+        {
+            "Component": "Credit-Card",
+            "Keyboard": "No",
+            "Screen-Reader": "Yes",
+            "link": "forms-Input/credit-card-demo"
+        },
+        {
+            "Component": "Date & Time Picker",
+            "Keyboard": "Yes",
+            "Screen-Reader": "Yes",
+            "link": "forms-Input/date-picker-demo"
+        },
+        {
+            "Component": "Dropdown",
+            "Keyboard": "Yes",
+            "Screen-Reader": "Yes",
+            "link": "forms-Input/dropdownbasic"
+        },
+        {
+            "Component": "Email Field",
+            "Keyboard": "No",
+            "Screen-Reader": "Yes",
+            "link": "forms-Input/email-demo"
+        },
+        {
+            "Component": "File Upload",
+            "Keyboard": "No",
+            "Screen-Reader": "Yes",
+            "link": "forms-Input/fileupload-demo"
+        },
+        {
+            "Component": "Label",
+            "Keyboard": "No",
+            "Screen-Reader": "Yes",
+            "link": "forms-Input/label-demo"
+        },
+        {
+            "Component": "Number Field",
+            "Keyboard": "No",
+            "Screen-Reader": "Yes",
+            "link": "forms-Input/number-demo"
+        },
+        {
+            "Component": "Password Field",
+            "Keyboard": "No",
+            "Screen-Reader": "Yes",
+            "link": "forms-Input/password-demo"
+        },
+        {
+            "Component": "Radio Group",
+            "Keyboard": "No",
+            "Screen-Reader": "Yes",
+            "link": "forms-Input/radiogroup-demo"
+        },
+        {
+            "Component": "Rating",
+            "Keyboard": "Yes",
+            "Screen-Reader": "Yes",
+            "link": "forms-Input/rating-demo"
+        },
+        {
+            "Component": "Search Box",
+            "Keyboard": "Yes",
+            "Screen-Reader": "Yes",
+            "link": "forms-Input/searchbox-demo"
+        },
+        {
+            "Component": "Slider",
+            "Keyboard": "Yes",
+            "Screen-Reader": "Yes",
+            "link": "forms-Input/slider-demo"
+        },
+        {
+            "Component": "Type Ahead",
+            "Keyboard": "Yes",
+            "Screen-Reader": "Yes",
+            "link": "forms-Input/typeahead-demo"
+        },
+        {
+            "Component": "Tag Field",
+            "Keyboard": "Yes",
+            "Screen-Reader": "Yes",
+            "link": "forms-Input/taginput-demo"
+        },
+        {
+            "Component": "Text Field",
+            "Keyboard": "No",
+            "Screen-Reader": "Yes",
+            "link": "forms-Input/textinput"
+        },
+        {
+            "Component": "TextArea Field",
+            "Keyboard": "No",
+            "Screen-Reader": "Yes",
+            "link": "forms-Input/textarea-demo"
+        },
+        {
+            "Component": "Toggle",
+            "Keyboard": "No",
+            "Screen-Reader": "Yes",
+            "link": "forms-Input/toggle-demo"
+        }
+        
+    ]
+}
