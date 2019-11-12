@@ -1,0 +1,33 @@
+{
+    "data": [
+        {
+            "Component": "Accordian",
+            "Keyboard": "Yes",
+            "Screen-Reader": "Yes",
+            "link": "layout/accordion-demo"
+        },
+        {
+            "Component": "Border-Layout",
+            "Keyboard": "Yes",
+            "Screen-Reader": "Yes",
+            "link": "layout/border-demo"
+        },
+        {
+            "Component": "Box",
+            "Keyboard": "No",
+            "Screen-Reader": "Yes",
+            "link": "layout/box-demo"
+        },
+        {
+            "Component": "Column-Vertical",
+            "Keyboard": "No",
+            "Screen-Reader": "Yes",
+            "link": "layout/column-demo"
+        },
+        {
+            "Component": "Column-Horizontal",
+            "Keyboard": "No",
+            "Screen-Reader": "Yes"
+        }
+    ]
+}

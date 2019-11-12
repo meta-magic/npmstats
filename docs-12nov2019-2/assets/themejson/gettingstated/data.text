@@ -1,0 +1,16 @@
+// Import service from Library
+import {CommonDataService} from 'amexio-ng-extensions';
+import {Component, OnInit} from '@angular/core';
+
+@Component({
+  selector : 'app-component',
+  templateUrl : 'app.component.html'
+})
+export class AppComponent {
+  constructor(private dataService : CommonDataService) {
+    this.dataService.fetchData('assets/grid.json','get')  // (Path to file/url , method Type)
+      .subscribe(
+        {response=> console.log(response.json)}
+      );
+  }
+}

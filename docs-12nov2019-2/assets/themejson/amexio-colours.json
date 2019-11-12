@@ -1,0 +1,90 @@
+{
+    "colors": [
+      {
+        "name": "Red Light",
+        "css" : "amexio-red-light",
+        "BG": "#ff7f50",
+        "font" : "#240a00"
+      },
+      {
+        "name": "Red",
+        "BG": "#dc143c",
+        "css" : "amexio-red",
+        "font" : "#fffafb"
+      },
+      {
+        "name": "Green Light",
+        "css" : "amexio-green-light",
+        "BG": "#00ff00",
+        "font" :  "#002400"
+      },
+      {
+        "name": "Green",
+        "css" : "amexio-green",
+        "BG": "#2e8b57",
+        "font" :  "#f0faf4"
+      },
+      {
+        "name": "Purple Light",
+        "css" : "amexio-purple-light",
+        "BG": "#ff00ff",
+        "font" : "#050005"
+      },
+
+      {
+        "name": "Purple",
+        "css" : "amexio-purple",
+        "BG": "#8b008b",
+        "font" : "#fffaff"
+      },
+      {
+        "name": "Blue Light",
+        "css" : "amexio-blue-light",
+        "BG": "#00bfff",
+        "font":"#000507"
+      },
+      {
+        "name": "Blue",
+        "css" : "amexio-blue",
+        "BG": "#00008b",
+        "font":"#f5f5ff"
+      },
+      {
+        "name": "Brown Light",
+        "css" : "amexio-brown-light",
+        "BG": "#f4a460",
+        "font":"#211102"
+      },
+      {
+        "name": "Brown",
+        "css" : "amexio-brown",
+        "BG": "#800000",
+        "font":"#ffebeb"
+      },
+      {
+        "name": "Yellow Light",
+        "css" : "amexio-yellow-light",
+        "BG": "#ffd700",
+        "font":"#241e00"
+      },
+      {
+        "name": "Yellow",
+        "css" : "amexio-yellow",
+        "BG": "#ff9900",
+        "font":"#241500"
+      },
+      {
+        "name": "Black",
+        "css" : "amexio-black",
+        "BG": "#000000",
+        "font":"#ffffff"
+      },
+      {
+        "name": "White",
+        "css" : "amexio-white",
+        "BG": "#ffffff",
+        "font":"#000000"
+      }
+    ]
+  }
+  

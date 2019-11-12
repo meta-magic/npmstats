@@ -1,0 +1,22 @@
+{
+    "data": [
+        {
+            "Component": "Appointment",
+            "Keyboard": "Yes",
+            "Screen-Reader": "Yes",
+            "link": "enterprise/ee-appointment-demo"
+        },
+        {
+            "Component": "Calender",
+            "Keyboard": "Yes",
+            "Screen-Reader": "Yes",
+            "link": "enterprise/ee-calendar-demo"
+        },
+        {
+            "Component": "Steps Wizard",
+            "Keyboard": "No",
+            "Screen-Reader": "Yes",
+            "link": "enterprise/step-wizard-demo"
+        }
+    ]
+}
