@@ -21,11 +21,12 @@ import { ChartD3Demo } from '../app/chartd3/chard3.demo';
 import { AccessibilityDemoModule } from './accessibility/accessibility.demo.module';
 import { KeyFeaturesComponent } from './concept/keyfeatures.component';
 import { ThemeComponent } from './theme/theme.component';
-import { GettingStatedModule } from './gettingstarted/gettingstarted';
 import { AmexioThemeSwitcherService } from 'amexio-ng-extensions'; // Import Amexio library
 import { ConceptPage } from './concept/concept.component';
 import { SharedModule } from './shared.module';
-import {NpmComponent} from './npm-ui/npm-ui.component'
+import {NpmComponent} from './npm-ui/npm-ui.component';
+import {GettingStatedDemo} from './gettingstarted/gettingstarted';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,12 +37,12 @@ import {NpmComponent} from './npm-ui/npm-ui.component'
     ConceptPage,
     KeyFeaturesComponent,
     ThemeComponent,
-    NpmComponent
+    NpmComponent,
+    GettingStatedDemo
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    GettingStatedModule,
     CommonModule,
     AmexioChartD3Module,
     AmexioWidgetModule,

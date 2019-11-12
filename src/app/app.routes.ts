@@ -2,9 +2,7 @@
 
 import { Routes } from '@angular/router';
 import {NpmComponent} from './npm-ui/npm-ui.component';
-import { GettingStatedModule } from './gettingstarted/gettingstarted';
 import { AccessibilityDemoModule } from './accessibility/accessibility.demo.module';
-// import { LandingPageComponent } from './landing-page/landing-page.component';
 import { ChartD3Demo } from './chartd3/chard3.demo';
 import { AccessibilityDemo } from './accessibility/accessibility.demo';
 import { ConceptPage } from './concept/concept.component';
@@ -21,11 +19,10 @@ export const APP_ROUTE: Routes = [
         path: 'd3-charts', component: ChartD3Demo,
     },
     {
-        //AccessibilityDemoModule
         path: 'accessibility', loadChildren: './accessibility/accessibility.demo.module#AccessibilityDemoModule',
     },
     {
-        path: 'getting-started', loadChildren:'./gettingstarted/gettingstarted#GettingStatedModule ',
+        path: 'getting-started', component: GettingStatedDemo,
     },
     {
         path: 'concept', component: ConceptPage,

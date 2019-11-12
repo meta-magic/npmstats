@@ -27,11 +27,11 @@ export class GettingStatedDemo {
   }
 
   previous() {
-    this.route.navigate(['concept-page']);
+    this.route.navigate(['concept']);
   }
 
   next() {
-    this.route.navigate(['amexio-colors']);
+    this.route.navigate(['theme']);
   }
 
   onLinkClick(link: string) {
@@ -90,23 +90,22 @@ export class GettingStatedDemo {
     );
   }
 }
-@NgModule({
-  declarations: [GettingStatedDemo],
-  imports: [
-    CommonModule,
-    FormsModule,
-    SharedModule,
-    HttpClientModule,
-    AmexioWidgetModule,
-    AmexioEnterpriseModule,
-    RouterModule.forChild([
-      { path: 'getting-started', component: GettingStatedDemo, pathMatch: 'full' }
-    ])
-  ],
-  providers: []
-})
+// @NgModule({
+//   declarations: [GettingStatedDemo],
+//   imports: [
+//     CommonModule,
+//     FormsModule,
+//     SharedModule,
+//     HttpClientModule,
+//     AmexioWidgetModule,
+//     AmexioEnterpriseModule,
+//     RouterModule.forChild([
+//       { path: 'getting-started', component: GettingStatedDemo, pathMatch: 'full' }
+//     ])
+//   ],
+//   providers: []
+// })
 
+// export class GettingStatedModule {
 
-export class GettingStatedModule {
-
-}
+// }
