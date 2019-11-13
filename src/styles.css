@@ -67,3 +67,6 @@ amexio-box .roundEdgeCommonCss .box-content{
 .card-container-narrower-header {
     margin: 10px 0px 0px 0px !important;
 }
+.rowflex .flex-row {
+ padding:0px 5px 0px 5px;
+}

@@ -156,8 +156,8 @@ export class NpmComponent implements OnInit {
       .addlayout(["gridtab", "gridtab", "gridtab", "gridtab"])
       
 
-      .addlayout(["gridcard1", "gridcard2", "gridcard3", "gridcard4"])
-      .addlayout(["gridlabel", "gridlabel", "gridlabel", "gridlabel"])
+      // .addlayout(["gridcard1", "gridcard2", "gridcard3", "gridcard4"])
+      // .addlayout(["gridlabel", "gridlabel", "gridlabel", "gridlabel"])
 
       this.gridTablet = new GridConfig('npmLayout', GridConstants.Tablet)
       .addlayout(["gridbox", "gridbox", "gridbox", "gridbox"])
@@ -167,9 +167,9 @@ export class NpmComponent implements OnInit {
       .addlayout(["gridtab", "gridtab", "gridtab", "gridtab"])
 
 
-      .addlayout(["gridcard1", "gridcard1", "gridcard2", "gridcard2"])
-      .addlayout(["gridcard3", "gridcard3", "gridcard4", "gridcard4"])
-      .addlayout(["gridlabel", "gridlabel", "gridlabel", "gridlabel"]);
+      // .addlayout(["gridcard1", "gridcard1", "gridcard2", "gridcard2"])
+      // .addlayout(["gridcard3", "gridcard3", "gridcard4", "gridcard4"])
+      // .addlayout(["gridlabel", "gridlabel", "gridlabel", "gridlabel"]);
 
 
       this.gridMobile = new GridConfig('npmLayout', GridConstants.Mobile)
@@ -182,12 +182,12 @@ export class NpmComponent implements OnInit {
       .addlayout(["gridinput4", "gridinput4", "gridinput4", "gridinput4"])
       .addlayout(["gridtab", "gridtab", "gridtab", "gridtab"])
       
-      .addlayout(["gridcard1", "gridcard1", "gridcard1", "gridcard1"])
-      .addlayout(["gridcard2", "gridcard2", "gridcard2", "gridcard2"])
-      .addlayout(["gridcard3", "gridcard3", "gridcard3", "gridcard3"])
-      .addlayout(["gridcard4", "gridcard4", "gridcard4", "gridcard4"])
+      // .addlayout(["gridcard1", "gridcard1", "gridcard1", "gridcard1"])
+      // .addlayout(["gridcard2", "gridcard2", "gridcard2", "gridcard2"])
+      // .addlayout(["gridcard3", "gridcard3", "gridcard3", "gridcard3"])
+      // .addlayout(["gridcard4", "gridcard4", "gridcard4", "gridcard4"])
 
-      .addlayout(["gridlabel", "gridlabel", "gridlabel", "gridlabel"]);
+      // .addlayout(["gridlabel", "gridlabel", "gridlabel", "gridlabel"]);
 
 
       this.cardGridDesktop = new GridConfig('cardlayout', GridConstants.Desktop)
