@@ -1,0 +1,30 @@
+import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { NgModule } from "@angular/core";
+import { FormsModule } from "@angular/forms";
+import { AppComponent } from "./app.component";
+import { AmexioWidgetModule } from "amexio-ng-extensions"; // Import Amexio library
+
+//Dashboard,Charts & Maps are available as seperate module (not in AmexioWidgetModule)
+import {
+  AmexioChartsModule,
+  AmexioDashBoardModule,
+  AmexioEnterpriseModule,
+  AmexioMapModule
+} from "amexio-ng-extensions";
+
+@NgModule({
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AmexioWidgetModule,
+    FormsModule,
+    AmexioChartsModule,
+    AmexioDashBoardModule,
+    AmexioEnterpriseModule,
+    AmexioMapModule
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}

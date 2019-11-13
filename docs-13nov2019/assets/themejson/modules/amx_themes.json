@@ -1,0 +1,69 @@
+{
+  "properties": [
+    {
+      "name": "Byzantine Crystal",
+      "description":"../node_modules/amexio-ng-extensions/styles/css/at-am-byzantine-crystal.css"
+    },
+    {
+      "name" : "Honey Prussian",
+      "description" : "../node_modules/amexio-ng-extensions/styles/css/at-am-honey-prussian.css"
+    },
+    {
+      "name" : "Lime Green",
+      "description" : "../node_modules/amexio-ng-extensions/styles/css/at-am-limegreen.css"
+    },
+    {
+      "name" : "Matrix",
+      "description" : "../node_modules/amexio-ng-extensions/styles/css/at-am-matrix.css"
+    },
+    {
+      "name" : "Ocean Blue",
+      "description" : "../node_modules/amexio-ng-extensions/styles/css/at-am-ocean-blue.css"
+    },
+    {
+      "name" : "Persian Laguna",
+      "description" : "../node_modules/amexio-ng-extensions/styles/css/at-am-persian-laguna.css"
+    },
+    {
+      "name" : "Spicy Apricot",
+      "description" : "../node_modules/amexio-ng-extensions/styles/css/at-am-spicy-apricot.css"
+    },
+    {
+      "name": "Royal Tiger",
+      "description": "../node_modules/amexio-ng-extensions/styles/css/at-am-tiger.css"
+    },
+    {
+      "name": "Burgandy Magenta",
+      "description": "../node_modules/amexio-ng-extensions/styles/css/at-am-burgandy-magenta.css"
+    },
+    {
+      "name": "Navy Grape",
+      "description": "../node_modules/amexio-ng-extensions/styles/css/at-am-navy-grape.css"
+    },
+    {
+      "name": "Matrix Amber",
+      "description": "../node_modules/amexio-ng-extensions/styles/css/at-am-matrix-amber.css"
+    },
+    {
+      "name": "Matrix Cream",
+      "description": "../node_modules/amexio-ng-extensions/styles/css/at-am-matrix-cream.css"
+    },
+    {
+      "name": "Matrix Maya",
+      "description": "../node_modules/amexio-ng-extensions/styles/css/at-am-matrix-maya.css"
+    },
+    {
+      "name": "Matrix Ultra",
+      "description": "../node_modules/amexio-ng-extensions/styles/css/at-am-matrix-ultra.css"
+    },
+    {
+      "name": "Royal Kelly",
+      "description": "../node_modules/amexio-ng-extensions/styles/css/at-am-royal-kelly.css"
+    },
+    {
+      "name": "Royal Pineapple",
+      "description": "../node_modules/amexio-ng-extensions/styles/css/at-am-royal-pineapple.css"
+    }
+
+  ]
+}

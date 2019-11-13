@@ -1,0 +1,40 @@
+{
+    "data": [
+        {
+            "Component": "Carousel",
+            "Keyboard": "Yes",
+            "Screen-Reader": "Yes",
+            "link": "panes/carousel-demo"
+        },
+        {
+            "Component": "Dialogue",
+            "Keyboard": "No",
+            "Screen-Reader": "Yes",
+            "link": "panes/dialogue-demo"
+        },
+        {
+            "Component": "Fieldset",
+            "Keyboard": "No",
+            "Screen-Reader": "Yes",
+            "link": "panes/fieldset-demo"
+        },
+        {
+            "Component": "Panel",
+            "Keyboard": "No",
+            "Screen-Reader": "Yes",
+            "link": "panes/panel-demo"
+        },
+        {
+            "Component": "Step",
+            "Keyboard": "No",
+            "Screen-Reader": "Yes",
+            "link": "panes/step-box-demo"
+        },
+        {
+            "Component": "Tab",
+            "Keyboard": "Yes",
+            "Screen-Reader": "Yes",
+            "link": "panes/basic-tab-demo"
+        }
+    ]
+}
